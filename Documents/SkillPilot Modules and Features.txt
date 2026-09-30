@@ -1,0 +1,160 @@
+Module Category
+Module Name
+Feature Name
+Description
+Core System
+Auth
+Login
+User login with token authentication
+Register
+New user registration
+Logout
+User logout
+Password Reset
+Reset forgotten password
+Email Verification
+Verify user email
+Core System
+Tenants
+Tenant Creation
+Create new client organization
+Tenant Settings
+Configure tenant profile
+Tenant Activation
+Enable or disable tenant
+Core System
+Users
+User Management
+Create and manage users
+Role Assignment
+Assign roles to users
+User Status
+Activate or block users
+Core System
+Roles
+Role Management
+Create and manage roles
+Permission Control
+Assign permissions to roles
+Core System
+Licenses
+License Creation
+Assign license to tenant
+License Validation
+Check license status
+License Expiry
+Control license expiration
+Core System
+Packages
+Package Creation
+Define SaaS plans
+Feature Flags
+Enable/disable features
+Package Upgrade
+Upgrade tenant plan
+Learning
+Courses
+Course Creation
+Create courses
+Course Update
+Edit course information
+Course Publish
+Publish or unpublish course
+Course Pricing
+Set course price
+Learning
+Course Sections
+Section Creation
+Create course sections
+Section Sorting
+Arrange sections order
+Learning
+Lessons
+Lesson Creation
+Add lessons to course
+Video Lesson
+Upload video content
+PDF Lesson
+Upload PDF content
+Lesson Order
+Control lesson sequence
+Learning
+Progress
+Progress Tracking
+Track student learning
+Completion Check
+Detect course completion
+Learning
+Certificates
+Certificate Template
+Define certificate design
+Certificate Generation
+Generate certificate on completion
+Certificate Download
+Download certificate
+Certificate Verification
+Public verification page
+Commerce
+Orders
+Order Creation
+Create order when purchasing course
+Order History
+View purchase history
+Commerce
+Payments
+Payment Processing
+Handle payment transactions
+Payment Webhook
+Receive payment gateway callbacks
+Payment Status
+Track payment status
+Commerce
+Coupons
+Coupon Creation
+Create discount codes
+Coupon Validation
+Validate coupon usage
+Growth
+Affiliate
+Affiliate Registration
+Register affiliate users
+Referral Link
+Generate referral links
+Commission Tracking
+Track affiliate earnings
+Withdrawal Request
+Affiliate payout requests
+Growth
+Notifications
+Email Notifications
+Send transactional emails
+System Alerts
+Send platform alerts
+Growth
+Analytics
+Course Analytics
+Track course performance
+Sales Analytics
+Track revenue data
+User Analytics
+Track user engagement
+System
+Settings
+Platform Settings
+Global system settings
+Branding
+Customize tenant branding
+Localization
+Language settings
+System
+Logs
+Activity Logs
+Track user actions
+Error Logs
+Store system errors
+System
+Webhooks
+External Integrations
+Connect third-party services
+Event Triggers
+Trigger external APIs

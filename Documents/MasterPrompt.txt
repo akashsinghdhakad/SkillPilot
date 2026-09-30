@@ -1,0 +1,352 @@
+You are a senior SaaS architect and full-stack developer.
+
+Your task is to generate a complete modular SaaS application called "SkillPilot".
+
+SkillPilot is a multi-tenant learning management SaaS platform where organizations can create and sell courses, manage users, and issue certificates.
+
+The application must follow clean architecture, modular design, and best practices.
+
+--------------------------------------------------
+
+PROJECT OVERVIEW
+
+Product Name: SkillPilot
+
+Purpose:
+A SaaS learning platform that allows multiple organizations (tenants) to manage courses, students, instructors, certificates, and payments.
+
+Architecture requirements:
+
+- Modular architecture
+- Single database multi-tenant model
+- License-based SaaS distribution
+- Feature flag system for packages
+- REST API backend
+- Frontend dashboard
+
+--------------------------------------------------
+
+TECH STACK
+
+Backend
+- Laravel 12
+- PHP 8.2+
+- MySQL
+- Laravel Sanctum authentication
+- nwidart/laravel-modules for modular architecture
+
+Frontend
+- Next.js (React)
+- TailwindCSS
+- Axios API client
+
+Infrastructure
+- Redis (optional caching)
+- S3 storage for files
+- Docker compatible
+
+--------------------------------------------------
+
+MULTI TENANT MODEL
+
+SkillPilot uses a single database multi-tenant architecture.
+
+Each client is represented as a tenant.
+
+All tenant-owned data must include:
+
+tenant_id
+
+Tenant-owned tables:
+
+users
+courses
+course_sections
+course_lessons
+course_progress
+certificates
+orders
+payments
+
+Tables without tenant_id:
+
+roles
+packages
+
+--------------------------------------------------
+
+DATABASE TABLES
+
+tenants
+id
+name
+slug
+status
+created_at
+updated_at
+
+users
+id
+tenant_id
+name
+email
+password
+status
+created_at
+updated_at
+
+roles
+id
+name
+
+user_roles
+user_id
+role_id
+
+packages
+id
+name
+features JSON
+price
+
+licenses
+id
+tenant_id
+package_id
+license_key
+expires_at
+is_active
+
+courses
+id
+tenant_id
+title
+description
+price
+status
+
+course_sections
+id
+course_id
+title
+sort_order
+
+course_lessons
+id
+section_id
+title
+content_type
+content_path
+sort_order
+
+course_progress
+id
+user_id
+course_id
+completed_at
+
+certificates
+id
+user_id
+course_id
+certificate_no
+issued_at
+
+orders
+id
+user_id
+course_id
+amount
+payment_status
+payment_ref
+
+payments
+id
+order_id
+payment_gateway
+transaction_id
+status
+
+--------------------------------------------------
+
+MODULE ARCHITECTURE
+
+Use modular architecture with the following modules.
+
+Core Modules
+Auth
+Tenants
+Users
+Roles
+Licenses
+Packages
+
+Learning Modules
+Courses
+Lessons
+Progress
+Certificates
+
+Commerce Modules
+Orders
+Payments
+Coupons
+
+Growth Modules
+Affiliate
+Notifications
+Analytics
+
+System Modules
+Settings
+Logs
+Webhooks
+
+Each module must contain:
+
+Controllers
+Models
+Services
+Routes
+Migrations
+
+--------------------------------------------------
+
+MIDDLEWARE FLOW
+
+All protected APIs must run in this order:
+
+auth:sanctum
+ResolveTenant
+CheckLicense
+CheckRole
+
+--------------------------------------------------
+
+LICENSE SYSTEM
+
+Each tenant must have an active license.
+
+License properties:
+
+tenant_id
+package_id
+expires_at
+is_active
+
+If license is expired, block API requests.
+
+--------------------------------------------------
+
+FEATURE FLAG SYSTEM
+
+Packages define features using JSON.
+
+Example:
+
+{
+ "courses": true,
+ "certificates": true,
+ "affiliate": false
+}
+
+Create helper:
+
+feature_enabled("affiliate")
+
+--------------------------------------------------
+
+API ENDPOINTS
+
+Authentication
+
+POST /api/login
+POST /api/register
+POST /api/logout
+GET /api/me
+
+Users
+
+GET /api/users
+POST /api/users
+PUT /api/users/{id}
+DELETE /api/users/{id}
+
+Courses
+
+GET /api/courses
+POST /api/courses
+GET /api/courses/{id}
+PUT /api/courses/{id}
+DELETE /api/courses/{id}
+
+Lessons
+
+POST /api/lessons
+GET /api/lessons/{id}
+
+Orders
+
+POST /api/orders
+GET /api/orders
+
+Certificates
+
+GET /api/certificates
+GET /api/certificates/{id}
+
+--------------------------------------------------
+
+FRONTEND DASHBOARD
+
+Create three dashboards.
+
+Admin Dashboard
+- manage tenants
+- manage users
+- manage packages
+
+Instructor Dashboard
+- create courses
+- upload lessons
+- manage students
+
+Student Dashboard
+- view enrolled courses
+- track progress
+- download certificates
+
+--------------------------------------------------
+
+UI REQUIREMENTS
+
+Use TailwindCSS.
+
+Reusable components:
+
+sidebar
+dashboard cards
+tables
+forms
+modals
+charts
+
+--------------------------------------------------
+
+DELIVERABLES
+
+Generate:
+
+Complete Laravel backend
+Database migrations
+Modular folder structure
+API controllers
+Middleware
+Service classes
+Seeders
+Next.js frontend scaffold
+Dashboard pages
+API integration examples
+README setup instructions
+
+The code must be production ready and follow clean architecture principles.

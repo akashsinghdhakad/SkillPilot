@@ -1,0 +1,190 @@
+SkillPilot – System Architecture Blueprint
+1. System Overview
+SkillPilot is a multi-tenant modular SaaS learning platform designed to allow organizations and trainers to create, sell, and manage online courses with certificate generation and license-based access control.
+The system follows these architectural principles:
+Modular architecture
+Single database multi-tenant model
+License-based SaaS distribution
+API-first backend
+Role-based access control
+Feature flag monetization
+2. High-Level System Architecture
+Users   │   ▼Frontend (Next.js)   │   ▼API Gateway (Laravel Routes)   │   ▼Middleware Layer ├ Authentication (Sanctum) ├ Tenant Resolver ├ License Validator └ Role Authorization   │   ▼Application Modules ├ Auth ├ Tenants ├ Licenses ├ Courses ├ Certificates ├ Payments └ Affiliate   │   ▼Database (MySQL)
+3. Multi-Tenant Architecture
+SkillPilot uses Single Database Multi-Tenant Architecture.
+Key Concept
+Each client using the system is represented as a Tenant.
+Example:
+Tenant ID
+Organization
+1
+ABC Coaching
+2
+XYZ Academy
+Each tenant has its own:
+users
+courses
+orders
+certificates
+Tenant separation is maintained using:
+tenant_id
+4. Tenant Lifecycle
+1. Client Purchases SkillPilot
+Admin creates tenant.
+Tenant Created↓License Assigned↓Admin User Created↓Tenant Platform Activated
+2. Tenant Adds Users
+Tenant admin can create:
+instructors
+students
+staff
+3. Tenant Creates Courses
+Instructor builds:
+Course ├ Sections └ Lessons
+Students enroll and progress is tracked.
+4. Course Completion
+Upon completion:
+Course Completed↓Certificate Generated↓Stored in Certificates Table
+5. Request Flow
+Every protected API follows this flow:
+Client Request      ↓Auth Middleware      ↓Resolve Tenant Middleware      ↓License Validation Middleware      ↓Role Permission Middleware      ↓Controller      ↓Service Layer      ↓Database
+This ensures:
+user authenticated
+tenant valid
+license active
+permissions checked
+6. Modular Architecture
+SkillPilot is divided into modules.
+Each module contains:
+ControllersModelsServicesRoutesMigrations
+Core Modules
+AuthTenantsUsersRolesLicensesPackages
+Responsibilities:
+authentication
+tenant resolution
+license validation
+role management
+Learning Modules
+CoursesLessonsCertificatesProgress
+Responsibilities:
+course creation
+lesson management
+learning tracking
+certificate generation
+Commerce Modules
+OrdersPaymentsCouponsSubscriptions
+Responsibilities:
+purchasing
+payment handling
+billing
+Growth Modules
+AffiliateMarketingAnalyticsNotifications
+Responsibilities:
+referral system
+analytics
+user engagement
+System Modules
+SettingsLogsWebhooksAPI Keys
+Responsibilities:
+configuration
+system monitoring
+integrations
+7. Database Architecture
+Core Tables
+tenantsusersrolesuser_rolespackageslicenses
+Learning Tables
+coursescourse_sectionscourse_lessonscourse_progress
+Certification Tables
+certificates
+Commerce Tables
+orderspayments
+8. Folder Structure (Backend)
+skillpilot-backend│├ app│├ Modules││   ├ Auth│   ├ Tenants│   ├ Users│   ├ Licenses│   ├ Packages││   ├ Courses│   ├ Lessons│   ├ Certificates││   ├ Orders│   ├ Payments││   ├ Affiliate│   ├ Notifications│├ config├ database├ routes├ storage
+9. Frontend Architecture
+Frontend will use Next.js.
+Structure:
+skillpilot-frontend│├ pages│   ├ admin│   ├ instructor│   ├ student│├ components│├ services│   └ api.js│├ layouts│├ hooks
+10. Role System
+Roles supported:
+Role
+Description
+Super Admin
+Platform owner
+Tenant Admin
+Client owner
+Instructor
+Creates courses
+Student
+Consumes courses
+Affiliate
+Refers users
+11. License System
+Each tenant has a license.
+License controls:
+platform access
+enabled modules
+expiration date
+Example:
+Tenant
+Package
+Expiry
+ABC Coaching
+Pro
+2026
+If expired:
+License Expired↓API blocked↓Renew license
+12. Feature Flag System
+Packages contain feature JSON.
+Example:
+{ "courses": true, "certificates": true, "affiliate": false}
+Helper function:
+feature_enabled("affiliate")
+13. Security Model
+Security measures include:
+tenant-based data isolation
+middleware validation
+token authentication
+role-based access control
+Example safe query:
+Course::where('tenant_id', tenant_id)->get()
+14. Deployment Architecture
+Production deployment:
+Users  │  ▼Cloudflare / CDN  │  ▼Nginx  │  ▼Laravel Backend  │  ▼MySQL Database  │  ▼Redis Cache
+15. Monetization Strategy
+SkillPilot will generate revenue through:
+SaaS subscription
+license renewals
+plan upgrades
+enterprise onboarding
+Example plans:
+Plan
+Price
+Basic
+₹1500/month
+Pro
+₹3000/month
+Enterprise
+Custom
+16. Development Roadmap
+Phase 1
+Core platform
+auth
+tenants
+licenses
+Phase 2
+Learning system
+courses
+lessons
+certificates
+Phase 3
+Monetization
+orders
+payments
+Phase 4
+Growth
+affiliate
+analytics
+17. Product Identity
+Product name:
+SkillPilot
+Tagline:
+“SkillPilot – Control Your Learning Platform.”

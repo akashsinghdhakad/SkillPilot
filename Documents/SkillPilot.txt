@@ -1,0 +1,252 @@
+SkillPilot – Modular SaaS Learning Platform
+Product Architecture & Development Document
+1. Product Overview
+SkillPilot is a multi-tenant modular SaaS platform that enables organizations, educators, and training institutes to create, manage, and sell online courses.
+The platform supports:
+Course creation and management
+Student learning management
+Certificate generation
+License-based SaaS distribution
+Role-based access control
+Modular feature architecture
+Multi-tenant isolation
+SkillPilot is designed as a reusable SaaS product, meaning multiple clients can use the same system while keeping their data completely separated.
+2. Product Vision
+SkillPilot aims to become a complete learning and skill management ecosystem.
+The platform will allow:
+Trainers to monetize courses
+Institutions to manage LMS systems
+Corporations to run internal training
+Entrepreneurs to launch white-label course platforms
+The architecture prioritizes:
+scalability
+modular development
+SaaS monetization
+feature extensibility
+3. Technology Stack
+Backend
+Laravel 12
+PHP 8.2+
+MySQL
+Laravel Sanctum
+Laravel Modules (nwidart/laravel-modules)
+Frontend
+React / Next.js
+TailwindCSS
+Axios
+Infrastructure
+Redis (optional caching/queues)
+S3-compatible storage
+Nginx or Apache
+Docker (optional)
+4. SaaS Architecture
+SkillPilot uses Single Database Multi-Tenant Architecture.
+Each client is represented by a Tenant.
+Example tenants:
+Tenant ID
+Client
+1
+ABC Coaching
+2
+XYZ Academy
+Each tenant has its own:
+users
+courses
+orders
+certificates
+Data separation is handled using:
+tenant_id
+Every tenant-owned table contains this field.
+5. Modular SaaS Architecture
+SkillPilot is designed using modular architecture, where each major feature is developed as an independent module.
+This allows:
+independent development
+easier maintenance
+plugin-like features
+package-based feature enable/disable
+6. Module Structure
+The system is divided into logical modules.
+Core Modules
+These are essential modules required for system operation.
+AuthTenantsUsersLicensesPackagesRoles
+Responsibilities:
+authentication
+tenant resolution
+license validation
+role management
+Learning Modules
+These handle the learning platform features.
+CoursesLessonsCertificatesProgress
+Responsibilities:
+course creation
+lesson management
+student progress tracking
+certificate generation
+Commerce Modules
+Handles monetization.
+OrdersPaymentsCouponsSubscriptions
+Responsibilities:
+course purchases
+payment processing
+billing management
+Growth Modules
+Handles platform expansion features.
+AffiliateMarketingAnalyticsNotifications
+Responsibilities:
+referral system
+marketing automation
+reporting
+email notifications
+System Modules
+Handles internal system features.
+SettingsLogsWebhooksAPI Keys
+Responsibilities:
+configuration
+system monitoring
+integrations
+7. Backend Folder Structure
+skillpilot-backend│├ app│├ Modules││   ├ Auth│   │   ├ Controllers│   │   ├ Models│   │   ├ Routes│   │   ├ Services│   │   └ Migrations││   ├ Tenants│   ├ Users│   ├ Licenses│   ├ Packages││   ├ Courses│   ├ Lessons│   ├ Certificates││   ├ Orders│   ├ Payments││   ├ Affiliate│   ├ Notifications│├ config├ database├ routes├ storage
+Each module contains:
+controllers
+models
+services
+migrations
+routes
+8. Database Schema
+Core Tables
+tenants
+Stores client organizations.
+users
+Stores platform users.
+Each user belongs to a tenant.
+roles
+Defines role types.
+user_roles
+Maps users to roles.
+packages
+Defines SaaS subscription plans.
+licenses
+Stores license information for each tenant.
+Learning Tables
+courses
+Stores course information.
+course_sections
+Groups lessons.
+course_lessons
+Stores lesson content.
+course_progress
+Tracks student progress.
+Certification Tables
+certificates
+Stores generated certificates.
+Commerce Tables
+orders
+Tracks purchases.
+payments
+Stores payment transactions.
+9. API Request Flow
+Every protected API follows this sequence:
+Client Request      ↓Authentication (Sanctum)      ↓ResolveTenant Middleware      ↓CheckLicense Middleware      ↓Role Authorization      ↓Controller      ↓Database Query
+This ensures:
+user is authenticated
+tenant is valid
+license is active
+user has proper permissions
+10. License System
+Each tenant must have a valid license.
+License controls:
+access to the platform
+enabled features
+expiration date
+Example license record:
+Tenant
+Package
+Expiry
+ABC Coaching
+Pro
+2026-01-01
+If license expires:
+APIs are blocked
+system displays renewal message
+11. Feature Control System
+Packages contain JSON feature flags.
+Example:
+{ "courses": true, "certificates": true, "affiliate": false}
+Feature helper:
+feature_enabled("affiliate")
+Allows SaaS monetization through package tiers.
+12. Development Phases
+Phase 1 – Core Platform
+Auth
+Tenants
+Licenses
+Roles
+Packages
+Phase 2 – Learning Platform
+Courses
+Lessons
+Progress
+Certificates
+Phase 3 – Monetization
+Orders
+Payments
+Billing
+Phase 4 – Frontend
+Admin dashboard
+Instructor dashboard
+Student dashboard
+Phase 5 – Growth
+Affiliate system
+Analytics
+Notifications
+13. MVP Scope
+The first release will include:
+authentication
+tenant management
+license system
+course creation
+student enrollment
+certificate generation
+payment integration
+Excluded initially:
+affiliate system
+marketing tools
+analytics
+14. Security Principles
+SkillPilot enforces strict multi-tenant security.
+Rules:
+All tenant-owned tables include tenant_id
+Middleware validates tenant
+License validation required
+Role-based permissions enforced
+Passwords securely hashed
+Example secure query:
+Course::where('tenant_id', tenant_id)->get();
+15. Monetization Strategy
+SkillPilot generates revenue through:
+SaaS subscriptions
+license renewals
+package upgrades
+enterprise onboarding
+Example pricing model:
+Plan
+Price
+Basic
+₹1,500/month
+Pro
+₹3,000/month
+Enterprise
+Custom
+16. Product Identity
+Product Name:
+SkillPilot
+Tagline:
+“SkillPilot – Control Your Learning Platform.”
+17. Final Summary
+SkillPilot is a modular SaaS learning platform designed for scalability and multi-tenant usage.
+The architecture ensures:
+modular development
+secure tenant isolation
+flexible feature monetization
+long-term scalability
+SkillPilot can evolve from a minimum viable product into a full enterprise learning ecosystem.

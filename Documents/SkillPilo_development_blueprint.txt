@@ -1,0 +1,121 @@
+SkillPilot – Development Blueprint
+1. System Layers
+SkillPilot is divided into 4 main layers.
+Frontend Layer      │API Layer (Laravel Controllers)      │Service Layer (Business Logic)      │Data Layer (MySQL)
+Layer Responsibilities
+Layer
+Responsibility
+Frontend
+UI dashboards
+API Layer
+HTTP endpoints
+Service Layer
+Business logic
+Data Layer
+Database queries
+2. Core Modules Dependency
+Module dependencies determine build order.
+Auth  ↓Tenants  ↓Licenses  ↓Users  ↓Courses  ↓Certificates  ↓Orders  ↓Payments
+You must build modules in this order.
+3. Database ER Design
+Core SaaS Tables
+tenants   │   ├── users   │      └── user_roles   │   ├── licenses   │   ├── courses   │      ├── course_sections   │      │      └── course_lessons   │      │   │      └── course_progress   │   ├── certificates   │   └── orders
+4. Core Database Tables
+tenants
+idnameslugstatuscreated_atupdated_at
+users
+idtenant_idnameemailpasswordstatuscreated_atupdated_at
+roles
+idname
+user_roles
+user_idrole_id
+licenses
+tenant_idpackage_idlicense_keyexpires_atis_active
+courses
+idtenant_idtitledescriptionpricestatus
+course_sections
+idcourse_idtitlesort_order
+course_lessons
+idsection_idtitlecontent_typecontent_pathsort_order
+course_progress
+user_idcourse_idcompleted_at
+certificates
+iduser_idcourse_idcertificate_noissued_at
+orders
+iduser_idcourse_idamountpayment_statuspayment_ref
+5. Core API Endpoints
+Authentication
+POST /api/loginPOST /api/registerPOST /api/logoutGET  /api/me
+Tenant
+POST /api/tenantsGET  /api/tenantsGET  /api/tenants/{id}
+Users
+GET  /api/usersPOST /api/usersPUT  /api/users/{id}DELETE /api/users/{id}
+Courses
+GET  /api/coursesPOST /api/coursesGET  /api/courses/{id}PUT  /api/courses/{id}DELETE /api/courses/{id}
+Lessons
+POST /api/lessonsGET  /api/lessons/{id}
+Orders
+POST /api/ordersGET  /api/orders
+Certificates
+GET /api/certificatesGET /api/certificates/{id}
+6. Middleware Flow
+All protected APIs run through:
+auth:sanctum      ↓ResolveTenant      ↓CheckLicense      ↓CheckRole
+7. Feature Flag System
+Packages control features.
+Example package:
+Basic
+courses: truecertificates: falseaffiliate: false
+Pro
+courses: truecertificates: trueaffiliate: true
+Helper function:
+feature_enabled("certificates")
+8. Frontend Pages
+Admin Dashboard
+/admin/dashboard/admin/users/admin/courses/admin/packages
+Instructor Dashboard
+/instructor/dashboard/instructor/courses/instructor/lessons
+Student Dashboard
+/student/dashboard/student/courses/student/certificates
+9. Development Order (Very Important)
+Step 1
+Setup project
+LaravelNext.jsMySQLSanctum
+Step 2
+Core SaaS modules
+AuthTenantsLicensesUsersRoles
+Step 3
+Learning system
+CoursesSectionsLessonsProgressCertificates
+Step 4
+Commerce
+OrdersPaymentsCoupons
+Step 5
+Growth features
+AffiliateAnalyticsNotifications
+10. First Sprint Plan (2 Weeks)
+Week 1
+Build:
+Auth ModuleTenant ModuleLicense Module
+Deliverables:
+LoginRegisterTenant creationLicense validation
+Week 2
+Build:
+Users ModuleRoles ModuleCourse Module
+Deliverables:
+User managementRole systemCourse CRUD
+11. Deployment Architecture
+Production setup:
+Cloudflare     ↓Nginx     ↓Laravel API     ↓MySQL Database     ↓Redis
+12. SkillPilot Product Roadmap
+v1 (MVP)
+AuthTenantsCoursesCertificatesOrders
+v2
+AffiliateAnalyticsCoupons
+v3
+Mobile AppAI RecommendationsMarketplace
+13. Final Product Identity
+Product Name
+SkillPilot
+Tagline
+SkillPilot – Control Your Learning Platform

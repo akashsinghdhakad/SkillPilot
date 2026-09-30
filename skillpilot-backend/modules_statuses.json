@@ -1,0 +1,19 @@
+{
+    "Auth": true,
+    "Tenants": true,
+    "Licenses": true,
+    "Users": true,
+    "Roles": true,
+    "Packages": true,
+    "Courses": true,
+    "Lessons": true,
+    "Progress": true,
+    "Certificates": true,
+    "Orders": true,
+    "Payments": true,
+    "Enrollments": true,
+    "Assessments": true,
+    "Admin": true,
+    "Bundles": true,
+    "Memberships": true
+}
