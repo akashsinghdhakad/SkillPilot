@@ -1,0 +1,29 @@
+# Implement Course Creation Feature
+
+The "Create New Course" button in the instructor dashboard is currently a non-functional UI element. No course creation page exists in the frontend.
+
+## Proposed Changes
+
+### [Frontend] [Instructor Dashboard]
+
+#### [NEW] [new/page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/instructor/courses/new/page.tsx)
+- Create a new page with a form to add a course (Title, Description, Price, Status).
+- Use `react-hook-form` for form management and `zod` for validation.
+- Integrate with the `POST /api/courses` backend endpoint.
+- Provide feedback to the user upon success or failure.
+
+#### [MODIFY] [page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/instructor/courses/page.tsx)
+- Wrap the "Create New Course" button with a `Link` component pointing to `/instructor/courses/new`.
+
+## Verification Plan
+
+### Automated Tests
+- None planned for now, but will verify via manual browser testing.
+
+### Manual Verification
+1. Navigate to "Manage Courses" in the instructor dashboard.
+2. Click "Create New Course".
+3. Verify that the new course creation page is displayed.
+4. Fill in the form and submit.
+5. Verify that the course is successfully created and the user is redirected back to the course list.
+6. Verify that the new course appears in the list.

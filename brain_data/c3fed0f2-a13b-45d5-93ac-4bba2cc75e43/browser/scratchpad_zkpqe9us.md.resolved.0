@@ -1,0 +1,13 @@
+# Verification Checklist
+
+- [ ] Navigate to http://localhost:3000/instructor/courses.
+- [ ] Verify each course has a 'Switch' (Active/Inactive) and a 'Trash' (Delete) icon.
+- [ ] Click the toggle for a course and verify it changes state visually.
+- [ ] Click 'Edit' on a course (e.g. Course 1) to go to http://localhost:3000/instructor/courses/1/edit.
+- [ ] In the Edit page, find the 'Course Curriculum' section.
+- [ ] Verify each lesson has an 'Eye' (View) and 'Edit' (Pencil) icon clearly visible.
+- [ ] Click the 'Edit' icon for a lesson.
+- [ ] Verify 'Lesson Title' and other fields in the modal are pre-filled.
+- [ ] Close the modal.
+- [ ] Try to rename a section by clicking the Edit icon next to the section title.
+- [ ] Verify that an input field appears and you can type a new name.

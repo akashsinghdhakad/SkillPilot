@@ -1,0 +1,25 @@
+# Network Access Fixed
+
+I have configured the application to allow access from your local network IP and ensured the server is running with the correct host flags.
+
+## Changes Made
+
+### Configuration Update
+Updated [next.config.ts](file:///d:/TodoPro/next.config.ts) to include `allowedDevOrigins`. In Next.js 16.2.2, this is a top-level configuration required to allow development features like Hot Module Replacement (HMR) to work over the network.
+
+```typescript
+const nextConfig: NextConfig = {
+  allowedDevOrigins: ["localhost", "172.16.11.21"],
+};
+```
+
+### Server Restart
+Restarted the server using the `npm run server` command, which executes `next dev -H 0.0.0.0`.
+
+## Verification Results
+
+- **Localhost**: `http://localhost:3000` (Working)
+- **Network**: `http://172.16.11.21:3000` (Now allowed)
+
+> [!TIP]
+> If you still cannot access the app from another device, please check if your Windows Firewall is allowing incoming connections on port `3000`.

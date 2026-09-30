@@ -1,0 +1,63 @@
+# SWHP Frontend Implementation Plan
+
+This document outlines the detailed plan to develop the React JS frontend for the Single Window Health Portal (SWHP) as specified in the TDD.
+
+## 1. Frontend Architecture & Setup
+- **Framework:** React JS (Vite or Next.js for rapid scaffolding).
+- **Styling:** Bootstrap for grid and layout, FontAwesome for icons. No tailwind per TDD constraints unless explicitly updated.
+- **State Management:** React Context API and local state hooks (no Redux).
+- **HTTP Client:** Axios for API communication, configured with interceptors to handle JWT injection and 401 Unauthorized redirects.
+
+### Phase 1: Project Initialization & Routing
+- [ ] Scaffold React application (`npm create vite@latest swhp-frontend -- --template react`).
+- [ ] Install dependencies: `react-router-dom`, `axios`, `bootstrap`, `fortawesome`.
+- [ ] Setup `react-router-dom` for the following primary routes:
+  - `/` - Landing / Service Selection
+  - `/login` - User Sign-In
+  - `/register` - User Sign-Up
+  - `/forgot-password` - Password Recovery
+  - `/profile` - User Profile Management
+  - `/apply` - iFrame Orchestration view (requires active SWAN)
+  - `/payment` - Consolidated Fee and Payment screen
+  - `/dashboard` - Unified Tracking Dashboard
+
+## 2. Core Modules Implementation
+
+### Phase 2: Authentication & Profile Modules
+- [ ] **Auth Views:** Create `Login`, `Register`, `VerifyEmail`, and `ForgotPassword` components.
+- [ ] **JWT Handling:** Create a context provider (`AuthContext`) to manage user session, store JWT securely (memory or strict HTTP cookies if configured backend, otherwise sessionStorage), and provide authentication state to protected routes.
+- [ ] **Legacy Mapping:** Create an `AccountMapping` component to securely prompt users for legacy system credentials and link them to their SWHP account.
+- [ ] **Profile Management:** Create the `UserProfile` component, allowing users to pre-fill common demographic data which will be auto-populated into legacy system forms.
+
+### Phase 3: Service Selection & SWAN Initialization
+- [ ] **Service Checklist:** Build a component displaying available legacy services (NHS, FDA, PCPNDT, NDPS, Medical Council).
+- [ ] **SWAN Generation Flow:** Upon service selection submission, call the backend `/api/v1/swan/create` endpoint.
+- [ ] **State Persistence:** Store the generated SWAN number and the ordered list of selected services in state, preparing to mount the iFrame component.
+
+### Phase 4: iFrame Orchestration Module (The Core)
+- [ ] **iFrame Container:** Create a reusable `ServiceIframe` component that loads the one-time auto-login URL (`/api/v1/swan/{swan}/autologin/{serviceId}`).
+- [ ] **postMessage Listener:** Implement a secure event listener on the parent window:
+  ```javascript
+  window.addEventListener('message', (event) => {
+    // 1. Validate origin against ALLOWED_ORIGINS whitelist
+    // 2. Validate eventType === 'FormCompleted'
+    // 3. Match payload.swan with current SWAN
+    // 4. Advance queue if payload.status === 'success'
+  });
+  ```
+- [ ] **Queue Management:** Build logic to unmount the current iFrame and mount the next service's iFrame in the queue until the array is exhausted.
+- [ ] **Error Handling:** If a legacy form emits an error, halt the queue and present a retry UI.
+
+### Phase 5: Payment & Tracking Modules
+- [ ] **Fee Aggregation UI:** Once the iFrame queue completes, route to `/payment` and call `/api/v1/swan/{swan}/fees`. Display the aggregated breakdown (Department Fee + Portal Fee).
+- [ ] **Payment Gateway Integration:** Implement the `Initiate Payment` button which redirects to the generated payment gateway URL.
+- [ ] **Application Tracking Dashboard:** Build a robust, categorized dashboard querying `/api/v1/tracking/{swan}` to show real-time statuses for all applications under a SWAN session.
+
+## 3. Security & Validation
+- [ ] Apply **CAPTCHA** to public auth forms.
+- [ ] Implement **Strict Origin Validation** on all incoming `postMessage` events.
+- [ ] Ensure **CSRF Protection** (handled via stateless JWT).
+- [ ] Test cross-origin cookie behavior (`SameSite=None`) locally using hosts file overrides to simulate different domains.
+
+## Next Steps
+Would you like to proceed with scaffolding the React application now based on this plan?

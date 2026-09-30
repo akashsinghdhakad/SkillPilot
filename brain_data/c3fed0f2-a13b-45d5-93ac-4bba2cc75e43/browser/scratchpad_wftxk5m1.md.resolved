@@ -1,0 +1,9 @@
+# Progress
+- [x] Registered/LoggedIn as instructor@mponline.gov.in (got Student role in Main Academy)
+- [x] Navigated to 'Manage Courses' (directly via URL)
+- [x] Creating a test course since none were found (status: 403 Forbidden)
+- [x] Retrying login to ensure correct role
+- [x] Attempted admin login (failed)
+- [x] Investigating seeded user credentials
+- [!] Roadblock: All attempts to login as instructor fail with 422, registration gives Student role.
+- [ ] Trying registration in "Tech School" workspace

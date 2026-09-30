@@ -1,0 +1,19 @@
+TODO PRO
+0
+/
+1
+Completed
+0
+Active
+1
+[0] (500,359)<input class='block w-full bg-transparent border-none py-3 pl-12 pr-12 text-sm md:text-base font-medium placeholder:text-muted-foreground focus:ring-0' id='todo-input' placeholder='Add a new task...' />
+[1] (19,389)<button aria-label='Filter by All' class='relative px-5 py-2 text-sm font-semibold transition-all duration-300 rounded-xl text-white'>All />
+	All
+[2] (52,389)<button aria-label='Filter by Active' class='relative px-5 py-2 text-sm font-semibold transition-all duration-300 rounded-xl text-muted-foreground hover:text-white'>Active />
+	Active
+[3] (104,389)<button aria-label='Filter by Completed' class='relative px-5 py-2 text-sm font-semibold transition-all duration-300 rounded-xl text-muted-foreground hover:text-white'>Completed />
+	Completed
+[4] (13,444)<button aria-label='Mark as completed' class='shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all duration-300 border-white/20 group-hover:border-primary/50' role='checkbox' />
+Test Premium App
+[5] (946,444)<button aria-label='Edit task' class='p-2 text-muted-foreground hover:text-white hover:bg-white/10 rounded-xl transition-all' />
+[6] (978,444)<button aria-label='Delete task' class='p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-xl transition-all' />

@@ -1,0 +1,52 @@
+# Course Assessments (Quiz) System Implementation Plan
+
+We will implement a comprehensive assessment system that allows instructors to create quizzes for their courses. Passing a final assessment will be a prerequisite for certificate generation.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The assessment system will be integrated as a new `Assessments` module. Each course can have one final quiz that acts as the certification gate.
+
+## Proposed Changes
+
+### [Backend] Assessments Module
+
+#### [NEW] [Quiz](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Assessments/app/Models/Quiz.php)
+- Stores quiz metadata: `title`, `description`, `passing_score` (percentage), `time_limit` (minutes).
+- Relationship: `belongsTo` Course.
+
+#### [NEW] [Question](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Assessments/app/Models/Question.php)
+- Stores question text and type (`multiple_choice`, `true_false`).
+- Relationship: `belongsTo` Quiz.
+
+#### [NEW] [Option](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Assessments/app/Models/Option.php)
+- Stores possible answers for each question and an `is_correct` flag.
+- Relationship: `belongsTo` Question.
+
+#### [NEW] [QuizAttempt](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Assessments/app/Models/QuizAttempt.php)
+- Tracks student attempts: `user_id`, `quiz_id`, `score`, [status](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Lessons/tests/Feature/LessonTest.php#67-83) (`passed`, `failed`).
+
+---
+
+### [Frontend] Instructor & Student UI
+
+#### [NEW] Quiz Creator Interface
+- Located within the Course Editor.
+- Allows adding/editing questions and setting the passing threshold.
+
+#### [NEW] Quiz Attempt Page
+- A premium, timed interface for students to take the assessment.
+- Integrated into the Course Player as the final step.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- `php artisan test Modules/Assessments`: Verify quiz creation, submission, and scoring logic.
+
+### Manual Verification
+1. Create a quiz as an instructor.
+2. Complete all lessons as a student.
+3. Take the quiz and verify passing/failing logic.
+4. Confirm redirection to certificate generation only after passing.

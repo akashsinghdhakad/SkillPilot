@@ -1,0 +1,49 @@
+# Curriculum Management Enhancements Walkthrough
+
+I've completed the implementation of the requested improvements to the course and lesson management system. These changes provide instructors with powerful tools for content organization and control while ensuring a clean student experience.
+
+## Feature Overview
+
+### 1. Interactive Lesson Editor
+The [LessonFormModal](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/instructor/courses/LessonFormModal.tsx#41-281) has been completely redesigned with a two-column layout. The left column handles all data entry, while the right column provides a **Live Media Preview**.
+
+- **Visibility Toggle**: Instructors can now set lessons as "Inactive" during creation or editing.
+- **Support for Multiple Media Types**: Previews work seamlessly for YouTube, Vimeo, direct video files, and PDFs.
+
+### 2. Streamlined Section Management
+The [EditCoursePage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/instructor/courses/%5Bid%5D/edit/page.tsx#49-540) now features functional section deletion and visibility toggles.
+
+- **Status Indicators**: Non-active sections/lessons are visually dimmed with a line-through effect for easy identification.
+- **Global Visibility**: A new "Course Active" switch allows instructors to hide an entire course from the student catalog, regardless of its publication status.
+
+### 3. Student-Facing Visibility Rules
+The student catalog now automatically filters out any courses manually marked as "Inactive" by the instructor. This allows for a safe "draft" mode even for published courses.
+
+## Technical Implementation Details
+
+### Backend (Laravel)
+- **Soft Deletes**: Integrated the `SoftDeletes` trait into [Course](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Courses/app/Models/Course.php#11-41), [CourseSection](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Courses/app/Models/CourseSection.php#10-26), and [CourseLesson](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Lessons/app/Models/CourseLesson.php#10-34) models. 
+- **Status Fields**: Added `is_active` boolean columns to all curriculum-related tables.
+- **RESTful Routes**: Added specialized PATCH routes for toggling visibility without requiring a full model update.
+
+### Frontend (React/Next.js)
+- **Reusable [Switch](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/ui/switch.tsx#10-21) Component**: A premium UI toggle with smooth animations using `framer-motion`.
+- **[MediaPreview](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/shared/MediaPreview.tsx#13-111) Component**: A robust utility that handles URL parsing (YouTube/Vimeo) and local blob URL creation for file previews.
+- **Zod Validation**: Updated schemas to include binary status and enforced type safety for all new inputs.
+
+## Verification & Testing
+
+### Backend Tests
+I've updated the feature tests to cover all new functionality. You can run them using:
+```bash
+php artisan test Modules/Courses/tests/Feature/CourseTest.php
+php artisan test Modules/Lessons/tests/Feature/LessonTest.php
+```
+
+All 6 new test cases (soft deletes, status toggles, permissions) are passing successfully.
+
+### UI Validation
+The interface is fully responsive and supports dark mode themes. The use of `framer-motion` ensures smooth transitions when toggling visibility or opening modals.
+
+---
+*Walkthrough created on 2026-03-18*

@@ -1,0 +1,9 @@
+# Seamless Login Implementation
+
+- [x] Revert [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#100-268) GET back to its original state (done manually by user).
+- [x] Create a new [DirectLogin](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-59) GET Action in [LoginController](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#19-745) to catch the URL payload (`UserName`, `Token`, `timestamp`).
+- [x] Create a new helper method [CreateUserSession](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#274-317) to encapsulate the session and cookie generation logic.
+- [x] Update [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#100-268) POST method to use [CreateUserSession](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#274-317).
+- [x] Call [CreateUserSession](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#274-317) from the new [DirectLogin](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-59) method.
+- [x] Implement Token validation logic mimicking the PHP `sha256` hashing logic: `if ("Bearer " + hash('sha256', substring(client_token, 7)) != "Bearer " + $client_config_auth_token)`.
+- [x] Assign `UserType = "S"` directly inside the seamless login flow.

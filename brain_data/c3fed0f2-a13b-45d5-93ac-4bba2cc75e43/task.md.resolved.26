@@ -1,0 +1,20 @@
+- [x] Lesson Management (Curriculum Content)
+    - [x] Create Lesson CRUD API with file upload support
+    - [x] Add "Add Lesson" functionality to Frontend Studio
+    - [x] Implement Lesson Type selection (Video, Text, PDF)
+    - [x] Visualize Lessons in Curriculum sidebar
+- [x] Implement Roles Master Table
+    - [x] Run all backend tests
+- [x] Verify backend integration
+- [x] Verify full flow
+    - [x] Create `role_user` pivot table
+    - [x] Create [Role](file:///d:/learning/SkillPilot/skillpilot-frontend/src/types/auth.ts#1-7) model in Roles module
+    - [x] Implement relationships in [User](file:///d:/learning/SkillPilot/skillpilot-frontend/src/types/auth.ts#8-16) model
+    - [x] Update [UserRoleSeeder](file:///d:/learning/SkillPilot/skillpilot-backend/database/seeders/UserRoleSeeder.php#8-66) to use master records
+- [x] Create Course Creation feature
+- [x] Fix Auth Persistence on Refresh
+- [x] Fix Course List (Real Data)
+- [x] Implement View/Edit Course
+- [x] Premium & Responsive Lesson Modal
+- [x] Remove "mponline" branding references
+- [x] Standardize test domains to skillpilot.io

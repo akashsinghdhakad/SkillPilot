@@ -1,0 +1,36 @@
+# SWHP Frontend Implementation Tasks
+
+This task list serves as the actionable checklist for building the SWHP Next.js frontend using a Feature-Based Architecture, Tailwind CSS, and TypeScript.
+
+## 1. Environment & Next.js App Router Setup
+- [ ] Initialize the Next.js application (`npx create-next-app@latest swhp-frontend --ts --eslint --tailwind --src-dir --app --import-alias "@/*"`).
+- [ ] Install required core dependencies (`axios`, `@fortawesome/react-fontawesome`).
+- [ ] Setup the feature-based folder structure (`src/features`, `src/components`, `src/lib`, `src/app`).
+- [ ] Configure `axios` interceptors in `src/lib/axios.ts` to handle JWT injection and centralized error handling (e.g., redirect on 401).
+- [ ] Set up the Next.js App Router pages (e.g., `src/app/login/page.tsx`, `src/app/apply/page.tsx`).
+
+## 2. Authentication & Profile Features (`features/auth`, `features/profile`)
+- [ ] Create Context API (`AuthContext`) for global session management inside `features/auth/context/AuthContext.tsx`. Ensure it is wrapped in a "use client" boundary since it uses React Context.
+- [ ] Build the `Login` and `Register` UI components styled entirely with Tailwind utility classes. Provide strict typing for form data.
+- [ ] Implement legacy account mapping UI (`AccountMapping`) utilizing custom Tailwind modals.
+- [ ] Develop the `UserProfile` component inside `features/profile/components` for collecting common cross-system fields. Provide TypeScript interfaces for profile data.
+
+## 3. Service Selection Feature (`features/services`)
+- [ ] Build the `ServiceList` component, rendering available legacy services using custom Tailwind card layouts.
+- [ ] Implement custom hook `hooks/useSwan.ts` to submit selected services to `/api/v1/swan/create` and store the generated SWAN.
+
+## 4. iFrame Orchestration Feature (`features/application`)
+- [ ] Create the `ServiceIframe` wrapper component for loading individual legacy forms.
+- [ ] Implement the `ApplicationOrchestrator` to manage the queue, visualizing progress with a custom Tailwind step tracker.
+- [ ] Create `hooks/usePostMessage.ts` to add the `window.addEventListener('message')` listener. Use TypeScript to strictly type the `MessageEvent` payload.
+- [ ] Implement strict `event.origin` validation and verify the `eventType === 'FormCompleted'` and `payload.swan` match.
+
+## 5. Payment & Tracking Features (`features/payment`, `features/tracking`)
+- [ ] Build the `FeeSummary` component to fetch and display the aggregated fee breakdown from `/api/v1/swan/{swan}/fees`.
+- [ ] Integrate the "Initiate Payment" redirect logic.
+- [ ] Develop the `TrackingTable` dashboard utilizing Tailwind grid/table layouts to list real-time status of submitted applications. Define TypeScript interfaces for tracking rows.
+
+## 6. Security & Finalization
+- [ ] Integrate CAPTCHA into public auth views.
+- [ ] Ensure all forms use strict validation and handle API errors gracefully, showing Tailwind-styled alert banners.
+- [ ] Verify CSRF defenses and ensure no sensitive data is placed in localStorage.

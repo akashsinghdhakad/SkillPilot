@@ -1,0 +1,10 @@
+# Instructor Curriculum Studio Verification Task
+
+- [ ] Navigate to http://localhost:3001/instructor/courses
+- [ ] Verify each course has 'Switch' (Active/Inactive) toggle
+- [ ] Verify each course has 'Trash' (Delete) icon
+- [ ] Navigate to Course Edit page (e.g. Course 1)
+- [ ] Verify each lesson has 'Eye' (View) and 'Edit' (Pencil) icon
+- [ ] Click 'Edit' icon for a lesson
+- [ ] Verify 'Lesson Title' and other fields in modal are pre-filled
+- [ ] Generate detailed report

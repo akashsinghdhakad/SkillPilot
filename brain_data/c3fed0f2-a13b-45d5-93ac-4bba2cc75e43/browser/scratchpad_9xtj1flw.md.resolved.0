@@ -1,0 +1,16 @@
+# Course Enrollment and Player Verification
+
+- [ ] Navigate to Course Catalog (http://localhost:3001/courses)
+- [ ] Verify courses are displayed
+- [ ] Enroll in a course (e.g., 'Advanced React')
+- [ ] Verify 'Successfully enrolled!' toast
+- [ ] Confirm redirection to Course Player (http://localhost:3001/courses/[id]/learn)
+- [ ] Verify Course Player:
+    - [ ] Course title is visible
+    - [ ] Sidebar curriculum is visible and navigable
+    - [ ] Clicking a lesson loads the content/video area
+    - [ ] 'Mark as Complete' button exists
+- [ ] Navigate to Student Dashboard (http://localhost:3001/dashboard)
+- [ ] Verify enrolled course appears in 'Your Courses'
+- [ ] Take screenshots of Course Player and Student Dashboard
+- [ ] Final report

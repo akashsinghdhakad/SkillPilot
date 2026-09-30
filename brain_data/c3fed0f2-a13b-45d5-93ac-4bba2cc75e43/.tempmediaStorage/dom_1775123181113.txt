@@ -1,0 +1,12 @@
+[0] (500,142)<a class='flex items-center gap-3' href='/' />
+	[1] (441,142)<div  />
+	[2] (527,142)<span >Skill />
+		[3] (553,142)<span >Pilot />
+Welcome back
+Enter your credentials to access your account
+[4] (500,457)<input class='flex w-full rounded-xl border border-input bg-card px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 pl-11' placeholder='name@example.com' />
+[5] (500,543)<input class='flex w-full rounded-xl border border-input bg-card px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 pl-11' placeholder='••••••••' />
+The provided credentials are incorrect.
+[6] (500,700)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary text-primary-foreground shadow-lg hover:shadow-primary/20 px-8 py-3 w-full text-base font-semibold'>Sign In />
+Don't have an account?
+[7] (559,836)<a class='text-primary font-semibold hover:underline decoration-2 underline-offset-4' href='/register'>Create an account />

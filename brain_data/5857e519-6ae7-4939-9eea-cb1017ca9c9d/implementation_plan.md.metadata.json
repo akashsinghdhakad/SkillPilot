@@ -1,0 +1,7 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Implementation plan for migrating to a JWT Refresh Token Architecture while supporting EF Core, SQL Server raw strings, and In-Memory mechanisms.",
+  "updatedAt": "2026-04-23T06:31:09.717260800Z",
+  "version": "1",
+  "requestFeedback": true
+}

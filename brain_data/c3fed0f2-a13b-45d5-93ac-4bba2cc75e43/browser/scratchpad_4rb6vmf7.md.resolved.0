@@ -1,0 +1,9 @@
+# Task Checklist
+
+- [ ] Take screenshot of catalog at `http://localhost:3000/courses` (`catalog_lesson_counts.png`)
+- [ ] Take screenshot of registration validation error at `http://localhost:3000/register` (`registration_error.png`)
+- [ ] Log in or register a new user and take a screenshot of the Student Dashboard (`student_dashboard.png`)
+- [ ] Mark a lesson complete in Course Player and take a screenshot (`course_player_complete.png`)
+
+# Findings
+- 

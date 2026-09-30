@@ -1,0 +1,22 @@
+# Browser Verification Task
+
+## Plan
+1. [ ] Log in as admin (`admin@skillpilot.com` / `password`)
+2. [ ] Verify Admin Dashboard (`/admin/dashboard`)
+    - [ ] KPI cards visible
+    - [ ] Charts visible
+3. [ ] Verify Bundles (`/admin/bundles`)
+    - [ ] Bundle list table visible
+4. [ ] Log out
+5. [ ] Log in as student (`student@skillpilot.com` / `password`)
+6. [ ] Verify Membership (`/membership`)
+    - [ ] Tiered pricing cards visible (Basic, Silver, Gold)
+7. [ ] Verify Course Catalog (`/courses`)
+    - [ ] 'Enroll' buttons visible
+8. [ ] Report final state
+
+## Findings
+- Admin Dashboard:
+- Bundles:
+- Membership:
+- Course Catalog:

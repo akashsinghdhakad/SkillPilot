@@ -1,0 +1,56 @@
+# Implementation Plan: Production-Ready Monetization (Stripe & Fulfillment)
+
+While we have the "business logic" for Bundles and Memberships, the commerce engine is currently mocked and incomplete. This plan will transition SkillPilot to a real-world Shopify-like experience for students.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Database Refactor**: We will transition `OrderItem` to a **Polymorphic Relationship**. This allows students to buy Courses, Bundles, and Membership Tiers in a single checkout experience.
+
+## Proposed Changes
+
+### [Component Name] Backend: Polymorphic Commerce
+
+#### [MODIFY] [Order Migration](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Orders/database/migrations/2026_03_16_123157_create_order_items_table.php)
+- Replace `course_id` with `itemable_id` and `itemable_type`.
+
+#### [MODIFY] [OrderController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Orders/app/Http/Controllers/OrderController.php)
+- Update `store` method to accept a generic `items` array with `id` and `type` (Course, Bundle, or MembershipPlan).
+
+### [Component Name] Backend: Stripe & Fulfillment Engine
+
+#### [NEW] [FulfillmentService.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Orders/app/Services/FulfillmentService.php)
+- Centralized logic to grant access upon successful payment:
+    - **Bundle**: Creates `BundlePurchase` (unlock rights).
+    - **Membership**: Creates/Updates `Subscription` and sets user tier.
+    - **Course**: Direct enrollment.
+
+#### [NEW] [StripeController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Payments/app/Http/Controllers/StripeController.php)
+- `createCheckoutSession`: Generates a Stripe Checkout URL for an order.
+- `webhook`: Listens for Stripe's `checkout.session.completed` and triggers the `FulfillmentService`.
+
+---
+
+### [Component Name] Frontend: Unified Checkout UX
+
+#### [NEW] [checkout/page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/checkout/page.tsx)
+- Use a high-end, premium checkout summary page.
+- Direct redirect to Stripe Secure Checkout.
+
+---
+
+## Open Questions
+- Should we support **Coupons/Discount Codes** in this phase, or purely baseline Stripe integration?
+- Do you have a **Stripe Account** ready for testing API keys, or should I implement everything using the Stripe CLI / Mock environment first?
+
+## Verification Plan
+
+### Automated Tests
+- Create `FulfillmentTest.php` to verify that status changes in Orders correctly trigger access grants.
+- Mock Stripe Webhook payloads to ensure the integration is resilient.
+
+### Manual Verification
+- Simulate a full purchase flow:
+    - Add a Membership Tier to the cart.
+    - "Pay" via Stripe Mock.
+    - Verify the Student Dashboard now reflects the correct Membership level.

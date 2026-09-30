@@ -1,0 +1,17 @@
+# Tasks: Premium PDF Certificate System
+
+Implementing a high-end certificate design with real-time PDF previewing.
+
+## Phase I: Backend (Laravel) Implementation
+- [x] Create `premium_certificate.blade.php` with high-end design
+- [x] Implement `preview` route in `CertificateController`
+- [x] Optimize image embedding for DOMPDF
+
+## Phase II: Frontend (Next.js) Integration
+- [x] Update `BrandingSettingsPage.tsx` to handle PDF blobs
+- [x] Replace mock preview with real PDF iframe
+
+## Phase III: Verification & Polish
+- [x] Test cross-browser PDF rendering
+- [x] Verify font embedding and image quality
+- [x] Final UI/UX review

@@ -1,0 +1,48 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Skill
+Pilot
+Menu
+[0] (112,254)<a href='/dashboard' />
+	[1] (112,254)<div  />
+		[2] (68,254)<div  />
+			[3] (81,254)<span >Overview />
+[4] (112,326)<a href='/courses' />
+	[5] (112,326)<div  />
+		[6] (76,326)<div  />
+			[7] (88,326)<span >My Learning />
+		[8] (187,326)<div  />
+[9] (112,398)<a href='/certificates' />
+	[10] (112,398)<div  />
+		[11] (74,398)<div  />
+			[12] (86,398)<span >Certificates />
+[13] (112,471)<a href='/instructor/courses' />
+	[14] (112,471)<div  />
+		[15] (88,471)<div  />
+			[16] (100,471)<span >Manage Courses />
+[17] (112,543)<a href='/instructor/earnings' />
+	[18] (112,543)<div  />
+		[19] (67,543)<div  />
+			[20] (80,543)<span >Earnings />
+[21] (112,931)<button class='w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-red-500 hover:bg-red-50/50 dark:hover:bg-red-500/5 transition-colors font-semibold text-sm'>Sign Out />
+	Sign Out
+[22] (400,60)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[23] (810,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+Instructor User
+Instructor
+Course Catalog
+Explore our curated selection of premium courses and start your learning journey today.
+[24] (783,171)<input class='flex w-full rounded-xl border border-input bg-card px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 pl-10' placeholder='Search courses...' />
+[25] (940,171)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-border bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm gap-2'>Filters />
+$5.00
+0
+Lessons
+Manual Testing Fundamentals Test
+Principles, test case design, defect tracking, and black-box testing techniques (equivalence partitioning, boundary value analysis)
+0h 0m
+SkillPilot Expert
+[26] (420,890)<button class='inline-flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-border bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 py-1.5 text-sm rounded-full px-4 gap-2'>Enroll />
+
+</current_dom>

@@ -1,0 +1,42 @@
+# AIRA (Akash Intelligent Reactive Assistant) - AI Engine Initialization
+
+The goal is to set up the foundation for the AIRA AI Engine using Python and FastAPI. This will serve as the "AI Brain" of the system, strictly using native local models via Ollama (specifically `llama3`) and following a clean architecture approach, as defined in your latest `readme.md` updates.
+
+## Proposed Changes
+
+We will scaffold the following project structure in `d:\learning\AIRA\ai-engine`. To comply with `uvicorn app.main:app`, the main codebase will reside inside an `app/` subdirectory.
+
+### AI Engine (Python FastAPI)
+
+#### [NEW] [requirements.txt](file:///d:/learning/AIRA/ai-engine/requirements.txt)
+Python dependencies (`fastapi`, `uvicorn`, `requests`, `pinecone-client`, `python-dotenv`, `pydantic`).
+
+#### [NEW] `app/` Directory
+The core application folder containing the Fast API logic.
+
+- **[NEW] [app/main.py](file:///d:/learning/AIRA/ai-engine/app/main.py)**: Entry point for the FastAPI application, configuring routing.
+
+- **[NEW] `app/services/`**:
+  - **[NEW] [app/services/llm_service.py](file:///d:/learning/AIRA/ai-engine/app/services/llm_service.py)**: Service to connect to local Ollama via `http://localhost:11434/api/generate` utilizing the `llama3` model without any external proxies.
+  - **[NEW] [app/services/memory_service.py](file:///d:/learning/AIRA/ai-engine/app/services/memory_service.py)**: Service to interact with Pinecone and PostgreSQL for vector memory and structured data handling.
+  - **[NEW] [app/services/orchestrator.py](file:///d:/learning/AIRA/ai-engine/app/services/orchestrator.py)**: The `Agent Orchestrator` placeholder which will map user intent to system commands.
+
+- **[NEW] `app/api/`**:
+  - **[NEW] [app/api/routes.py](file:///d:/learning/AIRA/ai-engine/app/api/routes.py)**: Endpoints bridging the API and services. Includes endpoints that the .NET Backend Gateway will securely call.
+
+- **[NEW] `app/core/`**:
+  - **[NEW] [app/core/config.py](file:///d:/learning/AIRA/ai-engine/app/core/config.py)**: Application settings and configuration (defining Ollama endpoint, Pinecone keys, database URIs).
+
+- **[NEW] `app/models/`**:
+  - **[NEW] [app/models/schemas.py](file:///d:/learning/AIRA/ai-engine/app/models/schemas.py)**: Strict Pydantic schemas (e.g. rigid JSON command schema mapping `device`, `action`, `params` for the Command Agent).
+
+## Open Questions
+
+1. Do you want me to set up a Python virtual environment (`python -m venv venv`) right now within `ai-engine` to install these dependencies, or do you have a global installation/conda environment you prefer to use?
+2. Are you ready for me to proceed with scaffolding this file structure under `ai-engine/`?
+
+## Verification Plan
+
+### Automated/Manual Verification
+- Once created, I will install dependencies and start the app using `uvicorn app.main:app --reload` to ensure it boots properly.
+- If Ollama is currently running locally, I can test it using the test script `curl http://localhost:11434/api/generate ...` to verify it hits the local `llama3` successfully before wiring the API.

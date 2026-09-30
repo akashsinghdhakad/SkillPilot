@@ -1,0 +1,32 @@
+# Implementation Plan - Fix Certificate Issuance Logic
+
+A discrepancy was found during manual verification: the frontend shows 100% course completion, but the backend rejects the certificate claim due to a mismatched progress model. This plan fixes the `CertificateController` to use the correct `LessonProgress` model from the `Enrollments` module.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The system currently has two progress-tracking models (`CourseProgress` in the `Progress` module and `LessonProgress` in the `Enrollments` module). The frontend and `EnrollmentController` primarily use `LessonProgress`. I am aligning the `Certificates` module to use `LessonProgress` to ensure immediate functionality.
+
+## Proposed Changes
+
+### Certificates Module
+
+#### [MODIFY] [CertificateController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/app/Http/Controllers/CertificateController.php)
+- Replace usage of `Modules\Progress\Models\CourseProgress` with `Modules\Enrollments\Models\LessonProgress`.
+- Update `issue` method logic:
+  - Fetch all lesson IDs for the course via `$course->lessons()->pluck('id')`.
+  - Count completed lessons by querying `LessonProgress` for those IDs where `is_completed = true`.
+
+#### [MODIFY] [CertificateTest.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/tests/Feature/CertificateTest.php)
+- Update test cases to seed the `lesson_progress` table instead of `course_progress`.
+- Ensure the `tenant_id` is correctly included during seeding.
+
+## Verification Plan
+
+### Automated Tests
+- Run `php artisan test Modules/Certificates/tests/Feature/CertificateTest.php` to ensure the logic and tests are aligned.
+
+### Manual Verification
+- Log in as the student user used in the manual check.
+- Attempt to "Claim Certificate" again and verify success.
+- Download the generated PDF.

@@ -1,0 +1,69 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Skill
+Pilot
+Menu
+[0] (112,254)<a href='/admin/dashboard' />
+	[1] (112,254)<div  />
+		[2] (68,254)<div  />
+			[3] (81,254)<span >Analytics />
+[4] (112,326)<a href='/admin/finance' />
+	[5] (112,326)<div  />
+		[6] (64,326)<div  />
+			[7] (77,326)<span >Finance />
+[8] (112,398)<a href='/courses' />
+	[9] (112,398)<div  />
+		[10] (76,398)<div  />
+			[11] (88,398)<span >My Learning />
+[12] (112,471)<a href='/certificates' />
+	[13] (112,471)<div  />
+		[14] (74,471)<div  />
+			[15] (86,471)<span >Certificates />
+[16] (112,543)<a href='/membership' />
+	[17] (112,543)<div  />
+		[18] (76,543)<div  />
+			[19] (88,543)<span >Membership />
+[20] (112,615)<a href='/instructor/courses' />
+	[21] (112,615)<div  />
+		[22] (88,615)<div  />
+			[23] (100,615)<span >Manage Courses />
+[24] (112,687)<a href='/instructor/earnings' />
+	[25] (112,687)<div  />
+		[26] (67,687)<div  />
+			[27] (80,687)<span >Earnings />
+[28] (112,759)<a href='/admin/tenants' />
+	[29] (112,759)<div  />
+		[30] (73,759)<div  />
+			[31] (85,759)<span >All Tenants />
+[32] (112,832)<a href='/admin/users' />
+	[33] (112,832)<div  />
+		[34] (67,832)<div  />
+			[35] (80,832)<span >All Users />
+[36] (112,904)<a href='/admin/courses' />
+	[37] (112,904)<div  />
+		[38] (74,904)<div  />
+			[39] (87,904)<span >All Courses />
+[40] (112,976)<a href='/admin/bundles' />
+	[41] (112,976)<div  />
+		[42] (65,976)<div  />
+			[43] (78,976)<span >Bundles />
+[44] (400,60)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[45] (805,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+SkillPilot Admin
+Administrator
+Support Contact
+Support Email Address
+This email will appear on all invoices as the primary contact for payment inquiries.
+Legal Address
+[46] (379,337)<label class='text-[10px] font-black uppercase tracking-widest text-slate-400'>Headquarters / Billing Address />
+[47] (492,443)<textarea class='flex w-full border px-3 py-2 text-sm ring-offset-white placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:bg-slate-950 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300 rounded-xl min-h-[120px] bg-slate-50 border-transparent focus:bg-white transition-all' placeholder='123 Education Lane, Learning City, 10101' />
+Tax Identification
+[48] (382,693)<label class='text-[10px] font-black uppercase tracking-widest text-slate-400'>VAT ID / Tax Registration Number />
+[49] (492,745)<input class='flex w-full border px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 rounded-xl h-12 bg-slate-50 border-transparent focus:bg-white transition-all' placeholder='VAT-123456789' />
+Invoicing Compliance
+SkillPilot generates high-fidelity PDF receipts for every transaction. To ensure these documents are legally valid for your region, please provide accurate corporate information.
+Changes apply immediately to all future invoice downloads.
+
+</current_dom>

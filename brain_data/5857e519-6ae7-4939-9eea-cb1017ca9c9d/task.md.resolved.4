@@ -1,0 +1,18 @@
+# JWT Refresh Token Upgrade Tasks
+
+- [x] **Models & DTOs**
+  - [x] Update `User.cs` with RefreshToken properties.
+  - [x] Add `RefreshToken` to `LoginResponse.cs`.
+  - [x] Create `RefreshTokenRequest.cs` DTO.
+- [ ] **Repository Layer**
+  - [ ] Add `UpdateAsync` to `IUserRepository.cs`.
+  - [ ] Implement in `UserRepositoryInMemory.cs`.
+  - [ ] Implement in `UserRepositoryEf.cs`.
+  - [ ] Implement in `UserRepositorySql.cs` (ADO.NET).
+- [ ] **Service & Auth Logic**
+  - [ ] Implement Token generation logic in `AuthService.cs`.
+  - [ ] Create `RefreshTokenAsync` in `AuthService.cs`.
+  - [ ] Integrate into `AuthController.cs`.
+- [ ] **Database & Migrations**
+  - [ ] Execute EF Core Migration `AddRefreshTokens`.
+  - [ ] Update ADO.NET SQL commands inside `README.md`.

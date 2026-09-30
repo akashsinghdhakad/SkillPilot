@@ -1,0 +1,29 @@
+# Branding Stability & OWASP Security Overhaul
+
+We have hardened the branding and certificate system to ensure reliable asset application and comprehensive protection against common web vulnerabilities.
+
+## 1. Resolution of Logo & Signature Application
+The issue where logos and signatures were "not applying" was caused by platform-specific path incompatibilities and unsafe file-reading methods.
+- **Action**: Replaced manual file-system calls (`file_get_contents`) with Laravel's **Storage Abstraction**.
+- **Result**: Branding assets now load reliably across Windows and Linux environments, with robust base64 embedding for PDFs.
+
+## 2. OWASP Mitigation: Local File Inclusion (LFI)
+We identified and resolved a critical vulnerability where an attacker could potentially read sensitive system files (like `.env`) by manipulating certificate asset paths.
+- **The Fix**: Implemented a **Strict Path Sandbox**.
+- **Execution**: Both the `CertificateController` and the `Tenant` Model now verify that any requested asset path strictly starts with the authorized `branding/` directory. Any attempt to use `../` or absolute paths (e.g., `/etc/passwd`) is automatically blocked and logged as a security warning.
+
+## 3. Insecure File Upload Hardening
+To prevent more complex attacks (such as Polyglot files or XSS through SVGs), we have tightened upload restrictions.
+- **Strict MIME Typing**: The branding API now strictly enforces `jpeg, png, jpg` formats.
+- **SVG Prohibition**: As requested, SVGs are now prohibited to eliminate the risk of embedded script execution within the platform.
+
+---
+
+### Security Verification
+I have implemented a new security test case in `BrandingTest.php` specifically for LFI:
+- [x] **`test_mitigation_of_lfi_vulnerability`**: Confirmed that if the database is manipulated to point to `../../.env`, the system safely falls back to default assets and prevents unauthorized file access.
+
+### Memory Optimization
+- **Frontend Cleanup**: Added Object URL revocation logic in `BrandingSettingsPage.tsx`. This ensures that temporary PDF preview data is cleared from your computer's memory as soon as it is no longer needed, preventing browser slowdowns during long development sessions.
+
+**The system is now secure, stable, and performing optimally.**

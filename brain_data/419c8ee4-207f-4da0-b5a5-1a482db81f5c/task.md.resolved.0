@@ -1,0 +1,7 @@
+# Seamless Login Implementation
+
+- [ ] Create a new Action in [LoginController](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#19-683) for seamless login from URL.
+- [ ] Implement Token/Timestamp validation logic (e.g., hash checking or decryption).
+- [ ] Implement User Type detection or default assignment for seamless login.
+- [ ] Replicate the session and cookie generation logic from [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-69) (POST) upon successful validation.
+- [ ] Redirect to `Modal.UserTypeUrl` after successful login.

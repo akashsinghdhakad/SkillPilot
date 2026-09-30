@@ -1,0 +1,18 @@
+# Certificate Branding and Generation Check
+
+## Checklist
+- [x] Login as admin@skillpilot.com
+- [x] Navigate to /admin/settings/branding
+- [x] Change Brand Color to #FF4500 and Save
+- [x] Refresh /admin/settings/branding and verify the color #FF4500
+- [x] Logout
+- [x] Login as student@skillpilot.com
+- [x] Navigate to /courses
+- [!] Note: No courses found in the system. Creating "Mastering Laravel" for testing.
+- [x] Create and Publish course "Mastering Laravel" as admin/instructor
+- [x] Verify only one section and one lesson exist.
+- [ ] Enroll student@skillpilot.com in "Mastering Laravel"
+- [ ] Complete "Mastering Laravel" (100% progress)
+- [ ] Click "Claim Certificate" and verify PDF
+- [ ] Verify PDF generation/download
+- [ ] Final report

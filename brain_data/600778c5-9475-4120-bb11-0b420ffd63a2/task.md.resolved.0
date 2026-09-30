@@ -1,0 +1,22 @@
+- [ ] Project Initialization
+    - [ ] Run `npx create-next-app@latest` with tailwind, typescript, app router, and eslint.
+    - [ ] Clean up boiler plate code (pages, styles).
+    - [ ] Install extra dependencies: `framer-motion`, `lucide-react`, `clsx`, `tailwind-merge`.
+- [ ] Core Setup
+    - [ ] Configure `globals.css` with custom theme and glassmorphism utilities.
+    - [ ] Define `Todo` types and initial mock data (optional).
+- [ ] Component Development
+    - [ ] `TodoContainer.tsx`: Main logic and state management.
+    - [ ] `TodoHeader.tsx`: Progress tracking and stats.
+    - [ ] `TodoInput.tsx`: Custom input with validation and animations.
+    - [ ] `TodoItem.tsx`: List items with edit/delete/complete and Framer Motion transitions.
+    - [ ] `TodoFilter.tsx`: Tab-based filtering (All/Active/Completed).
+    - [ ] `EmptyState.tsx`: High-end placeholder for empty lists.
+- [ ] Integration & Refinement
+    - [ ] Hook components into `page.tsx`.
+    - [ ] Implement LocalStorage persistence.
+    - [ ] Add accessibility features (keyboard navigation, ARIA).
+- [ ] Final Polish & Verification
+    - [ ] Responsive testing.
+    - [ ] Browser verification for smooth animations.
+    - [ ] Code cleanup and optimization.

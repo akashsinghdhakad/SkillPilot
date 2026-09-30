@@ -1,0 +1,8 @@
+- [x] Database: Add billing details to Tenants table
+- [/] Models: Update Tenant model with new fillable fields
+- [ ] Backend: Implement InvoiceService (dompdf)
+- [ ] Backend: Create Admin/Orders Management API
+- [ ] Backend: Create Student/Orders History API
+- [ ] Frontend: Build Admin Finance Dashboard (`/admin/finance`)
+- [ ] Frontend: Build Student Order History (`/student/orders`)
+- [ ] Verification: Test PDF generation and security

@@ -1,0 +1,14 @@
+# Task: Diagnose Branding Asset Upload Issue
+
+## Checklist
+- [ ] Log in as admin@skillpilot.com
+- [ ] Navigate to Branding settings
+- [ ] Attempt Logo upload
+- [ ] Attempt Signature upload
+- [ ] Check PDF Preview resolution
+- [ ] Save Branding and check network requests
+- [ ] Check /tenant/branding response
+- [ ] Check /certificates/preview response
+
+## Findings
+- 

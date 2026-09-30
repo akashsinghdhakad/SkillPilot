@@ -1,0 +1,26 @@
+# Resolved: Branding Asset Upload Failure
+
+We have successfully diagnosed and resolved the issue preventing the Corporate Logo and Authorized Signature from being uploaded and saved.
+
+## 1. Root Cause: Global API Conflict
+The core issue was a **Global Axios configuration** in the frontend (`api.ts`) that forced `Content-Type: application/json` on every request. 
+- **The Problem**: When sending files via `FormData`, the browser *must* calculate a unique "boundary" string for the request. By forcing JSON headers globally, the browser was prevented from setting the correct boundary, causing the backend to receive malformed data and return a **422 Validation Error**.
+- **The Solution**: Removed the hardcoded JSON header from the global instance, allowing the browser to automatically detect and set the correct `multipart/form-data` headers for file uploads.
+
+## 2. Visual Verification
+The system has been fully verified using our automated browser suite. All branding assets are now successfully processed, stored, and rendered.
+
+![Branding Verification](/C:/Users/mpo491/.gemini/antigravity/brain/c3fed0f2-a13b-45d5-93ac-4bba2cc75e43/branding_verification_full_1776770418508.png)
+
+### Key Results:
+- **Identity section**: Both the Corporate Logo and Authorized Signature are now correctly displayed in the preview boxes on the settings page.
+- **Premium PDF Integration**: The PDF generation engine correctly receives these files (even during unsaved previews) and embeds them with high fidelity into the certificate.
+- **Persistence**: Clicking "Save Branding" now results in a success message and permanent storage of the assets.
+
+## 3. Technical Stability
+- **Failsafe Retrieval**: The backend now uses Laravel's `Storage` disk abstraction, ensuring that Windows path separators do not break image loading during PDF generation.
+- **Memory Management**: Implemented Object URL revocation in the frontend to ensure browser memory is cleaned up after each preview generation.
+
+---
+
+The branding system is now robust and production-ready.

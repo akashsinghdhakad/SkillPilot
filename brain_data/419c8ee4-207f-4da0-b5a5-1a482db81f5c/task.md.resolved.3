@@ -1,0 +1,7 @@
+# Seamless Login Implementation
+
+- [x] Modify the existing [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-69) GET Action in [LoginController](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#19-683) to catch the URL payload (`UserName`, `Token`, `timestamp`).
+- [x] Create a new helper method `CreateUserSession` to encapsulate the session and cookie generation logic.
+- [x] Update both the [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-69) POST method and the seamless logic in [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-69) GET to use `CreateUserSession`.
+- [x] Implement Token validation logic mimicking the PHP `sha256` hashing logic: `if ("Bearer " + hash('sha256', substring(client_token, 7)) != "Bearer " + $client_config_auth_token)`.
+- [x] Assign `UserType = "S"` directly inside the seamless login flow.

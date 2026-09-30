@@ -1,0 +1,72 @@
+# Seamless Login via URL Payload
+
+The goal is to provide a way to log a user in directly via a URL containing `UserName`, `Token`, and `timestamp`. We will create a **new Action method** to catch this payload, and we will extract the existing session generation code into a **new helper method** so both the existing [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-69) POST method and the new Action can share the exact same session setup logic.
+
+## User Review Required
+
+> [!IMPORTANT]
+> 1. **Token Validation Strategy:** How should we validate the `Token` before generating the session? (e.g., checking a specific hash of `UserName + timestamp + secret`)?
+> 2. **User Type (`UserType`):** What `UserType` should the seamless login default to (e.g., `"S"`)?
+
+## Proposed Changes
+
+### [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+#### [MODIFY] [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)(file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+**1. Add a NEW `ActionResult` for Direct Login (`DirectLogin`)**
+We will add a totally new GET method that accepts `UserName`, `Token`, and `timestamp`.
+
+```csharp
+[HttpGet]
+[AllowAnonymous]
+public ActionResult DirectLogin(string UserName, string Token, string timestamp)
+{
+    // 1. Validate the Timestamp and Token
+    if (!IsValidPayload(UserName, Token, timestamp))
+    {
+        return RedirectToAction("Home", "Login", new { Error = PortalEncryption.EncryptPassword("Invalid login payload.") });
+    }
+
+    // 2. Mock a LoginRepository Modal
+    LoginRepository Modal = new LoginRepository();
+    Modal.UserName = UserName;
+    Modal.UserType = "S"; 
+
+    // 3. Authenticate User
+    Modal = Modal.isValidUser(Modal);
+
+    if (!string.IsNullOrEmpty(Modal.Roles) && Modal.UserStatus != "Login Failed")
+    {
+        // 4. Reuse Session and Auth Cookie Generation logic
+        CreateUserSession(Modal);
+
+        return Redirect(Modal.UserTypeUrl);
+    }
+    else
+    {
+        return RedirectToAction("Home", "Login", new { Error = PortalEncryption.EncryptPassword("Direct login failed.") });
+    }
+}
+```
+
+**2. Extract Session Generation into a NEW method (`CreateUserSession`)**
+We will create a new method `CreateUserSession(LoginRepository Modal)` that contains the cookie and session creation logic (lines 216-258 in [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-69) POST), and we'll update the [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-69) POST method to call this new helper method instead of duplicating the code.
+
+```csharp
+private void CreateUserSession(LoginRepository Modal)
+{
+    var roles = Modal.Roles.ToString();
+    CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
+    // ... all existing session and cookie setting code
+}
+```
+
+**3. Add NEW Token Validation Method**
+Implement `IsValidPayload(string UserName, string Token, string timestamp)` to verify the request hasn't been tampered with.
+
+## Verification Plan
+
+### Manual Verification
+1. Access a valid URL with `UserName`, `Token`, and `timestamp` and verify it logs in straight to the dashboard.
+2. Verify normal OTP login still works seamlessly using the refactored `CreateUserSession` method.

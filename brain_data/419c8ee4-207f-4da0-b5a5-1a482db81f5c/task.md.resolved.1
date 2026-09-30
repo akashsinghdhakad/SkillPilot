@@ -1,0 +1,7 @@
+# Seamless Login Implementation
+
+- [ ] Create a new Action in [LoginController](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#19-683) (e.g., `DirectLogin`) to catch the URL payload (`UserName`, `Token`, `timestamp`).
+- [ ] Create a new helper method `CreateUserSession` to encapsulate the session and cookie generation logic, and update the existing [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#70-283) POST method to use it.
+- [ ] Implement Token/Timestamp validation logic.
+- [ ] Implement User Type detection or default assignment for seamless login.
+- [ ] Redirect to `Modal.UserTypeUrl` after successful login.

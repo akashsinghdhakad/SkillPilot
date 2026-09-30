@@ -1,0 +1,3 @@
+- `[x]` Add `allowedDevOrigins` to `next.config.ts`
+- `[x]` Restart server with `npm run server`
+- `[x]` Verify network access

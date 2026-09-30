@@ -1,0 +1,16 @@
+# Tasks: Branding Assets & OWASP Security Fixes
+
+Fixing broken logo/signature application and mitigating the Local File Inclusion (LFI) vulnerability.
+
+## Phase I: Backend Security & Stability
+- [x] Secure `CertificateController` (Path Sandboxing & Disk Abstraction)
+- [x] Enhance validation in `TenantBrandingController` (MIME types)
+- [x] Secure `Tenant` Model Accessors (Path Sandboxing)
+
+## Phase II: Frontend Polish
+- [x] Implement PDF preview revocation to prevent memory leaks in `BrandingSettingsPage.tsx`
+
+## Phase III: Verification & Testing
+- [x] Run `BrandingTest.php` (All 5 tests passing)
+- [x] Manual verification of logo/signature application
+- [x] Verify LFI mitigation

@@ -1,0 +1,73 @@
+# ReelForge Implementation Plan
+
+This document outlines the step-by-step implementation plan for ReelForge, an AI-powered video and image content creator platform based on your project requirements.
+
+## User Review Required
+
+> [!IMPORTANT]
+> Please review the proposed steps below. If this overall plan looks good, I will begin executing **Step 1** immediately upon your approval. I will wait for you to review and approve each step before moving on to avoid generating everything at once.
+
+## Proposed Strategy
+
+We will follow the specific step-by-step approach as outlined in the prompt to ensure a clean, production-level, and scalable architecture.
+
+### Step 1: Backend Setup & Database Architecture (Next Phase)
+
+We will start here to establish the data foundation for the application.
+
+*   **Initialize Backend:** Set up a fresh NestJS application locally.
+*   **Database Config:** Configure PostgreSQL using Prisma ORM.
+*   **Prisma Schema:** Define production-ready models:
+    *   `User` (with roles: User, Creator, Admin)
+    *   `Project`
+    *   `Template`
+    *   `TemplateElement`
+    *   `Purchase`
+    *   `Earnings`
+*   **Core APIs:**
+    *   `/auth`: Implement JWT-based registration and login flows.
+    *   `/templates`: Basic CRUD endpoints and marketplace logic.
+
+### Step 2: Frontend Architecture & Editor UI
+
+Once the backend is solid, we will build the user interface.
+
+*   **Initialize Frontend:** Set up Next.js (App Router), Tailwind CSS, and shadcn/ui.
+*   **Application Layout:** Build a Canva-like layout with Sidebar, Header, and Editor Area.
+*   **Editor UI Implementation:**
+    *   Integrate Konva.js canvas for drag, drop, resize, and rotate.
+    *   Implement left sidebar (tools, layers).
+    *   Implement bottom timeline UI for video sequencing.
+    *   Implement properties panel on the right.
+*   **Design Polish:** Apply soft UI, modern typography, animations (Framer Motion), and dark mode support.
+
+### Step 3: Template JSON Engine
+
+We will build out the dynamic template storage mechanism.
+
+*   Define robust JSON schemas for templates.
+*   Add logic to parse variables (e.g., `{{title}}`).
+*   Include structures for styling, timelines (start/end), and animations.
+*   Provide seed data / sample templates for testing.
+
+### Step 4: Video Rendering Engine (FFmpeg)
+
+We will connect the parsed templates to actual video processing.
+
+*   Implement the `/render` API in NestJS.
+*   Build a service that takes Template JSON and User input Data.
+*   Use `fluent-ffmpeg` or spawned FFmpeg processes to apply animations, merge audio/video, and output the final MP4.
+
+### Bonus Features (To-Be-Evaluated Later)
+
+*   Redis & BullMQ for queuing heavy video rendering.
+*   Rate Limiting & Caching optimizations.
+
+## Verification Plan
+
+For **Step 1**, the verification will involve:
+1.  Running Prisma migrations successfully against a local PostgreSQL database (or creating it within Docker).
+2.  Ensuring all modules compile correctly.
+3.  Manually testing the `/auth` and `/templates` endpoints to ensure JWT authentication and basic database operations work as expected.
+
+Once Step 1 is verified, I will update you with a Walkthrough and request approval to proceed to Step 2.

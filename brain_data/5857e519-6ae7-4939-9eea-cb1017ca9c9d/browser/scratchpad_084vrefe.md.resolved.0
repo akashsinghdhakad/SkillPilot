@@ -1,0 +1,12 @@
+# Task: Test Swagger UI
+
+## Checklist
+- [ ] Open http://localhost:5215/swagger/index.html
+- [ ] Verify Swagger UI is loaded
+- [ ] Expand "Sample" or "Auth" controller
+- [ ] Click "Try it out"
+- [ ] Click "Execute"
+- [ ] Review and report response
+
+## Findings
+- 

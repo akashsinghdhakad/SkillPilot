@@ -1,0 +1,76 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Skill
+Pilot
+Menu
+[0] (112,254)<a href='/admin/dashboard' />
+	[1] (112,254)<div  />
+		[2] (68,254)<div  />
+			[3] (81,254)<span >Analytics />
+[4] (112,326)<a href='/admin/finance' />
+	[5] (112,326)<div  />
+		[6] (64,326)<div  />
+			[7] (77,326)<span >Finance />
+[8] (112,398)<a href='/courses' />
+	[9] (112,398)<div  />
+		[10] (76,398)<div  />
+			[11] (88,398)<span >My Learning />
+[12] (112,471)<a href='/certificates' />
+	[13] (112,471)<div  />
+		[14] (74,471)<div  />
+			[15] (86,471)<span >Certificates />
+[16] (112,543)<a href='/membership' />
+	[17] (112,543)<div  />
+		[18] (76,543)<div  />
+			[19] (88,543)<span >Membership />
+[20] (112,615)<a href='/instructor/courses' />
+	[21] (112,615)<div  />
+		[22] (88,615)<div  />
+			[23] (100,615)<span >Manage Courses />
+[24] (112,687)<a href='/instructor/earnings' />
+	[25] (112,687)<div  />
+		[26] (67,687)<div  />
+			[27] (80,687)<span >Earnings />
+[28] (112,759)<a href='/admin/tenants' />
+	[29] (112,759)<div  />
+		[30] (73,759)<div  />
+			[31] (85,759)<span >All Tenants />
+[32] (112,832)<a href='/admin/users' />
+	[33] (112,832)<div  />
+		[34] (67,832)<div  />
+			[35] (80,832)<span >All Users />
+[36] (112,904)<a href='/admin/courses' />
+	[37] (112,904)<div  />
+		[38] (74,904)<div  />
+			[39] (87,904)<span >All Courses />
+[40] (112,976)<a href='/admin/bundles' />
+	[41] (112,976)<div  />
+		[42] (65,976)<div  />
+			[43] (78,976)<span >Bundles />
+[44] (400,60)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[45] (805,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+SkillPilot Admin
+Administrator
+Dashboard
+Administrator
+Welcome back,
+SkillPilot Admin
+. Here is what's happening with your learning journey today.
+[46] (912,238)<button class='inline-flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary text-primary-foreground shadow-lg hover:shadow-primary/20 py-2.5 rounded-full px-6'>Explore Catalog />
+Active Courses
+0
+Completed
+0
+Total Certificates
+0
+Your Courses
+Start Your Journey
+You are not enrolled in any courses yet. Explore our catalog to find your next skill.
+Marketplace News
+Build Your Future
+Did you know students with certificates are 3x more likely to be recruited? Keep learning to unlock your potential.
++12k
+
+</current_dom>

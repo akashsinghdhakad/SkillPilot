@@ -1,0 +1,73 @@
+# Seamless Login via URL Payload
+
+The goal is to provide a way to log a user in directly via a URL containing `UserName`, `Token`, and `timestamp`, bypassing the OTP verification step, while reusing the existing session creation logic in the [LoginController](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#19-683).
+
+## User Review Required
+
+> [!IMPORTANT]
+> 1. **Token Validation Strategy:** How exactly is the `Token` generated and how should it be validated? For security, we should validate that `Token == Hash(UserName + timestamp + SecretKey)` and that the `timestamp` is within an acceptable time window (e.g., 5 minutes). Is there a specific hashing or encryption mechanism you already use for the token?
+> 2. **User Type (`UserType`):** The [isValidUser](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Models/LoginRepository.cs#259-363) method requires a `UserType` (e.g., `"S"` for Student or `"G"` for another type). Should the seamless login assume `"S"`, or will the user type also be passed in the payload/determined dynamically?
+> 3. **Login Details:** The [isValidUser](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Models/LoginRepository.cs#259-363) method currently expects `UserName` to be encrypted if length is 10 and `UserType` is `"S"`. Is the `UserName` in the URL already encrypted, or should we encrypt/decrypt it in the controller?
+
+## Proposed Changes
+
+### [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+#### [MODIFY] [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)(file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+**1. Add a new `ActionResult` (e.g., `DirectLogin`)**
+We will add a new GET method that accepts `UserName`, `Token`, and `timestamp`.
+
+```csharp
+[HttpGet]
+[AllowAnonymous]
+public ActionResult DirectLogin(string UserName, string Token, string timestamp)
+{
+    // 1. Validate the Timestamp and Token to prevent unauthorized access
+    if (!IsValidPayload(UserName, Token, timestamp))
+    {
+        return RedirectToAction("Home", "Login", new { Error = PortalEncryption.EncryptPassword("Invalid login payload.") });
+    }
+
+    // 2. Mock a LoginRepository Modal
+    LoginRepository Modal = new LoginRepository();
+    Modal.UserName = UserName;
+    Modal.UserType = "S"; // Or passed as a parameter
+
+    // 3. Authenticate User (mimicking the "after OTP" step)
+    Modal = Modal.isValidUser(Modal);
+
+    if (!string.IsNullOrEmpty(Modal.Roles) && Modal.UserStatus != "Login Failed")
+    {
+        // 4. Session and Auth Cookie Generation (copied from POST Home action)
+        var roles = Modal.Roles.ToString();
+        CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
+        serializeModel.UserId = Modal.UserId;
+        serializeModel.UserName = Modal.UserName;
+        serializeModel.FirstName = Modal.Firstname;
+        serializeModel.roles = Modal.Roles;
+        serializeModel.G2GMobileNo = Modal.MobileNo;
+        // ... (remaining cookie/session allocations)
+
+        return Redirect(Modal.UserTypeUrl);
+    }
+    else
+    {
+        return RedirectToAction("Home", "Login", new { Error = PortalEncryption.EncryptPassword("Direct login failed.") });
+    }
+}
+```
+
+**2. Add Token Validation Method**
+Implement the `IsValidPayload` method to verify the request hasn't been tampered with or expired.
+
+## Validation Plan
+
+### Manual Verification
+1. Generate a valid URL with `UserName`, `Token`, and `timestamp`.
+2. Access the URL in a browser.
+3. Ensure the browser authenticates the user directly, sets the necessary cookies (`ADUserinfo`, `AuthToken`), and redirects them to their respective dashboard (`Modal.UserTypeUrl`).
+4. Wait for the timestamp to expire, access the URL again, and confirm it denies the login.
+5. Alter the `Token` in the URL and confirm the login fails, redirecting to the Home page with an error.
+
+Please review the plan, specifically the **User Review Required** section, and let me know how you'd like to handle the token validation and default `UserType`.

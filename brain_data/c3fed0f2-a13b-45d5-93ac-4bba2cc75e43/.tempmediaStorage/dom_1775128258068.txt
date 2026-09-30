@@ -1,0 +1,47 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Skill
+Pilot
+Menu
+[0] (112,254)<a href='/dashboard' />
+	[1] (112,254)<div  />
+		[2] (68,254)<div  />
+			[3] (81,254)<span >Overview />
+		[4] (187,254)<div  />
+[5] (112,326)<a href='/courses' />
+	[6] (112,326)<div  />
+		[7] (76,326)<div  />
+			[8] (88,326)<span >My Learning />
+[9] (112,398)<a href='/certificates' />
+	[10] (112,398)<div  />
+		[11] (74,398)<div  />
+			[12] (86,398)<span >Certificates />
+[13] (112,931)<button class='w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-red-500 hover:bg-red-50/50 dark:hover:bg-red-500/5 transition-colors font-semibold text-sm'>Sign Out />
+	Sign Out
+[14] (400,60)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[15] (800,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+Aspiring Student
+Student
+Dashboard
+Student
+Welcome back,
+Aspiring Student
+. Here is what's happening with your learning journey today.
+[16] (912,238)<button class='inline-flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary text-primary-foreground shadow-lg hover:shadow-primary/20 py-2.5 rounded-full px-6'>Explore Catalog />
+Active Courses
+0
+Completed
+0
+Total Certificates
+0
+Your Courses
+Start Your Journey
+You are not enrolled in any courses yet. Explore our catalog to find your next skill.
+Marketplace News
+Build Your Future
+Did you know students with certificates are 3x more likely to be recruited? Keep learning to unlock your potential.
++12k
+
+</current_dom>

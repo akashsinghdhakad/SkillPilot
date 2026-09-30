@@ -1,0 +1,45 @@
+## Proposed Enhancements
+
+To make the course creation experience "premium" and more functional, I suggest adding:
+
+1.  **Live Preview Card**: As the instructor types the title and price, a "preview card" updates in real-time so they see exactly how it will look in the student marketplace.
+2.  **Thumbnail Placeholder Generation**: Integrate the `generate_image` tool logic (or a high-end placeholder) so the course doesn't look empty.
+3.  **Modern Form Layout**: Use a split-screen layout (Form on the left, Preview on the right) for a desktop-first "Studio" feel.
+4.  **Category Selection**: Add a dropdown for categories (Web Dev, AI, Design, etc.) to improve filtering later.
+
+## Updated Proposed Changes
+
+### [Frontend] [Instructor Dashboard]
+
+#### [NEW] [new/page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/instructor/courses/new/page.tsx)
+- **Studio Layout**: Two-column layout with a sticky preview card.
+- **Improved Validation**: Add "Category" and "Difficulty Level" to the schema.
+- **Success Interaction**: Animated success state before redirecting.
+
+#### [MODIFY] [page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/instructor/courses/page.tsx)
+- Wrap the "Create New Course" button with a `Link` component.
+- Link the "View" (Eye icon) button to `/instructor/courses/[id]`.
+- Link the "Edit" (Edit3 icon) button to `/instructor/courses/[id]/edit`.
+
+#### [NEW] [[id]/page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/instructor/courses/[id]/page.tsx)
+- Detailed view of a specific course.
+- List sections and lessons (Curriculum view).
+- Option to navigate to settings or curriculum builder.
+
+#### [NEW] [[id]/edit/page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/instructor/courses/[id]/edit/page.tsx)
+- Reuse the "Studio" layout from the creation page.
+- Pre-fill with existing course data fetched via `GET /api/courses/[id]`.
+- Integrate with `PUT /api/courses/[id]`.
+
+## Verification Plan
+
+### Automated Tests
+- None planned for now, but will verify via manual browser testing.
+
+### Manual Verification
+1. Navigate to "Manage Courses" in the instructor dashboard.
+2. Click "Create New Course".
+3. Verify that the new course creation page is displayed.
+4. Fill in the form and submit.
+5. Verify that the course is successfully created and the user is redirected back to the course list.
+6. Verify that the new course appears in the list.

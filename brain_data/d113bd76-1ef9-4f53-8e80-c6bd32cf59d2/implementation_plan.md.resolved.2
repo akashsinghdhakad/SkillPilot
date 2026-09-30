@@ -1,0 +1,45 @@
+# AIRA (Akash Intelligent Reactive Assistant) - Project Scaffolding Plan
+
+The goal is to set up the foundation for the AIRA system based on your `project_desc.txt` and `readme.md`. This includes the "AI Brain" (Python FastAPI) and the "Execution Layer" (Python Device Agents), enforcing local-first AI through Ollama.
+
+## Proposed Changes
+
+We will scaffold two main components in `d:\learning\AIRA`: the `ai-engine` and the `agents` execution layer.
+
+### 1. AI Engine (Python FastAPI)
+
+This acts as the brain, processing natural language, interacting with vector memory, and routing structured intent to agents.
+
+#### [NEW] [ai-engine/requirements.txt](file:///d:/learning/AIRA/ai-engine/requirements.txt)
+Python dependencies (`fastapi`, `uvicorn`, `requests`, `pinecone-client`, `python-dotenv`, `pydantic`).
+
+#### [NEW] `ai-engine/app/`
+- **[NEW] [ai-engine/app/main.py](file:///d:/learning/AIRA/ai-engine/app/main.py)**: Entry point for the FastAPI application.
+- **[NEW] `ai-engine/app/services/`**:
+  - **[NEW] [llm_service.py](file:///d:/learning/AIRA/ai-engine/app/services/llm_service.py)**: Connects to local Ollama (`http://localhost:11434/api/generate`) using `llama3`.
+  - **[NEW] [memory_service.py](file:///d:/learning/AIRA/ai-engine/app/services/memory_service.py)**: Pinecone + PostgreSQL memory integrations.
+  - **[NEW] [orchestrator.py](file:///d:/learning/AIRA/ai-engine/app/services/orchestrator.py)**: Converts user intent to a rigid structured command JSON.
+- **[NEW] [ai-engine/app/api/routes.py](file:///d:/learning/AIRA/ai-engine/app/api/routes.py)**: Endpoints to ingest instructions.
+- **[NEW] [ai-engine/app/core/config.py](file:///d:/learning/AIRA/ai-engine/app/core/config.py)**: App configurations.
+- **[NEW] [ai-engine/app/models/schemas.py](file:///d:/learning/AIRA/ai-engine/app/models/schemas.py)**: Pydantic models for request/response payloads (e.g. Device Command Schema).
+
+---
+
+### 2. Execution Layer
+
+As stated in the project brief, AIRA converts commands and executes them on the device. We will create the foundational python device agent.
+
+#### [NEW] `agents/laptop/`
+- **[NEW] [agents/laptop/requirements.txt](file:///d:/learning/AIRA/agents/laptop/requirements.txt)**: Minimal dependencies for the laptop execution agent (`requests`, `websockets` if needed).
+- **[NEW] [agents/laptop/laptop_agent.py](file:///d:/learning/AIRA/agents/laptop/laptop_agent.py)**: The worker agent that periodically polls or listens for commands routed from the AI Engine/Backend and executes them on your local machine (e.g., opening apps, running codebase scripts).
+
+## Open Questions
+
+1. For the execution layer (`laptop_agent.py`), do you prefer it connects to the FastAPI backend via polling (HTTP), or WebSocket for real-time reactive commands?
+2. Shall I proceed with scaffolding the `ai-engine` and `agents` directories now?
+
+## Verification Plan
+
+### Manual Verification
+- Verify `ai-engine` boots successfully with FastAPI.
+- Verify `laptop_agent.py` script can run in isolation and mock-receive a JSON command object mapping structure logic from the `project_desc.txt`.

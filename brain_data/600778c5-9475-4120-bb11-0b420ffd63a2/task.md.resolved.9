@@ -1,0 +1,17 @@
+- `[x]` Design System Overhaul (Tailwind v4)
+    - `[x]` Update `globals.css` with OKLCH colors and advanced glass utilities
+    - `[x]` Add background mesh gradient in `page.tsx`
+- `[x]` Component Enrichment
+    - `[x]` `TodoHeader`: Add animated progress bar and stats
+    - `[x]` `TodoInput`: Implement glow focus and premium submission button
+    - `[x]` `TodoItem`: Add hover-lift, smooth checkbox, and refined icons
+    - `[x]` `TodoFilter`: magnetic segmented control styling
+- `[x]` Micro-animations Integration
+    - `[x]` Re-configure `AnimatePresence` for layout transitions
+    - `[x]` Add entrance animations for the whole card
+- `[x]` Quality Assurance
+    - `[x]` Browser verification (Screenshot WOW check)
+    - `[x]` Verify contrast and accessibility
+- `[x]` Documentation
+    - `[x]` Create `walkthrough.md`
+    - `[x]` Cleanup debug artifacts

@@ -1,0 +1,65 @@
+# Tenant-Branded Certificate Generation Implementation Plan
+
+We are implementing a professional, automated certificate generation system that is fully customizable by each tenant. Administrators will be able to upload their own branding (logos, signatures) and set brand colors, which will be dynamically reflected in the generated certificates.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Branding Assets**: Tenant admins will need a way to upload logos (PNG/JPG) and signatures. I'll implement a dedicated "Branding Settings" page for this.
+> - **PDF Library**: I'll use `barryvdh/laravel-dompdf` for the backend. It's robust and supports CSS-based layouts.
+> - **Issuance Criteria**: To ensure integrity, certificates will only be "claimable" if:
+>   1. Course progress is 100%.
+>   2. The final assessment is marked as `passed`.
+
+## Proposed Changes
+
+### Backend (Laravel)
+
+#### [NEW] [Tenants Branding Migration](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/database/migrations/2026_03_23_104000_add_branding_to_tenants_table.php)
+- Add `certificate_logo_path`, `certificate_signature_path`, and `brand_color` to the `tenants` table.
+
+#### [MODIFY] [Tenant.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Models/Tenant.php)
+- Update `$fillable` and add helper methods for full asset URLs.
+
+#### [NEW] [certificate.blade.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/resources/views/certificate.blade.php)
+- Create a premium "diploma-style" template with:
+  - Dynamic Logo (from Tenant)
+  - Dynamic Signature (from Tenant)
+  - Dynamic Secondary Color (from Tenant)
+  - User and Course details.
+
+#### [MODIFY] [CertificateController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/app/Http/Controllers/CertificateController.php)
+- **Verify Issuance**: Only allow `issue()` if 100% progress and passed quiz attempt exist.
+- **Generate PDF**: Add a `download()` method that loads the tenant's branding and renders the PDF.
+
+---
+
+### Frontend (Next.js)
+
+#### [NEW] [BrandingSettingsPage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/admin/settings/branding/page.tsx)
+- Premium settings interface for Tenant Admins allowing:
+  - Logo upload/preview.
+  - Signature upload/preview.
+  - Brand color selection with a live color picker.
+
+#### [MODIFY] [CoursePlayerPage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/courses/[id]/learn/page.tsx)
+- Integrate a "Claim Certificate" overlay/button when the user completes the final lesson/quiz.
+
+#### [MODIFY] [DashboardPage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/dashboard/page.tsx)
+- Show "View Certificate" link on course cards for completed courses.
+
+## Open Questions
+
+- **Storage**: Should branding assets be stored locally (`storage/app/public`) or on S3? (Defaults to local for now).
+- **Template Layout**: Should I provide multiple layout options, or start with one highly polished template?
+
+## Verification Plan
+
+### Automated Tests
+- `php artisan test Modules/Certificates`: Test issuance logic (fail if progress < 100%).
+- `php artisan test Modules/Tenants`: Test branding update endpoint permissions.
+
+### Manual Verification
+1. Login as Tenant Admin and upload logo/signature.
+2. Login as Student, pass the course, and download the certificate.
+3. Confirm the PDF reflects the custom tenant branding.

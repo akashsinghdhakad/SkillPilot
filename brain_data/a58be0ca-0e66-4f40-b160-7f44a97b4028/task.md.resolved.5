@@ -1,0 +1,38 @@
+# SWHP Frontend Implementation Tasks
+
+This task list serves as the actionable checklist for building the SWHP Next.js frontend using an Enterprise-Grade Feature-Based Architecture.
+
+## 1. Environment & Next.js App Router Setup
+- [ ] Initialize the Next.js application (`npx create-next-app@latest swhp-frontend --ts --eslint --tailwind --src-dir --app --import-alias "@/*"`).
+- [ ] Install required dependencies (`axios`, `@tanstack/react-query`, `@fortawesome/react-fontawesome`).
+- [ ] Create the strict enterprise folder structure (`app`, `providers`, `features`, `components`, `services`, `hooks`, `lib`, `store`, `types`).
+- [ ] Create `src/lib/api.ts` to configure the base `axios` instance for the API.
+- [ ] Implement `src/providers/Providers.tsx` to wrap `QueryClientProvider` around the app.
+
+## 2. Authentication & Profile Features (`features/auth`, `features/profile`)
+- [ ] Create `authService.ts` inside `features/auth/services/` containing API calls (login, register).
+- [ ] Build the `Login` and `Register` UI components styled with Tailwind utility classes.
+- [ ] Implement `hooks/useAuth.ts` wrapping React Query mutations for authentication.
+- [ ] Implement legacy account mapping UI (`AccountMapping`) utilizing custom Tailwind modals.
+- [ ] Develop the `UserProfile` component inside `features/profile/components` for collecting common cross-system fields.
+
+## 3. Service Selection Feature (`features/services`)
+- [ ] Build the `ServiceList` component, rendering available legacy services using custom Tailwind card layouts.
+- [ ] Create `services/swanService.ts` to handle the SWAN creation API call.
+- [ ] Implement custom hook `hooks/useSwan.ts` using React Query to submit selected services and store the SWAN.
+
+## 4. iFrame Orchestration Feature (`features/application`)
+- [ ] Create the `ServiceIframe` wrapper component for loading individual legacy forms.
+- [ ] Implement the `ApplicationOrchestrator` to manage the queue, visualizing progress.
+- [ ] Create `hooks/usePostMessage.ts` to add the `window.addEventListener('message')` listener.
+- [ ] Implement strict `event.origin` validation and verify the `eventType === 'FormCompleted'` and `payload.swan` match.
+
+## 5. Payment & Tracking Features (`features/payment`, `features/tracking`)
+- [ ] Create `services/paymentService.ts` to handle fee lookups and payment gateway redirections.
+- [ ] Build the `FeeSummary` component to fetch and display the aggregated fee breakdown using React Query.
+- [ ] Develop the `TrackingTable` dashboard utilizing Tailwind grid/table layouts, populated via `useQuery` fetching real-time status.
+
+## 6. Security & Finalization
+- [ ] Integrate CAPTCHA into public auth views.
+- [ ] Ensure all forms use strict validation (e.g. Zod) and handle API errors gracefully, showing Tailwind-styled alert banners.
+- [ ] Verify CSRF defenses and ensure no sensitive data is placed in localStorage.

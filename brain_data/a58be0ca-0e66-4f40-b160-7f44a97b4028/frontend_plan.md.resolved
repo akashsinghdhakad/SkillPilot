@@ -1,0 +1,68 @@
+# SWHP Frontend Implementation Plan
+
+This document outlines the detailed plan to develop the frontend for the Single Window Health Portal (SWHP) using a **scalable, enterprise-grade feature-based architecture** powered by **React (Vite, TypeScript)** and **Tailwind CSS**.
+
+## 1. Frontend Architecture & Setup
+- **Framework:** React SPA (bootstrapped with Vite).
+- **Language:** TypeScript for static type checking and shared DTO contracts.
+- **Styling:** Tailwind CSS for responsive, modern, and dynamic design aesthetics.
+- **Routing:** React Router v6 for client-side navigation.
+- **State & Data Fetching:** React Query for server state management and caching; Context API/Zustand for global client state.
+- **HTTP Client:** Axios configured with centralized instances.
+- **Directory Structure:** Strict separation of pure components, global providers, API services, and self-contained feature modules.
+
+### Directory Structure
+```text
+src/
++-- pages/           # Page-level components and React Router setup
++-- providers/       # Global providers (React Query, Auth, Theme)
++-- shared/          # Shared global resources
+    +-- components/  # Pure reusable UI components (Buttons, Modals, Cards)
++-- services/        # Shared API calls (Axios clients)
++-- hooks/           # Shared custom hooks (useAuth, useProfile)
++-- lib/             # Core configs (api.ts, constants, utils)
++-- store/           # Global state management (Zustand)
++-- types/           # Shared global TypeScript types and DTOs
++-- features/        # Self-contained Business Modules
+    +-- auth/
+        +-- components/
+        +-- hooks/
+        +-- services/    # Feature-specific API calls (e.g., authService.ts)
+        +-- types.ts     # Feature-specific DTOs
+```
+
+## 2. Core Implementation Phases
+
+### Phase 1: Project Initialization & Core Infrastructure
+- [ ] Scaffold React application (`npm create vite@latest swhp-frontend -- --template react-ts`).
+- [ ] Install dependencies: `react-router-dom`, `tailwindcss`, `axios`, `@tanstack/react-query`, FontAwesome.
+- [ ] Configure Tailwind CSS in `tailwind.config.js` and `src/index.css`.
+- [ ] Create `src/lib/api.ts` to configure the base Axios instance (`import.meta.env.VITE_API_URL`).
+- [ ] Implement `Providers.tsx` in `src/providers/` combining `QueryClientProvider` and `AuthProvider`.
+- [ ] Set up client-side routing in `src/pages/router.tsx` and render it in `App.tsx`.
+
+### Phase 2: `features/auth` & `features/profile`
+- [ ] **Services:** Create `authService.ts` for login/register API calls.
+- [ ] **Auth Components:** Create visually stunning `Login`, `Register`, and `AccountMapping` components utilizing Tailwind.
+- [ ] **Auth Hook:** Build `useAuth.ts` leveraging React Query mutations to call `authService`.
+- [ ] **Profile Management:** Create the `UserProfile` form under `features/profile/components`.
+
+### Phase 3: `features/services` (Selection & SWAN)
+- [ ] **Service Checklist:** Build `ServiceList.tsx` displaying legacy services.
+- [ ] **SWAN API Layer:** Create `swanService.ts` to encapsulate the `/api/v1/swan/create` endpoint.
+- [ ] **SWAN Flow:** Create `useSwan.ts` wrapping the React Query mutation.
+
+### Phase 4: `features/application` (iFrame Orchestration)
+- [ ] **iFrame Container:** Create `ServiceIframe.tsx` in `features/application/components`.
+- [ ] **postMessage Listener:** Implement `usePostMessage.ts` to handle origin validation and progress tracking.
+- [ ] **Queue Management:** Build `ApplicationOrchestrator.tsx` to advance through selected services.
+
+### Phase 5: `features/payment` & `features/tracking`
+- [ ] **Payment API Layer:** Create `paymentService.ts` to fetch fees and post statuses.
+- [ ] **Payment UI:** Build `FeeSummary.tsx` to display aggregated breakdown.
+- [ ] **Tracking Dashboard:** Build `TrackingTable.tsx` utilizing `useQuery` to fetch real-time statuses.
+
+## 3. Security & Validation
+- [ ] Apply **CAPTCHA** to auth forms.
+- [ ] Implement **Strict Origin Validation** on all incoming `postMessage` events.
+- [ ] Ensure **CSRF Protection** via stateless JWT stored securely.

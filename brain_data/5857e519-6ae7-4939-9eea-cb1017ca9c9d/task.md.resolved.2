@@ -1,0 +1,22 @@
+# Web API Premium Upgrade Tasks
+
+- [x] Create `v1.0.0-base` Git Tag.
+- [x] **Observability**
+  - [x] Add `Serilog.AspNetCore` package.
+  - [x] Configure Serilog in `Program.cs` and `appsettings.json`.
+- [x] **Modern Error Handling**
+  - [x] Remove `ExceptionHandlingMiddleware`.
+  - [x] Implement `IExceptionHandler` (GlobalExceptionHandler).
+  - [x] Register `AddExceptionHandler` and `UseExceptionHandler` in `Program.cs`.
+- [x] **API Versioning**
+  - [x] Add `Asp.Versioning.Mvc` and `Asp.Versioning.Mvc.ApiExplorer` packages.
+  - [x] Configure API Versioning in `ServiceExtensions.cs`/`SwaggerExtensions.cs`.
+  - [x] Update Controllers with `[ApiVersion("1.0")]` and `v{version:apiVersion}` routing.
+- [x] **Robust Validation**
+  - [x] Add `FluentValidation.AspNetCore` package.
+  - [x] Create a sample validator for a request object (e.g., Auth or Todo).
+- [x] **API Resilience & Security**
+  - [x] Configure Rate Limiting (Fixed Window) in `Program.cs`/`Extensions`.
+  - [x] Add strict CORS configuration.
+- [x] **Health Checks**
+  - [x] Add `AspNetCore.HealthChecks.SqlServer` and configure liveness/readiness points.

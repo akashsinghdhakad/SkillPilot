@@ -1,0 +1,13 @@
+# Walkthrough Plan for Todo application at http://172.16.11.21:3000/
+
+## Checklist
+- [ ] Open the application at http://172.16.11.21:3000/
+- [ ] Verify the application is working properly
+- [ ] Add a few tasks
+- [ ] Mark some tasks as finished
+- [ ] Check overall UI for completeness and quality
+- [ ] Report back to the user
+
+## Notes
+- Target URL: http://172.16.11.21:3000/
+- Need to verify if the server is accessible (it should be running `npm run server` with `0.0.0.0` and `allowedDevOrigins` configured).

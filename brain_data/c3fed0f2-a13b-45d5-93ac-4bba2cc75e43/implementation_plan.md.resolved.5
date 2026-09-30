@@ -1,0 +1,49 @@
+# Roles Master Table Architecture
+
+Transitioning from string-based roles in the [users](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Models/Tenant.php#14-18) table to a normalized Master Table architecture within the `Roles` module.
+
+## User Review Required
+
+> [!IMPORTANT]
+> This change involves shifting from a `role` string on the [User](file:///d:/learning/SkillPilot/skillpilot-frontend/src/types/auth.ts#1-9) model to a many-to-many relationship using a `role_user` pivot table. This is more extensible but changes how roles are queried (e.g., `$user->roles` instead of `$user->role`).
+
+## Proposed Changes
+
+### [Backend] [Roles Module]
+
+#### [NEW] [create_roles_table.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Roles/database/migrations/2026_03_17_170000_create_roles_table.php)
+- Define `roles` table with [id](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/shared/Sidebar.tsx#49-108), `name`, `slug`, and `description`.
+
+#### [NEW] [create_role_user_table.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Roles/database/migrations/2026_03_17_170001_create_role_user_table.php)
+- Define a pivot table for many-to-many relationship between [users](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Models/Tenant.php#14-18) and `roles`.
+
+#### [NEW] [Role.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Roles/app/Models/Role.php)
+- Define the [Role](file:///d:/learning/SkillPilot/skillpilot-backend/database/seeders/UserRoleSeeder.php#8-49) model with basic properties and [users()](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Models/Tenant.php#14-18) relationship.
+
+---
+
+### [Backend] [Users Module]
+
+#### [MODIFY] [User.php](file:///d:/learning/SkillPilot/skillpilot-backend/app/Models/User.php)
+- Add `roles()` relationship.
+- Add helper methods like `hasRole()`.
+
+#### [MODIFY] [UserRoleSeeder.php](file:///d:/learning/SkillPilot/skillpilot-backend/database/seeders/UserRoleSeeder.php)
+- Update to create master roles first, then attach them to users.
+
+---
+
+### [Backend] [Database Cleanup]
+
+#### [DELETE] [add_role_column_to_users_table.php](file:///d:/learning/SkillPilot/skillpilot-backend/database/migrations/2026_03_17_095356_add_role_column_to_users_table.php)
+- This temporary migration will be rolled back or adjusted to avoid conflicts.
+
+## Verification Plan
+
+### Automated Tests
+- `php artisan migrate` to verify schema creation.
+- `php artisan db:seed` to verify data integrity.
+- Tinker tests to verify relationships.
+
+### Manual Verification
+- Login with different users and verify dashboard access based on the new role system.

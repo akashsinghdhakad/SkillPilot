@@ -1,0 +1,19 @@
+# Task Plan
+- [x] Go to http://localhost:3000/login
+- [x] Login with instructor@example.com / password
+- [x] Go to /instructor/courses
+- [ ] Click "Edit" on an existing course.
+- [ ] In the Edit page, scroll down to "Course Curriculum".
+- [ ] Click "Add Section".
+- [ ] Type "Final Verified Section" and click "Add".
+- [ ] In the newly created section, click "Add Lesson".
+- [ ] In the Lesson Modal:
+  - Title: "Welcome Video"
+  - Type: Video
+  - URL: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+  - Duration: 180 (seconds)
+  - Click "Save Lesson".
+- [ ] Verify the lesson appears.
+- [ ] Take a screenshot of the curriculum.
+- [ ] Click "Save Changes" on the course.
+- [ ] Return a report.

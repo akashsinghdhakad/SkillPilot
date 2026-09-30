@@ -1,0 +1,16 @@
+# Task: Verify Checkout Flow
+
+- [x] Navigate to http://localhost:3000/membership
+- [x] Log in if needed
+- [ ] Select 'Silver Pass' (or any plan)
+- [ ] Verify '/checkout' page loads without build errors
+- [ ] Take a screenshot of the premium Order Summary
+- [ ] Navigate to '/checkout/success'
+- [ ] Take a screenshot of the premium Success page
+- [ ] Navigate to '/checkout/cancel'
+- [ ] Take a screenshot of the Cancellation page
+
+## Findings
+- Tried selecting 'Silver Pass', redirected to `/checkout?orderId=2` but got 'Order not found' or 500 error.
+- Tried accessing `/checkout?orderId=1` manually, same error.
+- Backend logs show 500 error for `api/orders/{id}`.

@@ -1,0 +1,29 @@
+# Fix Registration Workspace Selection
+
+The "No public workspaces found" message appears because the frontend cannot fetch available tenants during registration. This is due to:
+1. The `tenants` table being empty.
+2. The `/tenants` API endpoint being protected by authentication.
+3. The `/tenants` API endpoint returning a view instead of JSON.
+
+## Proposed Changes
+
+### [Backend] [Tenants Module]
+
+#### [MODIFY] [TenantsDatabaseSeeder.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/database/seeders/TenantsDatabaseSeeder.php)
+- Add default tenants (e.g., "Main Academy", "Tech School") to the database for testing.
+
+#### [MODIFY] [TenantsController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Http/Controllers/TenantsController.php)
+- Update the [index](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Http/Controllers/TenantsController.php#10-17) method to return a JSON collection of active tenants instead of a view.
+
+#### [MODIFY] [api.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/Routes/api.php)
+- Add a public route for listing tenants that does not require authentication.
+
+## Verification Plan
+
+### Automated Tests
+- Run `php artisan test` in the backend to ensure no regressions.
+
+### Manual Verification
+1. Run `php artisan module:seed Tenants` to populate the database.
+2. Use `curl` or a browser to verify `http://localhost:8000/api/tenants` returns JSON data.
+3. Check `http://localhost:3000/register` (Step 2) to ensure workspaces are now listed.

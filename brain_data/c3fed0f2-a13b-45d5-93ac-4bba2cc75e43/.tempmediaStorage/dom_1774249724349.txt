@@ -1,0 +1,38 @@
+[0] (500,76)<li  />
+	Failed to load courses
+Skill
+Pilot
+Menu
+[1] (112,254)<a href='/dashboard' />
+	[2] (112,254)<div  />
+		[3] (68,254)<div  />
+			[4] (81,254)<span >Overview />
+[5] (112,326)<a href='/courses' />
+	[6] (112,326)<div  />
+		[7] (76,326)<div  />
+			[8] (88,326)<span >My Learning />
+[9] (112,398)<a href='/certificates' />
+	[10] (112,398)<div  />
+		[11] (74,398)<div  />
+			[12] (86,398)<span >Certificates />
+[13] (112,471)<a href='/instructor/courses' />
+	[14] (112,471)<div  />
+		[15] (88,471)<div  />
+			[16] (100,471)<span >Manage Courses />
+		[17] (187,471)<div  />
+[18] (112,543)<a href='/instructor/earnings' />
+	[19] (112,543)<div  />
+		[20] (67,543)<div  />
+			[21] (80,543)<span >Earnings />
+Sign Out
+[22] (810,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+Instructor User
+Instructor
+Manage Courses
+Create, edit, and monitor the performance of your educational content.
+[23] (875,232)<a href='/instructor/courses/new' />
+	[24] (875,232)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary shadow-lg hover:shadow-primary/20 px-8 py-3 text-lg font-semibold gap-2 shadow-primary/30 text-white'>Create New Course />
+[25] (526,386)<input class='flex w-full rounded-xl border border-input px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 pl-10 bg-slate-50 border-none focus:ring-1' placeholder='Search your courses...' />
+[26] (818,386)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm text-slate-500 font-semibold'>All />
+[27] (874,386)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm text-slate-400'>Published />
+[28] (938,386)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm text-slate-400'>Drafts />

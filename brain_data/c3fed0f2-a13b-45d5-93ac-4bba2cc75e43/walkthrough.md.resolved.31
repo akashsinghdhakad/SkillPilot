@@ -1,0 +1,27 @@
+# Walkthrough: Tenant-Branded Certificate Generation
+
+We have successfully implemented a state-of-the-art certificate generation system. This feature allows tenants to personalize their certificates and ensures students receive verified proof of their achievements only after meeting all course requirements.
+
+## 1. Tenant Branding Management
+Administrators can now customize their certificates from the **Branding Settings** page.
+- **Logo & Signature**: Upload custom branding assets.
+- **Theme Color**: Set a brand-specific accent color using a live color picker.
+- **Live Preview**: See exactly how certificates will look to students before saving changes.
+
+## 2. Automated Eligibility Gating
+The system enforces strict rules for certificate issuance:
+- **Lesson Completion**: Students must complete 100% of the lessons in a course.
+- **Assessment Success**: If a course includes a final quiz, students must achieve a passing score before they can claim their certificate.
+
+## 3. Student Experience
+- **Course Player Integration**: A "Claim Certificate" button appears automatically in the curriculum sidebar once the student is eligible.
+- **Unified Certificates Dashboard**: Students can view all their earned certifications in one place at `/certificates`, with options to download or share.
+
+## Technical Highlights
+- **PDF Engine**: Powered by `DomPDF` for consistent, high-quality document generation.
+- **Security**: Certificate numbers are uniquely generated and verified against the student's enrollment record.
+- **Performance**: Assets are served via local storage with URL helpers to ensure fast loading in PDF templates.
+
+---
+> [!TIP]
+> To test the flow, login as an admin to set your branding, then complete a course as a student to see your custom-branded certificate in action!

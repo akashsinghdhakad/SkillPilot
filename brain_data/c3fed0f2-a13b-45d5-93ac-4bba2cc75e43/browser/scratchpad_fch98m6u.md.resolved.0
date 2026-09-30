@@ -1,0 +1,9 @@
+# Certificate Branding Verification Plan
+
+- [ ] Login as admin (admin@skillpilot.com / password)
+- [ ] Navigate to Branding Settings (http://localhost:3000/admin/settings/branding)
+- [ ] Verify PDF Preview loads correctly
+- [ ] Change Brand Color and verify PDF update
+- [ ] Upload new Logo and verify PDF update
+- [ ] Save Branding and verify success
+- [ ] Capture screenshot of premium PDF design

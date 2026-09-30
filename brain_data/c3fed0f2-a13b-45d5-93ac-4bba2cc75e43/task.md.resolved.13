@@ -1,0 +1,8 @@
+# Task: Fix/Implement Course Creation Feature
+
+- [ ] Investigate current "Manage Courses" implementation [/]
+- [ ] Identify why "Create New" is not working [ ]
+- [ ] Create implementation plan for fix/addition [ ]
+- [ ] Implement missing frontend components/pages [ ]
+- [ ] Verify backend integration [ ]
+- [ ] Verify full flow [ ]

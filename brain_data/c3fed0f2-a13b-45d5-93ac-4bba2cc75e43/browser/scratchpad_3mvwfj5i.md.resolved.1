@@ -1,0 +1,17 @@
+# Task: Verify Checkout Flow
+
+- [x] Navigate to http://localhost:3000/membership
+- [x] Log in if needed
+- [x] Select 'Silver Pass' (or any plan)
+- [ ] Verify '/checkout' page loads without build errors (Failing with 500 on backend)
+- [ ] Take a screenshot of the premium Order Summary
+- [x] Navigate to '/checkout/success'
+- [x] Take a screenshot of the premium Success page
+- [ ] Navigate to '/checkout/cancel'
+- [ ] Take a screenshot of the Cancellation page
+
+## Findings
+- Tried selecting 'Silver Pass', redirected to `/checkout?orderId=2` but got 'Order not found' and 500 error on `api/orders/2`.
+- Tried selecting 'Gold Pass', same issue.
+- `/checkout/success` loads correctly and looks premium.
+- Investigated `laravel.log` (couldn't access due to permissions but console log confirms 500).

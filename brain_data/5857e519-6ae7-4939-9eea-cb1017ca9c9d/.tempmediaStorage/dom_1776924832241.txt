@@ -1,0 +1,56 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+[0] (953,37)<button  />
+curl -X
+'GET'
+\
+'http://localhost:5215/api/v1/auth/public'
+\
+-H
+'accept: */*'
+Request URL
+http://localhost:5215/api/v1/auth/public
+Server response
+Code
+Details
+200
+Response body
+[1] (930,390)<div >Download />
+[2] (878,390)<button  />
+This is public
+Response headers
+api-supported-versions
+:
+1.0
+content-type
+:
+text/plain; charset=utf-8; x-api-version=1
+date
+:
+Thu,23 Apr 2026 06:13:33 GMT
+server
+:
+Kestrel
+transfer-encoding
+:
+chunked
+Responses
+Code
+Description
+Links
+200
+Success
+No links
+[3] (500,898)<h3  />
+	[4] (128,898)<a class='nostyle' />
+		[5] (128,897)<span >dotnetWebApiCoreCBA />
+	[6] (956,898)<button class='expand-operation' title='Collapse operation' />
+[7] (51,973)<span >GET />
+[8] (94,973)<span  />
+	[9] (94,973)<a class='nostyle' />
+		[10] (94,973)<span >/ />
+[11] (968,973)<button aria-label='authorization button unlocked' class='authorization__btn unlocked' />
+
+</current_dom>

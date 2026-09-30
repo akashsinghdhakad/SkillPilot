@@ -1,0 +1,56 @@
+# Certificate Generation Implementation Plan
+
+We are implementing a professional certificate generation system. Students will be able to claim and download a high-quality PDF certificate upon successful completion of all course lessons and passing the final assessment.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Library Selection**: I am proposing `barryvdh/laravel-dompdf` for PDF generation. It allows us to use standard HTML/CSS for the certificate design.
+> - **Issuance Criteria**: Certificates will only be issued if:
+>   1. Course progress is 100%.
+>   2. The final quiz (if exists) has a `passed` status.
+> - **Design**: I will implement a premium "diploma-style" template with gold accents, secure verification numbers, and dynamic user/course data.
+
+## Proposed Changes
+
+### Backend (Laravel)
+
+#### [MODIFY] [composer.json](file:///d:/learning/SkillPilot/skillpilot-backend/composer.json)
+- Add `barryvdh/laravel-dompdf` to requirements.
+
+#### [NEW] [certificate.blade.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/resources/views/certificate.blade.php)
+- Create a premium HTML/CSS template for the certificate.
+- Include placeholders for: User Name, Course Title, Completion Date, Certificate No, and Platform Signature.
+
+#### [MODIFY] [CertificateController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/app/Http/Controllers/CertificateController.php)
+- Update `issue()` to verify 100% progress and passing quiz score.
+- Add `download(Certificate $certificate)` method to generate the PDF using `Pdf::loadView()`.
+
+#### [MODIFY] [api.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/routes/api.php)
+- Add `GET /certificates/{certificate}/download` route.
+
+---
+
+### Frontend (Next.js)
+
+#### [MODIFY] [CoursePlayerPage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/courses/[id]/learn/page.tsx)
+- Add a "Claim Certificate" button in the curriculum sidebar or post-quiz screen once completion criteria are met.
+- Trigger the `issue` and `download` flow.
+
+#### [MODIFY] [DashboardPage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/dashboard/page.tsx)
+- Update the "Your Courses" cards to show a "Download Certificate" link for completed courses.
+
+## Open Questions
+
+- **Template Design**: Do you have any specific branding requirements (logos, colors) for the certificate, or should I proceed with a standard "SkillPilot Premium" design?
+
+## Verification Plan
+
+### Automated Tests
+- `php artisan test Modules/Certificates`: Update tests to cover the issuance criteria (progress/quiz checks).
+
+### Manual Verification
+1. As a student, complete all lessons in a course.
+2. Pass the final quiz.
+3. Click "Claim Certificate" and verify the PDF download starts and looks correct.
+4. Verify that the certificate cannot be claimed if the quiz is failed or lessons are skipped.

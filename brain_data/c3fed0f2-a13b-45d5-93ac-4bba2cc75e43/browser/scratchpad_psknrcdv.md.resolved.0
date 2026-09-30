@@ -1,0 +1,13 @@
+## Manual Branding Check Progress
+
+- [x] Visit http://localhost:3000/login
+- [x] Identify a usable admin account (admin@skillpilot.com)
+- [x] Log in as an admin
+- [ ] Navigate to the "Branding" settings (/admin/settings/branding)
+- [ ] Verify the certificate preview displays with the current branding
+- [ ] Try to upload a placeholder logo or signature to confirm functionality
+- [ ] Report the status of the branding page
+
+**Notes:**
+- Logged in as `SkillPilot Admin`.
+- Ready to navigate to Branding settings.

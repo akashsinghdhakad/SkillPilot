@@ -1,0 +1,63 @@
+# Implementation Plan - Analytics, Bundles & Memberships
+
+Following LMS industry best practices, this plan implements a scalable data aggregation system and a multi-channel monetization engine (Bundles & Subscriptions).
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Module Creation**: I will be creating three new backend modules: `Analytics`, `Bundles`, and `Memberships`.
+> - **Access Logic**: I will implement a centralized `CourseAccessService` to handle the complexity of checking direct purchases, bundle unlocks, and active subscriptions.
+> - **Unlocked Logic**: As requested, buying a bundle will grant "Unlock Rights," but students will need to manually click "Unlock" on a course to start it (creating the actual Enrollment record).
+
+## Proposed Changes
+
+### Phase I: Analytics & Insights Dashboard
+**Backend**:
+#### [NEW] [DashboardController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Admin/app/Http/Controllers/DashboardController.php)
+- `getStats()`: Fetches Revenue, Active Students, and Completion Rates.
+- Uses `Cache` with a 60-minute TTL to ensure the database remains fast at scale.
+- Aggregates data from `Orders`, `Payments`, and `LessonProgress`.
+
+**Frontend**:
+#### [NEW] [dashboard/page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/admin/dashboard/page.tsx)
+- Metric Cards with hover animations (KPIs).
+- Recent Activity Feed (latest enrollments and sales).
+- Course Popularity heat-map/table.
+
+---
+
+### Phase II: Course Bundles (Unlock Logic)
+**Backend**:
+#### [NEW] [Bundle.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Bundles/app/Models/Bundle.php)
+- Pivot: `bundle_courses` linking Bundles to Courses.
+#### [NEW] [BundlePurchase.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Bundles/app/Models/BundlePurchase.php)
+- Tracks which student owns which bundle.
+#### [NEW] [UnlockController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Enrollments/app/Http/Controllers/UnlockController.php)
+- Action: `POST /api/enrollments/unlock`.
+- Validates bundle ownership and creates a standard `Enrollment` record for $0.
+
+**Frontend**:
+#### [NEW] [bundles/page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/admin/bundles/page.tsx)
+- Admin UI to create and price bundles.
+
+---
+
+### Phase III: Memberships (Tiered Subscriptions)
+**Backend**:
+#### [NEW] [MembershipPlan.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Memberships/app/Models/MembershipPlan.php)
+- Support for "Bronze," "Silver," and "Gold" tiers (Tier Level: 1, 2, 3).
+#### [NEW] [CourseAccessService.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Courses/app/Services/CourseAccessService.php)
+- Centralized check: `canAccess(user, course)`.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- `BundleTest`: Buying a bundle should grant unlock rights but NOT create an enrollment.
+- `UnlockTest`: Unlocking a course within an owned bundle should succeed and create a valid enrollment.
+- `AccessServiceTest`: Users with "Gold" membership should access "Silver" courses.
+
+### Manual Verification
+- **Dashboard**: Verify totals against database records using Tinker.
+- **Student Journey**: Buy a bundle -> Navigate to course -> "Unlock" -> Start learning.

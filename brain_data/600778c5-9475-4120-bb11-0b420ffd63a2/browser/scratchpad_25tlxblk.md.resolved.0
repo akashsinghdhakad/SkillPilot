@@ -1,0 +1,9 @@
+# Todo Application Verification Checklist
+
+- [x] Open http://localhost:3000
+- [x] Add a new task 'Test Premium App'
+- [ ] Toggle it as completed
+- [ ] Edit it to 'Tested and Verified'
+- [ ] Filter by 'Active' and 'Completed' to verify visibility
+- [ ] Delete it
+- [ ] Verify glassmorphism and modern UI elements

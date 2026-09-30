@@ -1,0 +1,4 @@
+- [ ] Update `CertificateController.php` to use `LessonProgress`
+- [ ] Update `CertificateTest.php` to use `LessonProgress` for progress seeding
+- [ ] Verify fix with automated tests
+- [ ] Perform final manual verification

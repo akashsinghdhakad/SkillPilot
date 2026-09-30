@@ -1,0 +1,10 @@
+# Task: Fix/Implement Course Creation Feature
+
+- [x] Investigate current "Manage Courses" implementation
+- [x] Identify why "Create New" is not working
+- [x] Review implementation plan with user
+- [ ] Implement missing frontend components/pages [/]
+    - [ ] Create `new/page.tsx` with Studio layout [ ]
+    - [ ] Link "Create New" button in [page.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28auth%29/register/page.tsx) [ ]
+- [ ] Verify backend integration [ ]
+- [ ] Verify full flow [ ]

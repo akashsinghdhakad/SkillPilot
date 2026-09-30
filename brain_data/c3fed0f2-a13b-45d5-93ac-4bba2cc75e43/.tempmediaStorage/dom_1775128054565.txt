@@ -1,0 +1,70 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Skill
+Pilot
+Menu
+[0] (112,254)<a href='/dashboard' />
+	[1] (112,254)<div  />
+		[2] (68,254)<div  />
+			[3] (81,254)<span >Overview />
+[4] (112,326)<a href='/courses' />
+	[5] (112,326)<div  />
+		[6] (76,326)<div  />
+			[7] (88,326)<span >My Learning />
+[8] (112,398)<a href='/certificates' />
+	[9] (112,398)<div  />
+		[10] (74,398)<div  />
+			[11] (86,398)<span >Certificates />
+[12] (112,471)<a href='/instructor/courses' />
+	[13] (112,471)<div  />
+		[14] (88,471)<div  />
+			[15] (100,471)<span >Manage Courses />
+[16] (112,543)<a href='/instructor/earnings' />
+	[17] (112,543)<div  />
+		[18] (67,543)<div  />
+			[19] (80,543)<span >Earnings />
+[20] (112,615)<a href='/admin/tenants' />
+	[21] (112,615)<div  />
+		[22] (73,615)<div  />
+			[23] (85,615)<span >All Tenants />
+[24] (112,687)<a href='/admin/users' />
+	[25] (112,687)<div  />
+		[26] (67,687)<div  />
+			[27] (80,687)<span >All Users />
+[28] (112,759)<a href='/admin/courses' />
+	[29] (112,759)<div  />
+		[30] (74,759)<div  />
+			[31] (87,759)<span >All Courses />
+[32] (112,832)<a href='/admin/settings/branding' />
+	[33] (112,832)<div  />
+		[34] (68,832)<div  />
+			[35] (80,832)<span >Branding />
+Sign Out
+[36] (400,60)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[37] (805,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+SkillPilot Admin
+Administrator
+[38] (281,202)<a href='/instructor/courses' />
+	[39] (281,202)<button class='inline-flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-border bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm rounded-xl'>Back />
+Edit Course Studio
+[40] (915,202)<button class='inline-flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary text-primary-foreground shadow-lg hover:shadow-primary/20 py-2.5 rounded-xl px-6'>Save Changes />
+Basic Information
+[41] (307,398)<label class='text-sm font-semibold'>Course Title />
+[42] (488,474)<input class='flex w-full rounded-xl border focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 text-lg font-medium p-6 bg-slate-50/50 border-slate-100 focus:bg-white transition-all shadow-none' placeholder='e.g. Advanced Next.js Implementation' />
+[43] (306,575)<label class='text-sm font-semibold'>Description />
+[44] (488,743)<textarea class='flex w-full rounded-md border px-3 py-2 text-sm ring-offset-white placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:bg-slate-950 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300 min-h-[200px] bg-slate-50/50 border-slate-100 focus:bg-white transition-all shadow-none italic' placeholder='What will students learn in this course?' />
+[45] (377,956)<label class='text-sm font-semibold flex items-center gap-2'>Price ($) />
+[46] (598,956)<label class='text-sm font-semibold flex items-center gap-2'>Category />
+Live Marketplace Preview
+0
+Lessons
+web development
+beginner
+Mastering Laravel
+By You
+Free
+Editing Mode
+
+</current_dom>

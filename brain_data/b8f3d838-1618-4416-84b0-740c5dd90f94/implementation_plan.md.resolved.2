@@ -1,0 +1,69 @@
+# Phase 5: Refinement & Real Data Integration
+
+This phase focuses on transitioning from mock data to real API integration and implementing the core Learning Experience (Course Player).
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Dashboard Stats**: I will implement a unified `DashboardController` to provide specialized stats for each user role.
+> - **Course Player**: The player will focus on video/text content navigation within the browser.
+> - **Enrollment Flow**: For the MVP, I'll ensure students can "enroll" (join) courses from the catalog.
+
+## Proposed Changes
+
+### [Backend] Dashboard Refinement
+
+#### [NEW] [DashboardController](file:///d:/learning/SkillPilot/skillpilot-backend/app/Http/Controllers/DashboardController.php)
+- Implement `stats()` method that detects user role and returns:
+    - **Student**: Enrolled courses count, certificates count, overall progress %.
+    - **Instructor**: Revenue summary (sum of payments for their courses), total student count.
+    - **Admin**: Platform-wide stats (tenants, users, courses).
+
+#### [MODIFY] [EnrollmentController](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Enrollments/app/Http/Controllers/EnrollmentController.php)
+- Ensure `index()` returns enrolled courses with progress.
+
+---
+
+### [Frontend] Dashboard Integration
+
+#### [MODIFY] [Dashboard (Overview)](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/dashboard/page.tsx)
+- Call `GET /api/dashboard/stats` and display real values.
+
+#### [MODIFY] [Instructor Earnings](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/instructor/earnings/page.tsx)
+- Call `GET /api/dashboard/stats` and `GET /api/orders` to show transaction history.
+
+#### [MODIFY] [Admin Tenants](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/admin/tenants/page.tsx)
+- Call `GET /api/admin/tenants` and `GET /api/admin/stats`.
+
+---
+
+### [Frontend] Course Player & Catalog
+
+#### [MODIFY] [Course Catalog](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/courses/page.tsx)
+- Fetch real courses from `GET /api/courses`.
+- Add "Enroll" button (if not enrolled) or "Continue" button (if already enrolled).
+
+#### [NEW] [Course Player Page](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/courses/%5Bid%5D/learn/page.tsx)
+- A side-by-side layout:
+    - **Left/Main**: Lesson content (video/markdown).
+    - **Right**: Lesson navigation (Sections/Lessons).
+- "Mark as Complete" button connected to `POST /api/enrollments/lessons/{id}/complete`.
+
+---
+
+## Open Questions
+
+> [!NOTE]
+> 1. Should we support multiple content types per lesson (Video, PDF, Quiz) in this phase, or stick to Video/Text for MVP?
+> 2. Do you want the Course Player sidebar to be collapsible?
+
+## Verification Plan
+
+### Automated Tests
+- `php artisan test` to ensure new stats logic doesn't break multi-tenancy.
+
+### Manual Verification
+1. Login as Admin: Verify Tenant list and Platform stats.
+2. Login as Student: Enroll in a course, verify it appears in "My Learning".
+3. Open Course Player: Navigate through lessons and check off progress.
+4. Login as Instructor: Verify revenue and student counts update.

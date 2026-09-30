@@ -1,0 +1,62 @@
+# SWHP Frontend Implementation Plan
+
+This document outlines the detailed plan to develop the frontend for the Single Window Health Portal (SWHP) using a **feature-based architecture** powered by **Next.js** and **Tailwind CSS**.
+
+## 1. Frontend Architecture & Setup
+- **Framework:** Next.js (App Router for native file-system routing).
+- **Styling:** Tailwind CSS for responsive, modern, and dynamic design aesthetics.
+- **State Management:** React Context API and local state hooks (no Redux).
+- **HTTP Client:** Axios for API communication, configured with interceptors.
+- **Directory Structure:** Feature-based slicing within the `src/` directory.
+
+### Directory Structure (Feature-Based)
+```text
+src/
++-- app/             # Next.js App Router (Pages & Layouts)
+¦   +-- login/page.jsx
+¦   +-- register/page.jsx
+¦   +-- apply/page.jsx
+¦   +-- dashboard/page.jsx
+¦   +-- layout.jsx
+¦   +-- page.jsx
++-- components/      # Shared global components (Navbar, Footer)
++-- lib/             # Shared utilities, Axios instance setup
++-- features/        # Feature modules
+¦   +-- auth/        # Login, Register, AccountMapping, AuthContext
+¦   +-- profile/     # UserProfile form and state
+¦   +-- services/    # Service Selection checklist and SWAN initialization
+¦   +-- application/ # iFrame orchestrator, postMessage listener, progress tracker
+¦   +-- payment/     # Fee aggregation UI, Gateway redirect logic
+¦   +-- tracking/    # Unified tracking dashboard table
+```
+
+### Phase 1: Project Initialization & Routing
+- [ ] Scaffold Next.js application with Tailwind (`npx create-next-app@latest --tailwind`).
+- [ ] Install dependencies: `axios`, FontAwesome packages.
+- [ ] Setup folder structure aligning with feature-based architecture (`src/features/...`).
+- [ ] Implement `RootLayout` in `src/app/layout.jsx` integrating global Tailwind styles and AuthContext.
+
+## 2. Core Features Implementation
+
+### Phase 2: `features/auth` & `features/profile`
+- [ ] **Auth Components:** Create visually stunning `Login`, `Register`, and `AccountMapping` components under `src/features/auth/components` utilizing Tailwind utility classes.
+- [ ] **Auth Context:** Implement `AuthContext.jsx` in `src/features/auth/context` for JWT management.
+- [ ] **Profile Management:** Create the `UserProfile` form under `src/features/profile/components`.
+
+### Phase 3: `features/services` (Selection & SWAN)
+- [ ] **Service Checklist:** Build `ServiceList.jsx` displaying available legacy services using modern card-based layouts styled with Tailwind.
+- [ ] **SWAN Flow:** Create `hooks/useSwan.js` inside `features/services` to call `/api/v1/swan/create`.
+
+### Phase 4: `features/application` (iFrame Orchestration)
+- [ ] **iFrame Container:** Create `ServiceIframe.jsx` in `features/application/components`.
+- [ ] **postMessage Listener:** Implement `hooks/usePostMessage.js` inside the application feature. Validate origins and payloads.
+- [ ] **Queue Management:** Build `ApplicationOrchestrator.jsx` to advance through selected services with custom Tailwind progress indicators.
+
+### Phase 5: `features/payment` & `features/tracking`
+- [ ] **Payment UI:** Build `FeeSummary.jsx` in `features/payment/components` to fetch from `/api/v1/swan/{swan}/fees`.
+- [ ] **Tracking Dashboard:** Build `TrackingTable.jsx` in `features/tracking/components` using styled responsive tables with Tailwind.
+
+## 3. Security & Validation
+- [ ] Apply **CAPTCHA** to auth forms.
+- [ ] Implement **Strict Origin Validation** on all incoming `postMessage` events.
+- [ ] Ensure **CSRF Protection** (handled via stateless JWT).

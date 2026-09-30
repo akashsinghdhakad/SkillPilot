@@ -1,0 +1,6 @@
+- [x] Investigate [User](file:///d:/learning/SkillPilot/skillpilot-backend/app/Models/User.php#14-56) model and table schema
+- [x] Create migration for `role` column
+- [x] Update [User](file:///d:/learning/SkillPilot/skillpilot-backend/app/Models/User.php#14-56) model
+- [x] Create seeder for test users
+- [x] Run migration and seeder
+- [x] Provide test credentials to user

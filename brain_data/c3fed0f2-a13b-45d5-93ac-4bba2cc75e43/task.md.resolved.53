@@ -1,0 +1,14 @@
+# Tasks: Branding Fix & Storage verification
+
+Fixing the "failed to update branding" issue by resolving storage accessibility and refining form data handling.
+
+## Phase I: Backend Improvements
+- [x] Run `php artisan storage:link` (Completed during research)
+- [/] Refine `TenantBrandingController` validation and logging
+
+## Phase II: Frontend Fixes
+- [ ] Remove manual `Content-Type` header in `BrandingSettingsPage.tsx`
+
+## Phase III: Testing & Verification
+- [ ] Implement `BrandingTest.php` feature test
+- [ ] Manual verification via browser (Upload logo & change color)

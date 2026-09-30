@@ -1,0 +1,29 @@
+# Tasks: Production-Ready Monetization (Stripe & Fulfillment)
+
+Transitioning SkillPilot from mock simulations to a real-world commerce platform.
+
+## Phase I: Polymorphic Commerce Foundation
+- [ ] Migrate `order_items` table to support polymorphic `itemable_id/type`
+- [ ] Update `Order` and `OrderItem` models for polymorphic relationships
+- [ ] Refactor `OrderController.php` to handle generic item types (Course, Bundle, Membership)
+
+## Phase II: Fulfillment Engine
+- [ ] Create `FulfillmentService.php` to handle access grants
+- [ ] Implement Bundle fulfillment (create `BundlePurchase`)
+- [ ] Implement Membership fulfillment (update `Subscription` and User Tier)
+- [ ] Implement Course fulfillment (Direct enrollment)
+
+## Phase III: Stripe Integration
+- [ ] Install `stripe/stripe-php`
+- [ ] Implement `StripeController.php` for Checkout Sessions
+- [ ] Implement Stripe Webhook handler
+- [ ] Add Stripe API keys to `.env` (Mock/Test keys)
+
+## Phase IV: Frontend Checkout UX
+- [ ] Create `checkout/page.tsx` with order summary
+- [ ] Integrate "Pay with Stripe" button
+- [ ] Verify Redirect and Success/Cancel flows
+
+## Phase V: Verification
+- [ ] Run `FulfillmentTest.php`
+- [ ] Manual end-to-end purchase verification

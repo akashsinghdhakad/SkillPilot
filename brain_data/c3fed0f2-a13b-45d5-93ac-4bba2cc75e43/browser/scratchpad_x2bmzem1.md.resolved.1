@@ -1,0 +1,13 @@
+# Branding Upload Issue Reproduction
+
+## Plan
+- [x] Navigate to `http://localhost:3000/admin/settings/branding` (Already there)
+- [/] Upload a Logo. (Encountered existing 422 error overlay upon arrival)
+- [ ] Click 'Save Branding'.
+- [ ] Confirm 422 error in the Network tab.
+- [ ] Analyze the error response if possible.
+
+## Current Status
+- Arrived at the page and found a Next.js error overlay showing an `AxiosError` with status code 422.
+- The error occurred at `async handleSave` in `src/app/(dashboard)/admin/settings/branding/page.tsx:97:19`.
+- Need to clear the error overlay and try reproducing it myself to confirm the behavior.

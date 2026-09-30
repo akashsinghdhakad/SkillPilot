@@ -1,0 +1,10 @@
+# Seamless Login Implementation
+
+- [x] Create a new `DirectLogin` GET Action in `LoginController` to catch the URL payload `?payload=...`.
+- [x] Implement a `DecryptPayload` function in C# that mimics the PHP `pg_encript`/`pg_decript` functions using AES-256-CBC, `PHP_APP_SYS_PG` password, and an all-zero IV.
+- [x] Parse the decrypted payload string into `UserName` (`UserID`), `Token` (`token`), and `timestamp`.
+- [x] Create a new helper method `CreateUserSession` to encapsulate the session and cookie generation logic.
+- [x] Update `Home` POST method to use `CreateUserSession`.
+- [x] Call `CreateUserSession` from the new `DirectLogin` method.
+- [x] Implement Token validation logic mimicking the PHP `sha256` hashing logic: `if ("Bearer " + hash('sha256', substring(client_token, 7)) != "Bearer " + $client_config_auth_token)`.
+- [x] Assign `UserType = "S"` directly inside the seamless login flow.

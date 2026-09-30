@@ -1,0 +1,18 @@
+# Task: Diagnose Branding Asset Upload Issue
+
+## Checklist
+- [x] Log in as admin@skillpilot.com
+- [x] Navigate to Branding settings
+- [ ] Attempt Logo upload
+- [ ] Attempt Signature upload
+- [ ] Check PDF Preview resolution
+- [ ] Save Branding and check network requests
+- [ ] Check /tenant/branding response
+- [ ] Check /certificates/preview response
+
+## Findings
+- Successfully logged in and navigated to Branding settings.
+- The page loaded and showing the branding options.
+- The PDF preview is visible but might be showing default/previous state.
+- Need to find a way to upload files without a direct file upload tool.
+- I will try to use `browser_press_key` to send the file path to the input.

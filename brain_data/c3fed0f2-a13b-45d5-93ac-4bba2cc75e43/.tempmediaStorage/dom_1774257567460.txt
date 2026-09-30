@@ -1,0 +1,32 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+[0] (500,105)<a class='flex items-center gap-3' href='/' />
+	[1] (441,105)<div  />
+	[2] (527,105)<span >Skill />
+		[3] (553,105)<span >Pilot />
+Create your account
+Choose your learning workspace
+[4] (348,401)<label class='text-sm font-medium text-slate-700 dark:text-slate-300 ml-1'>Select Workspace />
+[5] (497,474)<div  />
+	[6] (375,474)<div  />
+		[7] (327,474)<div  />
+		[8] (393,474)<div  />
+			[9] (393,462)<p >Main Academy />
+			[10] (393,492)<p >main
+.skillpilot.com />
+[11] (497,602)<div  />
+	[12] (368,602)<div  />
+		[13] (327,602)<div  />
+		[14] (386,602)<div  />
+			[15] (386,590)<p >Tech School />
+			[16] (386,620)<p >tech
+.skillpilot.com />
+Please check Step 1 for errors.
+[17] (370,776)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-border bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-5 py-2.5 flex-1'>Back />
+[18] (576,776)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary text-primary-foreground shadow-lg hover:shadow-primary/20 px-5 py-2.5 flex-[2]'>Complete Sign Up />
+Already have an account?
+[19] (565,873)<a class='text-primary font-semibold hover:underline decoration-2 underline-offset-4' href='/login'>Sign In />
+
+</current_dom>

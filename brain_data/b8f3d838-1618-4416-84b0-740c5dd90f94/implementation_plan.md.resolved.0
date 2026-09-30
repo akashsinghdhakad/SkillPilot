@@ -1,0 +1,59 @@
+# SkillPilot SaaS Platform Implementation Plan
+
+This document outlines the architecture and execution plan for building the SkillPilot SaaS application based on the provided MasterPrompt and Blueprint documents.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Database Selection:** The documentation requests **MySQL**. For local development and to avoid complex infrastructure setup during standard agent operation, would you be comfortable if we start with **SQLite** for development (which is 100% compatible with Laravel 12 native query builder) and migrate to MySQL for production? Or do you already have a MySQL server running locally that we can connect to?
+> 
+> **Scope of Work:** The entire SkillPilot product is a massive undertaking. I propose we start with **Phase 1 (MVP Setup)** only in this session. This includes:
+> 1. Initializing Laravel 12 Backend & Next.js Frontend
+> 2. Setting up the multi-tenant architecture and middleware (`tenant_id`, licensing checks)
+> 3. Scaffolding the Core Modules (Auth, Tenants, Licenses, Packages, Roles, Users)
+> 
+> Let me know if you approve this approach!
+
+## Proposed Architecture and Stack
+
+- **Backend:** Laravel 12, PHP 8.2+, Laravel Sanctum (API Auth), `nwidart/laravel-modules` for modularity.
+- **Frontend:** Next.js (React), TailwindCSS, Axios API Client.
+- **Pattern:** Single database multi-tenant architecture with `tenant_id` on all tenant-owned models.
+
+## Development Phases
+
+### Phase 1: Core Platform Setup
+This phase will set up the foundational layer for SkillPilot.
+
+#### Backend Changes
+1. **Initialize Laravel Application:** `composer create-project laravel/laravel skillpilot-backend`
+2. **Setup Modules:** Install and publish `nwidart/laravel-modules`.
+3. **Multi-tenancy Core:** Create global scopes and Base Models that implicitly enforce `where('tenant_id', current_tenant_id)`.
+4. **Middleware:** 
+    - `ResolveTenant`: Identifies tenant from request (e.g., via subdomains, headers, or user record).
+    - `CheckLicense`: Validates if the tenant has an active license for API usage.
+    - `CheckRole`: Ensures users have correct permissions for specific endpoints.
+5. **Core Modules Structure:** Generate Auth, Tenants, Users, Roles, Packages, Licenses modules.
+
+#### Frontend Changes
+1. **Initialize Next.js:** Create `skillpilot-frontend` using Next.js 15 app router and Tailwind CSS.
+2. **Layouts:** Set up the basic layout structures for the `Admin`, `Instructor`, and `Student` dashboards.
+3. **API Client:** Create an Axios client configured to handle Sanctum CSRF and token-based auth seamlessly.
+
+---
+
+### Subsequent Phases (For Future Development)
+- **Phase 2 (Learning System):** Courses, course sections, lessons (video/PDF uploads), progress tracking, and certificate generation.
+- **Phase 3 (Commerce):** Integration of payment gateways, orders, and coupons.
+- **Phase 4 (Growth):** Affiliate program, deep analytics, and system notifications.
+
+## Verification Plan
+
+### Automated Tests
+- Once the backend is initialized, run `php artisan test` to ensure default scaffolding works.
+- Using `artisan module:make` to ensure modules register properly.
+
+### Manual Verification
+1. Running the API server on `localhost:8000` and `Next.js` on `localhost:3000`.
+2. Verifying the database schemas by running `php artisan migrate:status`.
+3. Calling the `/api/login` and tenant endpoints to verify the multi-tenant scope isolation manually.

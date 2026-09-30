@@ -1,0 +1,15 @@
+# Tasks: Fix Branding Upload Failure
+
+Resolving the 422 error during logo and signature uploads by fixing the global API configuration.
+
+## Phase I: Frontend Fixes
+- [/] Update `src/lib/api.ts` to remove hardcoded JSON content-type
+- [ ] Revoke unused object URLs in `BrandingSettingsPage.tsx` (Optimization)
+
+## Phase II: Backend Verification
+- [ ] Ensure `TenantBrandingController` handles requests correctly after frontend fix
+- [ ] Verify `CertificateController` preview handles file data correctly
+
+## Phase III: Verification
+- [ ] Run `BrandingTest.php` feature tests
+- [ ] Manual verification via browser (Upload logo & Signature, verify PDF and persistence)

@@ -1,0 +1,8 @@
+# Branding Upload Issue Reproduction
+
+## Plan
+- [ ] Navigate to `http://localhost:3000/admin/settings/branding` (Already there)
+- [ ] Upload a Logo.
+- [ ] Click 'Save Branding'.
+- [ ] Confirm 422 error in the Network tab.
+- [ ] Analyze the error response if possible.

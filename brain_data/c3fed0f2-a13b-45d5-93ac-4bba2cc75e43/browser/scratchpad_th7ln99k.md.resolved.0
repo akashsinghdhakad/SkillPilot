@@ -1,0 +1,9 @@
+# Task: Manual Testing of Courses and Registration
+
+## Status Checklist
+- [ ] Go to http://localhost:3000/courses and verify non-zero Lesson count.
+- [ ] Go to http://localhost:3000/register and test Step 1 validation.
+- [ ] Fix email, click next, select 'Main Academy', click 'Complete Sign Up'.
+- [ ] Verify redirect to /dashboard.
+- [ ] Check browser console if registration fails.
+- [ ] Report results.

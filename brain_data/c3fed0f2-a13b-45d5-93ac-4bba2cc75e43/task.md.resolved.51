@@ -1,0 +1,35 @@
+# Task: Analytics, Bundles & Memberships Implementation
+
+## Phase I: Analytics & Insights Dashboard
+- [x] Create `DashboardController` in `Modules/Admin`
+- [x] Implement stats aggregation (Revenue, Users, Completion)
+- [x] Implement Recent Activity & Course Performance endpoints
+- [x] Create Frontend Dashboard page (`/admin/dashboard`)
+- [x] Implement Metric Cards and Layout
+
+## Phase II: Course Bundles (Unlock Logic)
+- [x] Create `Modules/Bundles` module
+- [x] Implement `Bundle` and `BundleItem` models
+- [x] Implement `BundlePurchase` tracking
+- [x] Create `UnlockController` for "Deferred Enrollment"
+- [x] Implement Bundle Management UI (Admin)
+- [x] Implement "Unlock" button in Course UI (Student)
+
+## Phase III: Memberships (Tiered Subscriptions)
+- [x] Create `Modules/Memberships` module
+- [x] Implement `MembershipPlan` (Tiers)
+- [x] Implement `CourseAccessService` for centralized guards
+- [x] Implement Membership purchase flow
+- [x] Add Subscription status check to Course Player
+
+## Phase IV: Unit & Feature Testing
+- [ ] Implement `AdminAnalyticsTest` (Analytics Dashboard)
+- [ ] Implement `BundleTest` (Enrollment Unlock logic)
+- [ ] Implement `MembershipTest` (Tiered Access Logic)
+- [ ] Run all tests and verify pass rate
+
+## Verification
+- [ ] Automated tests for Bundle Unlocking
+- [ ] Automated tests for Membership Access
+- [ ] Manual verification of Dashboard stats
+- [ ] Manual verification of "Buy Bundle -> Unlock Course" flow

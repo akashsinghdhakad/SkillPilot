@@ -1,0 +1,49 @@
+# Premium Todo App Finalization Plan
+
+This plan aims to resolve the styling issues caused by the Tailwind v4 migration and finalize the unit testing suite.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The project uses **Tailwind v4** and **Next.js 16**, which have breaking changes compared to previous versions. The styling was previously not loading because of v3 syntax in the CSS files. I will migrate the CSS to the modern v4 `@import` syntax and `@theme` block.
+
+> [!WARNING]
+> The unit testing environment (Vitest + Happy DOM) is experiencing intermittent "Unhandled Errors" likely due to how **Framer Motion** and **Node 24** interact with workers. I will implement a robust mock for Framer Motion in the test setup to ensure tests pass reliably while focusing on functional verification in the browser.
+
+## Proposed Changes
+
+### [Component Name] Styling & Foundation
+
+#### [MODIFY] [globals.css](file:///d:/TodoPro/src/app/globals.css)
+*   Replace `@tailwind` directives with `@import "tailwindcss";`.
+*   Migrate the color palette and custom tokens to the new `@theme` configuration.
+*   Implement premium glassmorphism and animations using modern CSS features.
+
+#### [MODIFY] [postcss.config.mjs](file:///d:/TodoPro/postcss.config.mjs)
+*   Ensure `@tailwindcss/postcss` is correctly configured (Verified).
+
+### [Component Name] Testing Infrastructure
+
+#### [MODIFY] [setup.tsx](file:///d:/TodoPro/src/test/setup.tsx)
+*   Implement a comprehensive mock for `framer-motion` to bypass animation-related unhandled errors in Node.js.
+*   Consolidate all browser API mocks (ResizeObserver, matchMedia, crypto).
+
+### [Component Name] Final Verification
+
+#### [Task] Browser-based UI/UX Test
+*   Use the browser tool to verify the "Premium" aesthetics (Gradients, Glassmorphism, Micro-animations).
+*   Perform a final CRUD audit (Add, Edit, Toggle, Delete, Filter).
+
+## Open Questions
+
+- We currently use **Happy DOM**. Would you prefer switching back to **JSDOM** if it proves more stable for your specific CI runner?
+- For the "Premium" look, do you have a preference for the primary accent color? (Current is a Vibrant Violet `indigo/violet`).
+
+## Verification Plan
+
+### Automated Tests
+- `npm test`: Run the full suite of unit tests for `TodoContainer`, `TodoItem`, and `TodoInput`.
+
+### Manual Verification
+- Visual audit via browser screenshots to ensure the "Wow" factor is achieved with Tailwind v4.
+- Keyboard navigation check.

@@ -1,0 +1,11 @@
+# Verification Task: Membership Checkout Flow
+
+- [ ] Navigate to http://localhost:3000/login
+- [ ] Log in as student1@skillpilot.com / password
+- [ ] Navigate to http://localhost:3000/membership
+- [ ] Select 'Premium' plan and click 'Get Started'
+- [ ] Verify redirection to /checkout?orderId=...
+- [ ] Verify order summary (Premium plan, correct price)
+- [ ] Click 'Complete Purchase'
+- [ ] Check Network tab for Stripe redirect attempt
+- [ ] Navigate to success page and verify UI

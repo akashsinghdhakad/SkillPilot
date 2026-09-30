@@ -1,0 +1,51 @@
+# Student Learning Experience: Enrollment & Course Player
+
+This plan outlines the implementation of the core student learning journey, enabling users to enroll in courses, access high-end learning interfaces, and track their progress.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Enrollment Logic**: Currently, we use an `Orders` module. We need to decide if "enrollment" is granted immediately upon order creation (for free/testing) or only after payment.
+> - **Course Player Layout**: The course player will be a specialized UI (sidebar for curriculum, main area for content).
+
+## Proposed Changes
+
+### [Backend] [Orders & Enrollment]
+
+#### [MODIFY] [OrderController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Orders/app/Http/Controllers/OrderController.php)
+- Implement a `quickEnroll` method for free courses or testing.
+- Ensure `payment_status` updates trigger enrollment permissions.
+
+#### [NEW] [Enrollment Middleware](file:///d:/learning/SkillPilot/skillpilot-backend/app/Http/Middleware/CheckEnrollment.php)
+- Middleware to ensure a student is enrolled in a course before accessing its lessons.
+
+---
+
+### [Frontend] [Course Catalog & Dashboard]
+
+#### [MODIFY] [CourseCatalog (page.tsx)](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/courses/page.tsx)
+- Replace mock data with real API calls to `GET /api/courses`.
+- Add an "Enroll Now" or "View Course" button with real logic.
+
+#### [NEW] [My Learning (page.tsx)](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/dashboard/page.tsx)
+- Update the main dashboard to show enrolled courses and progress bars.
+
+---
+
+### [Frontend] [Course Player]
+
+#### [NEW] [CoursePlayer ([id]/learn/page.tsx)](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/courses/[id]/learn/page.tsx)
+- Implement the specialized course player UI.
+- Video/PDF/Text rendering based on lesson type.
+- "Mark as Completed" button integrated with [Progress](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Progress/app/Http/Controllers/ProgressController.php#11-68) API.
+
+## Verification Plan
+
+### Automated Tests
+- Test enrollment API with various user roles.
+- Verify progress tracking increments correctly via Postman/Manual tests.
+
+### Manual Verification
+- Enroll in a course as a student.
+- Navigate to the course player.
+- Complete a lesson and verify the progress bar updates on the dashboard.

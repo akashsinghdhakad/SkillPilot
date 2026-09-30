@@ -1,0 +1,32 @@
+# Curriculum Management Enhancement - Completed
+
+I have successfully enhanced the course and lesson management features, providing instructors with granular control over content visibility and safety through soft deletes.
+
+## Completed Tasks
+- [x] **Backend Improvements**
+  - [x] Implemented Soft Deletes for `courses`, `course_sections`, and `course_lessons`.
+  - [x] Added `is_active` status to all curriculum tables.
+  - [x] Created API endpoints for status toggling and functional deletion.
+  - [x] Updated feature tests to verify all new logic.
+- [x] **Frontend UI/UX**
+  - [x] Created [MediaPreview](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/shared/MediaPreview.tsx#13-111) component for real-time video/PDF feedback.
+  - [x] Created premium [Switch](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/ui/switch.tsx#10-21) toggle component.
+  - [x] Enhanced [LessonFormModal](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/instructor/courses/LessonFormModal.tsx#41-281) with a preview sidebar and visibility toggle.
+  - [x] Refined [EditCoursePage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/instructor/courses/%5Bid%5D/edit/page.tsx#49-540) with global visibility controls and functional delete buttons.
+  - [x] Updated [CourseCatalogPage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/courses/page.tsx#21-139) to automatically hide inactive courses for students.
+- [x] **Verification**
+  - [x] Ran backend PHP tests (Passing).
+  - [x] Verified component integration and responsiveness.
+
+## Key Changes
+### 1. Advanced Visibility Controls
+Instructors can now toggle individual lessons, entire sections, or the whole course to "Inactive". This hides content from students while allowing instructors to continue editing in the background.
+
+### 2. Safeguarded Deletion
+All deletions are now "Soft Deletes," meaning data is preserved in the database with a `deleted_at` timestamp, preventing accidental data loss while keeping the UI clean.
+
+### 3. Real-Time Media Previews
+The new interactive sidebar in the lesson editor allows instructors to instantly see how their videos (YouTube/Vimeo/Direct) or PDFs will appear to students.
+
+---
+*Task marked as completed on 2026-03-18*

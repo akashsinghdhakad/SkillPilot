@@ -1,0 +1,16 @@
+# Task: Verify Branding Uploads
+
+## Checklist
+- [x] Log in to SkillPilot (admin@skillpilot.com / password)
+- [x] Navigate to Branding Settings
+- [ ] Upload Logo (PNG/JPG)
+- [ ] Upload Signature (PNG/JPG)
+- [ ] Verify PDF Preview
+- [ ] Save Branding
+- [ ] Verify Success and No 422 Errors
+- [ ] Capture Screenshot
+
+## Notes
+- URL: http://localhost:3000
+- Credentials: admin@skillpilot.com / password
+- Status: On Branding page, looking for images to upload.

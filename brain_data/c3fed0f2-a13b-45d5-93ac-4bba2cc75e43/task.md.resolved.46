@@ -1,0 +1,18 @@
+- [x] **Backend: Tenant Branding Setup**
+  - [x] Create migration for `certificate_logo`, `signature`, and `brand_color` in `tenants`.
+  - [x] Update `Tenant` model with new fillable fields and URL helpers.
+  - [x] Implement `TenantBrandingController` for asset uploads.
+- [x] **Backend: Certificate PDF Generation**
+  - [x] Install and configure `barryvdh/laravel-dompdf`.
+  - [x] Design and implement `certificate.blade.php` with dynamic branding.
+  - [x] Add verification logic to `CertificateController::issue()`.
+  - [x] Implement `CertificateController::download()` and API route.
+- [x] **Frontend: Branding Dashboard**
+  - [x] Build `BrandingSettingsPage` for tenant admins in Next.js.
+  - [x] Add image upload and preview components.
+- [x] **Frontend: Certificate Integration**
+  - [x] Add "Claim Certificate" button to `CoursePlayer`.
+  - [x] Add "Download Certificate" link to `My Learning` dashboard.
+- [x] **Verification**
+  - [x] Verify PDF layout and dynamic branding.
+  - [x] Verify issuance criteria (Progress + Quiz).

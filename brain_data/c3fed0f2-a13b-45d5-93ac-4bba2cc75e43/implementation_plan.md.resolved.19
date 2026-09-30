@@ -1,0 +1,45 @@
+# Implementation Plan: Comprehensive Testing for Monetization & Analytics
+
+This plan outlines the steps to build a robust test suite for the newly implemented Analytics Dashboard, Course Bundles, and Tiered Memberships.
+
+## Proposed Changes
+
+### [Component Name] Admin Analytics Testing
+
+#### [NEW] [AdminAnalyticsTest.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Admin/tests/Feature/AdminAnalyticsTest.php)
+- Test `GET /api/v1/admin/dashboard/stats` for authorized admin access.
+- Test unauthorized access prevention (non-admin users).
+- Verify the structure of returned analytics data.
+
+---
+
+### [Component Name] Course Bundles Testing
+
+#### [NEW] [BundleTest.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Bundles/tests/Feature/BundleTest.php)
+- Test `GET /api/v1/bundles/owned` returns correct data for students.
+- Test `POST /api/enrollments/unlock` logic:
+    - Should successfully enroll a student if they own a bundle containing the course.
+    - Should fail if the student does not own a qualifying bundle.
+    - Should fail if the student is already enrolled.
+
+---
+
+### [Component Name] Memberships & Access Logic Testing
+
+#### [NEW] [MembershipTest.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Memberships/tests/Feature/MembershipTest.php)
+- Test `GET /api/v1/memberships/status` returns the active subscription.
+- Test `CourseAccessService` logic:
+    - Verify access granted for direct enrollment.
+    - Verify access granted for tiered membership (Level 2 plan accessing Level 1/2 courses).
+    - Verify access denied for tiered membership (Level 1 plan accessing Level 2 courses).
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- Run all new tests using PHPUnit:
+  - `php artisan test Modules/Admin`
+  - `php artisan test Modules/Bundles`
+  - `php artisan test Modules/Memberships`
+- Verify 100% pass rate.

@@ -1,0 +1,76 @@
+# Curriculum Management Enhancements Walkthrough
+
+I've completed the implementation of the requested improvements to the course and lesson management system. These changes provide instructors with powerful tools for content organization and control while ensuring a clean student experience.
+
+## Feature Overview
+
+### 1. Interactive Lesson Editor
+The [LessonFormModal](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/instructor/courses/LessonFormModal.tsx#43-309) has been completely redesigned with a two-column layout. The left column handles all data entry, while the right column provides a **Live Media Preview**.
+
+- **Visibility Toggle**: Instructors can now set lessons as "Inactive" during creation or editing.
+- **Support for Multiple Media Types**: Previews work seamlessly for YouTube, Vimeo, direct video files, and PDFs.
+
+### 2. Streamlined Section Management
+The [EditCoursePage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/instructor/courses/%5Bid%5D/edit/page.tsx#53-705) now features functional section deletion and visibility toggles.
+
+- **Status Indicators**: Non-active sections/lessons are visually dimmed with a line-through effect for easy identification.
+- **Global Visibility**: A new "Course Active" switch allows instructors to hide an entire course from the student catalog.
+- **Granular Editing**:
+  - **Edit Sections**: Rename any section directly from the curriculum list.
+  - **Edit/View Lessons**: Modify lesson content, titles, and settings anytime. The integrated preview sidebar allows for instant validation of changes.
+- **Improved Management**:
+  - Delete courses, sections, and lessons with single-click actions backed by confirmation.
+  - Toggle visibility at the lesson and section level for precise content control.
+- **Publishing Control**: A new **Draft/Published** toggle in the course editor allows instructors to finalize content before making it available for purchase/enrollment.
+
+### 2. Enhanced Instructor Dashboard
+The main Course Management page has been upgraded for better control.
+
+- **Direct Visibility Toggle**: Toggle course active status directly from the list without entering the editor.
+- **Functional Delete**: Deletion is now fully active with safety confirmation.
+- **Improved Status Visibility**: Clear, color-coded badges for Draft and Published statuses.
+
+### 3. Student-Facing Visibility Rules
+The student catalog now automatically filters out any courses manually marked as "Inactive" by the instructor. This allows for a safe "draft" mode even for published courses.
+
+## Technical Implementation Details
+
+### Backend (Laravel)
+- **Soft Deletes**: Integrated the `SoftDeletes` trait into [Course](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Courses/app/Models/Course.php#11-41), [CourseSection](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Courses/app/Models/CourseSection.php#10-26), and [CourseLesson](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Lessons/app/Models/CourseLesson.php#10-34) models. 
+- **Status Fields**: Added `is_active` boolean columns to all curriculum-related tables.
+- **RESTful Routes**: Added specialized PATCH routes for toggling visibility without requiring a full model update.
+
+### Frontend (React/Next.js)
+- **Reusable [Switch](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/ui/switch.tsx#6-9) Component**: A premium UI toggle with smooth animations using `framer-motion`.
+- **[MediaPreview](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/shared/MediaPreview.tsx#13-111) Component**: A robust utility that handles URL parsing (YouTube/Vimeo) and local blob URL creation for file previews.
+- **Zod Validation**: Updated schemas to include binary status and enforced type safety for all new inputs.
+
+## Verification & Testing
+
+### Backend Tests
+I've updated the feature tests to cover all new functionality. You can run them using:
+```bash
+php artisan test Modules/Courses/tests/Feature/CourseTest.php
+php artisan test Modules/Lessons/tests/Feature/LessonTest.php
+```
+
+All 6 new test cases (soft deletes, status toggles, permissions) are passing successfully.
+
+### UI Validation
+The interface is fully responsive and supports dark mode themes. The use of `framer-motion` ensures smooth transitions when toggling visibility or opening modals.
+
+## Final Verification Proof
+
+### Curriculum Editor Interface
+The screenshot below confirms that the **Eye (View)** and **Pencil (Edit)** icons are clearly visible for each lesson, and the **Global Visibility** and **Publishing Status** toggles are functional.
+
+## Final Verification Proof
+
+### Curriculum Editor Interface
+I've verified that the **Eye (View)** and **Pencil (Edit)** icons are clearly visible for each lesson, and the **Global Visibility** and **Publishing Status** toggles are functional. Refer to the screenshot `curriculum_editor_verify.png` in the artifact directory.
+
+### End-to-End Verification Recording
+I've recorded a full walkthrough of the instructor dashboard, including status toggles and lesson form pre-filling. Refer to `instructor_suite_full_verify_v2_1774016285965.webp` in the artifact directory.
+
+---
+*Verified by Antigravity on 2026-03-20*

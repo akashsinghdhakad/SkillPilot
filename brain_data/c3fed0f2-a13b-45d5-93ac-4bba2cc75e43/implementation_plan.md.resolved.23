@@ -1,0 +1,45 @@
+# Implementation Plan: Fix Branding Assets & OWASP Security
+
+This plan addresses the broken logo/signature application and resolves a critical Local File Inclusion (LFI) vulnerability in the certificate generation engine.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Security Mitigation**: We are implementing a "Strict Path Sandbox" to prevent Local File Inclusion (LFI). This ensures certificates can ONLY read files from the authorized `branding/` directory.
+
+## Proposed Changes
+
+### [Component Name] Backend Security & Stability
+
+#### [MODIFY] [CertificateController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/app/Http/Controllers/CertificateController.php)
+- **Safe Asset Retrieval**: Replace `file_get_contents(Storage::path(...))` with `Storage::disk('public')->get(...)`.
+- **Reason**: `Storage::get()` is safer as it respects the disk's root and prevents escaping the storage directory via path traversal.
+- **Path Validation**: Add a check to ensure `getImageData` only processes files within the `branding/` subdirectory.
+
+#### [MODIFY] [TenantBrandingController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Http/Controllers/TenantBrandingController.php)
+- **Enhanced Validation**: Add `mimes:jpeg,png,jpg` and `prohibit_svg` (unless explicitly needed) to mitigate XSS via SVG and polyglot file attacks.
+
+---
+
+### [Component Name] Frontend Reliability
+
+#### [MODIFY] [BrandingSettingsPage.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/admin/settings/branding/page.tsx)
+- Optimize the `updatePdfPreview` to include a small debounce or manual refresh button if real-time updates are too expensive/unreliable.
+- Ensure the `pdfUrl` is correctly revoked on component unmount to prevent memory leaks.
+
+---
+
+## Open Questions
+- Do you require **SVG support** for logos? 
+    - *Note*: SVGs require additional sanitization to prevent XSS. If not, I recommend sticking to JPG/PNG for security.
+
+## Verification Plan
+
+### Automated Tests
+- Update `BrandingTest.php` with a "Path Traversal" test case:
+    - Attempt to update `certificate_logo_path` to `../../.env` and verify the download fails or returns a default.
+
+### Manual Verification
+- Upload a new logo and signature.
+- Verify the PDF preview displays them correctly.
+- Verify that saving persists them across page refreshes.

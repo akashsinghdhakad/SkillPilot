@@ -1,0 +1,7 @@
+# Tasks
+- [ ] Navigate to http://localhost:3000/membership
+- [ ] Click 'Get Started' on any plan.
+- [ ] Verify that the '/checkout?orderId=...' page loads correctly.
+- [ ] Verify plan name and price are visible.
+- [ ] Take a screenshot of the Order Summary page.
+- [ ] Verify clicking 'Complete Purchase' attempts to redirect to Stripe/shows processing.

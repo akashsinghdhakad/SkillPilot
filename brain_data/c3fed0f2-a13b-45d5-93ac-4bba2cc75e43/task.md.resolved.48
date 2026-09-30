@@ -1,0 +1,6 @@
+- [/] Install `barryvdh/laravel-dompdf` library
+- [ ] Verify `CertificateController` alignment with `LessonProgress`
+- [ ] Verify `CertificateTest` alignment with `LessonProgress`
+- [ ] Run automated tests for Certificates
+- [ ] Manually verify Branding dashboard persistence
+- [ ] Manually verify Student certificate issuance and PDF branding

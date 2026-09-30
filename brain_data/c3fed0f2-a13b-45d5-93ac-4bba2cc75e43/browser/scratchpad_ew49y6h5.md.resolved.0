@@ -1,0 +1,9 @@
+# Verification Plan: Eye Button and Lesson Edit Form
+
+- [ ] Navigate to course edit page (Done - currently on page)
+- [ ] Hover over first lesson to reveal Eye and Edit icons
+- [ ] Take screenshot of the revealed icons
+- [ ] Click Edit icon for the first lesson
+- [ ] Verify Lesson Title is pre-filled in the modal
+- [ ] Take screenshot of the pre-filled modal
+- [ ] Final report

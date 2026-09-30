@@ -1,0 +1,31 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+[0] (500,113)<a class='flex items-center gap-3' href='/' />
+	[1] (427,113)<div  />
+	[2] (533,113)<span >Skill />
+		[3] (566,113)<span >Pilot />
+Create your account
+Choose your learning workspace
+[4] (312,418)<label class='text-sm font-medium text-slate-700 dark:text-slate-300 ml-1'>Select Workspace />
+[5] (496,494)<div  />
+	[6] (346,494)<div  />
+		[7] (286,494)<div  />
+		[8] (368,494)<div  />
+			[9] (368,481)<p >Main Academy />
+			[10] (368,513)<p >main
+.skillpilot.com />
+[11] (496,628)<div  />
+	[12] (337,628)<div  />
+		[13] (286,628)<div  />
+		[14] (359,628)<div  />
+			[15] (359,615)<p >Tech School />
+			[16] (359,646)<p >tech
+.skillpilot.com />
+[17] (340,758)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-border bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-5 py-2.5 flex-1'>Back />
+Complete Sign Up
+Already have an account?
+[18] (580,859)<a class='text-primary font-semibold hover:underline decoration-2 underline-offset-4' href='/login'>Sign In />
+
+</current_dom>

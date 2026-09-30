@@ -1,0 +1,6 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary":  "Fixing network access issues for Next.js 16 by adding allowedDevOrigins and using the server script.",
+  "updatedAt":  "2026-04-06T09:26:30.782527500Z",
+  "requestFeedback":  true
+}

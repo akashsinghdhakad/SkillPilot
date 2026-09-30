@@ -1,0 +1,53 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Skill
+Pilot
+Menu
+[0] (139,265)<a href='/dashboard' />
+	[1] (139,265)<div  />
+		[2] (84,265)<div  />
+			[3] (100,265)<span >Overview />
+[4] (139,340)<a href='/courses' />
+	[5] (139,340)<div  />
+		[6] (94,340)<div  />
+			[7] (109,340)<span >My Learning />
+[8] (139,415)<a href='/certificates' />
+	[9] (139,415)<div  />
+		[10] (91,415)<div  />
+			[11] (106,415)<span >Certificates />
+[12] (139,928)<button class='w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-red-500 hover:bg-red-50/50 dark:hover:bg-red-500/5 transition-colors font-semibold text-sm'>Sign Out />
+	Sign Out
+[13] (494,62)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[14] (765,62)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+Instructor User
+Student
+Course Title
+[15] (378,200)<label class='text-sm font-semibold'>Description />
+[16] (524,375)<textarea class='flex w-full rounded-md border px-3 py-2 text-sm ring-offset-white placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:bg-slate-950 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300 min-h-[200px] bg-slate-50/50 border-slate-100 focus:bg-white transition-all shadow-none italic' placeholder='What will students learn in this course?' />
+[17] (426,598)<label class='text-sm font-semibold flex items-center gap-2'>Price ($) />
+[18] (426,658)<input class='flex w-full rounded-xl border px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 bg-slate-50/50 border-slate-100 shadow-none' placeholder='0 (Free)' />
+[19] (621,598)<label class='text-sm font-semibold flex items-center gap-2'>Category />
+[20] (621,657)<select class='w-full h-10 px-3 rounded-md bg-slate-50/50 border-slate-100 text-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-none' />
+Level & Settings
+[21] (396,858)<label class='flex-1' />
+	[22] (396,858)<div  />
+		[23] (396,860)<span >beginner />
+[24] (524,858)<label class='flex-1' />
+	[25] (524,858)<div  />
+		[26] (524,860)<span >intermediate />
+[27] (651,858)<label class='flex-1' />
+	[28] (651,858)<div  />
+		[29] (651,860)<span >advanced />
+Live Marketplace Preview
+32 Lessons
+web development
+beginner
+Manual Test Course
+By You
+Free
+Studio Tip
+High-quality thumbnails and descriptive titles can increase student enrollment by up to 40%. Keep your title concise and focused on the outcome.
+
+</current_dom>

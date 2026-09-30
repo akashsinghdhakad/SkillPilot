@@ -1,0 +1,41 @@
+# Implementation Plan: Fix Branding Update & Asset Access
+
+This plan addresses the "failed to update branding" issue by resolving storage accessibility problems and refining the frontend upload logic.
+
+## Proposed Changes
+
+### [Component Name] Backend Configuration
+
+#### [EXECUTE] Run storage:link
+- Establish the symbolic link between `storage/app/public` and `public/storage`. This is the primary reason why uploaded logos and signatures are appearing as broken images.
+
+---
+
+### [Component Name] Frontend Branding Logic
+
+#### [MODIFY] [BrandingSettingsPage.tsx](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/admin/settings/branding/page.tsx)
+- Remove the manual `Content-Type: multipart/form-data` header from the `api.post` call. 
+- **Reason**: Axios automatically handles the content-type and generates the necessary boundary delimiter when `FormData` is passed. Manually specifying it can lead to malformed requests on the server side.
+
+---
+
+### [Component Name] Backend Controller Logic
+
+#### [MODIFY] [TenantBrandingController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Http/Controllers/TenantBrandingController.php)
+- Enhance the validation for `brand_color` to support 3-digit hex codes (e.g., #000) for better flexibility, even though the current picker sends 6-digit codes.
+- Add error logging to help debug if storage operations fail in certain environments.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- Create a new feature test `Modules/Tenants/tests/Feature/BrandingTest.php` to verify:
+    - Successful update of color and files.
+    - Retrieval of correct URLs.
+
+### Manual Verification
+- Use the browser subagent to:
+    - Upload a sample logo.
+    - Change the brand color.
+    - Verify that images are no longer broken and changes persist.

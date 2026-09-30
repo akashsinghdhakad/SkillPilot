@@ -1,0 +1,35 @@
+# Implementation Plan: Fix Branding Upload Failure
+
+The investigation revealed that the "failed to update branding" and 422 errors were caused by a global Axios configuration that forced all requests to be `application/json`, even when sending files.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **API Configuration Change**: We are removing the global `Content-Type: application/json` header from our Axios instance. This allows the browser to automatically detect and set the correct content type (including boundaries for file uploads) which is a best practice for modern web apps.
+
+## Proposed Changes
+
+### [Component Name] Frontend API Configuration
+
+#### [MODIFY] [api.ts](file:///d:/learning/SkillPilot/skillpilot-frontend/src/lib/api.ts)
+- Remove the hardcoded `'Content-Type': 'application/json'` from the headers.
+- **Reason**: Axios is smart enough to set this for JSON objects automatically, and by removing it, we allow `FormData` to correctly set `multipart/form-data` with its required boundary string.
+
+### [Component Name] Backend Branding Logic
+
+#### [MODIFY] [TenantBrandingController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Tenants/app/Http/Controllers/TenantBrandingController.php)
+- Keep the current logging but ensure it captures the full request data if validation fails again, helping identify if keys are missing from the request body.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- Run `Modules/Tenants/tests/Feature/BrandingTest.php`. Since this test uses the backend directly, it should already pass, but it ensures we haven't broken the validation logic.
+
+### Manual Verification
+- Use the browser subagent to:
+    - Attempt to upload a Logo and Signature.
+    - Click 'Save Branding'.
+    - Verify the request returns 200/201 and the success toast appears.
+    - Verify the PDF preview displays the uploaded images.

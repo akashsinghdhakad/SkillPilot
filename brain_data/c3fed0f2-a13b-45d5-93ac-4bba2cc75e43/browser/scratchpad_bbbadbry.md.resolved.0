@@ -1,0 +1,14 @@
+# Verification Checklist
+
+## Admin Verification
+- [ ] Log in as admin@skillpilot.com
+- [ ] Verify Sidebar shows 'Analytics'
+- [ ] Verify Sidebar shows 'Bundles'
+- [ ] Verify 'Analytics' page loads (/admin/dashboard)
+- [ ] Verify 'Bundles' page loads (/admin/bundles)
+- [ ] Log out
+
+## Student Verification
+- [ ] Log in as student@skillpilot.com
+- [ ] Verify Sidebar shows 'Membership'
+- [ ] Verify 'Membership' page loads (/membership)

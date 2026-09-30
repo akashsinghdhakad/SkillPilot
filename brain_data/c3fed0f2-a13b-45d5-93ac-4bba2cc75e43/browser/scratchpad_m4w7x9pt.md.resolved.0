@@ -1,0 +1,12 @@
+# Browser Task: Register and Check Workspace
+
+## Plan
+- [ ] Navigate to http://localhost:3000/register
+- [ ] Fill Step 1: name, email (student_test@example.com), password
+- [ ] Click "Next Step"
+- [ ] Observe Step 2 for "Main Academy"
+- [ ] Select "Main Academy" and click "Complete Sign Up"
+- [ ] Verify successful redirection to dashboard or check for errors
+
+## Observations
+- 

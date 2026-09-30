@@ -1,0 +1,41 @@
+# AIRA (Akash Intelligent Reactive Assistant) - AI Engine Initialization
+
+The goal is to set up the foundation for the AIRA AI Engine using Python and FastAPI, focusing on integrating the local LLM via Ollama and following clean architecture principles as outlined in the vibe coding master prompt.
+
+## Proposed Changes
+
+We will scaffold the following project structure in `d:\learning\AIRA\ai_engine`:
+
+### AI Engine (Python FastAPI)
+
+This represents the core API handling intelligent operations, LLM interactions, and vector memory.
+
+#### [NEW] [main.py](file:///d:/learning/AIRA/ai_engine/main.py)
+Entry point for the FastAPI application, configuring routing.
+
+#### [NEW] [requirements.txt](file:///d:/learning/AIRA/ai_engine/requirements.txt)
+Python dependencies (`fastapi`, `uvicorn`, `requests`, `pinecone-client`, `python-dotenv`).
+
+#### [NEW] `services/`
+- **[NEW] [llm_service.py](file:///d:/learning/AIRA/ai_engine/services/llm_service.py)**: Service to connect to local Ollama via `http://localhost:11434/api/generate` using the `llama3` model.
+- **[NEW] [memory_service.py](file:///d:/learning/AIRA/ai_engine/services/memory_service.py)**: Service to interact with Pinecone and PostgreSQL for vector memory and structured data.
+
+#### [NEW] `api/`
+- **[NEW] [routes.py](file:///d:/learning/AIRA/ai_engine/api/routes.py)**: FastAPI endpoints bridging the API and the LLM/Memory services (e.g., endpoints `/generate` and `/command`).
+
+#### [NEW] `core/`
+- **[NEW] [config.py](file:///d:/learning/AIRA/ai_engine/core/config.py)**: Application settings and configuration (defining Ollama endpoints, Pinecone API keys).
+
+#### [NEW] `models/`
+- **[NEW] [schemas.py](file:///d:/learning/AIRA/ai_engine/models/schemas.py)**: Pydantic schemas for request/response payloads (including strict JSON command schema for the command agent).
+
+## Open Questions
+
+1. Do you have a preferred Python virtual environment setup for this project (`venv`, `conda`, `poetry`) or should I just create a standard `venv` within the folder?
+2. Are you ready for me to proceed with creating these files?
+
+## Verification Plan
+
+### Manual Verification
+- We will start the FastAPI application (`uvicorn main:app --reload`) and verify that it boots successfully.
+- If Ollama is running locally, we will manually trigger an endpoint to verify that the LLM response is returned properly.

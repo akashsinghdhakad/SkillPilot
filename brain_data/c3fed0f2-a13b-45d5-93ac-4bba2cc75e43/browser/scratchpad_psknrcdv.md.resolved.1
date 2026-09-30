@@ -1,0 +1,16 @@
+## Manual Branding Check Progress
+
+- [x] Visit http://localhost:3000/login
+- [x] Identify a usable admin account (admin@skillpilot.com)
+- [x] Log in as an admin
+- [x] Navigate to the "Branding" settings (/admin/settings/branding)
+- [x] Verify the certificate preview displays with the current branding
+- [ ] Try to upload a placeholder logo or signature to confirm functionality
+- [ ] Report the status of the branding page
+
+**Notes:**
+- Logged in as `SkillPilot Admin`.
+- Certificate preview works and updates live when changing the brand color.
+- **Issue found:** Clicking "Save Branding" fails with a **404 Not Found** error for `http://localhost:8000/api/tenant/branding`.
+- This suggests the backend route is missing or misconfigured.
+- Logo and signature upload could not be fully tested due to the save failure and lack of local placeholder files.

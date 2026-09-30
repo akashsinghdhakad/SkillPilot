@@ -1,0 +1,60 @@
+# Seamless Login with AES-256 Encrypted Payload
+
+The goal is to seamlessly log users in via a URL, responding to a payload constructed by a PHP client (`?payload="..."`). We will modify the new **[DirectLogin](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-73) Action** to catch this single encrypted parameter. 
+
+## Proposed Changes
+
+### [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+#### [MODIFY] [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)(file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+**1. Modify [DirectLogin](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#30-73) to catch `payload` parameter:** 
+The method will now catch a single param `payload`, decrypt it to a query string (e.g., `UserID=PSCouncilAyurved&timestamp=1690000000&token=AuthorizationToken`), and parse out the individual variables.
+
+```csharp
+[HttpGet]
+[AllowAnonymous]
+public ActionResult DirectLogin(string payload)
+{
+    if (!string.IsNullOrEmpty(payload))
+    {
+        // 1. Decrypt the payload
+        string decryptedPayload = DecryptPayload(payload.Replace(" ", "+"));
+        if (!string.IsNullOrEmpty(decryptedPayload))
+        {
+            // 2. Parse the query string e.g., "UserID=...&timestamp=...&token=..."
+            var parsedArgs = HttpUtility.ParseQueryString(decryptedPayload);
+            string UserName = parsedArgs["UserID"];
+            string Token = parsedArgs["token"];
+            string timestamp = parsedArgs["timestamp"];
+
+            if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Token) && !string.IsNullOrEmpty(timestamp))
+            {
+                if (IsValidPayload(Token, timestamp))
+                {
+                    // 3. Authenticate & Session Setup ...
+                }
+            }
+        }
+        return RedirectToAction("Home", "Login", new { Error = PortalEncryption.EncryptPassword("Invalid login payload.") });
+    }
+    return RedirectToAction("Home", "Login");
+}
+```
+
+**2. Add NEW [DecryptPayload](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#332-374) Method:**
+Implement an AES-256 decryption method mimicking the exact behavior of the PHP `pg_decript` function (32-byte SHA-256 hashed password, 16-byte all-zero IV, CBC mode, RAW data/base64).
+
+```csharp
+private string DecryptPayload(string encryptedText)
+{
+    // C# equivalent of PHP's openssl_decrypt(base64_decode($encrypted), 'aes-256-cbc', $password, OPENSSL_RAW_DATA, $iv)
+}
+```
+
+## Verification Plan
+
+### Manual Verification
+1. Access the application using a URL generated from the PHP environment: `g2g/dashboard/test?payload=ENCRYPTED_STRING`.
+2. Confirm the payload decrypts to `UserID`, `timestamp`, and `token`.
+3. Confirm parsing, authentication, and the successful `CreateUserSession` executes smoothly triggering redirection to the dashboard.

@@ -1,0 +1,47 @@
+# AIRA (Akash Intelligent Reactive Assistant) - Project & Setup Plan
+
+Based on the `documentation.txt` analysis, our strategy will be split into two parallel tracks: 
+1. **[Phase 0] Core Documentation Drafting** (Top Priority)
+2. **[Phase 1] Codebase Scaffolding**
+
+## Proposed Changes
+
+### Phase 0: Core Architecture Documentation
+The documentation list explicitly dictates we must generate the following core documents first. We will create these in the `d:\learning\AIRA\doc\` directory:
+
+#### [NEW] [doc/srs.md](file:///d:/learning/AIRA/doc/srs.md)
+**Software Requirements Specification (SRS):** Will detail the functional and non-functional requirements of the AI Brain, Command System, Memory, and Cross-Platform access.
+
+#### [NEW] [doc/database_design.md](file:///d:/learning/AIRA/doc/database_design.md)
+**Database Design Document:** Will map out the PostgreSQL tables (e.g., `Users`, `Devices`, `ConversationHistory`, `TaskQueue`) and the Pinecone vector index schemas for contextual memory.
+
+#### [NEW] [doc/security_design.md](file:///d:/learning/AIRA/doc/security_design.md)
+**Security Design Document:** Will detail the JWT authentication flow via the .NET Core Gateway, Device ID validation, and the critical command allowlist/restrictions to ensure the laptop agent is safe.
+
+---
+
+### Phase 1: Code Scaffolding
+
+Once we solidify the documentation, we will scaffold the execution layer and AI engine.
+
+#### [NEW] `ai-engine/app/` (Python FastAPI)
+- **[NEW] [ai-engine/app/main.py](file:///d:/learning/AIRA/ai-engine/app/main.py)**: Entry point.
+- **[NEW] [ai-engine/app/services/llm_service.py](file:///d:/learning/AIRA/ai-engine/app/services/llm_service.py)**: Connects to local Ollama (`http://localhost:11434/api/generate`) using `llama3`.
+- **[NEW] [ai-engine/app/services/memory_service.py](file:///d:/learning/AIRA/ai-engine/app/services/memory_service.py)**
+- **[NEW] [ai-engine/app/services/orchestrator.py](file:///d:/learning/AIRA/ai-engine/app/services/orchestrator.py)**
+- **[NEW] [ai-engine/app/api/routes.py](file:///d:/learning/AIRA/ai-engine/app/api/routes.py)**
+- **[NEW] [ai-engine/app/core/config.py](file:///d:/learning/AIRA/ai-engine/app/core/config.py)**
+- **[NEW] [ai-engine/app/models/schemas.py](file:///d:/learning/AIRA/ai-engine/app/models/schemas.py)**
+
+#### [NEW] `agents/laptop/` (Execution Layer)
+- **[NEW] [agents/laptop/laptop_agent.py](file:///d:/learning/AIRA/agents/laptop/laptop_agent.py)**: Agent script to receive structured commands and parse them into physical OS execution calls.
+
+## Open Questions
+
+1. **Before we write any Python code**, should we immediately draft the **SRS, Database Design, and Security Design** markdown files and save them in the `doc/` folder?
+2. Alternatively, would you like to build the project iteratively, writing the code first and updating documentation later?
+3. For the **Database Design**, do you have a preference between Entity Framework (EF Core) code-first mapping in the .NET backend or raw SQL definitions?
+
+## Verification Plan
+1. We will review the generated Markdown files to ensure they meet your exact AIRA visions.
+2. After approval, we will proceed to scaffolding the `ai-engine` and `agents` directories as defined in Phase 1.

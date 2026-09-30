@@ -1,0 +1,71 @@
+# Seamless Login via URL Payload
+
+The goal is to provide a way to log a user in directly via a URL containing `UserName`, `Token`, and `timestamp`, bypassing the OTP verification step. **Per your request, we will not modify or break any existing functions in the current code.** We will strictly **add** new methods to handle this payload, while reusing existing session-creation logic inside the new method.
+
+## User Review Required
+
+> [!IMPORTANT]
+> To proceed with implementation, I still need a bit of clarification on the payload:
+> 1. **Token Validation Strategy:** How is the `Token` in the URL generated and how should it be validated? Should we check a specific hash (e.g., `Token == Hash(UserName + timestamp + SecretKey)`)? Or will you provide a SQL Stored Procedure to call to validate it?
+> 2. **User Type (`UserType`):** What `UserType` should be used for these seamless logins (e.g., `"S"` for Student, `"G"`, or something else)? Or is this also determined dynamically/passed in the payload?
+
+## Proposed Changes
+
+### [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+#### [MODIFY] [LoginController.cs](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)(file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs)
+
+**1. Add a NEW `ActionResult` for Direct Login (`DirectLogin`)**
+We will add a totally new GET method that accepts `UserName`, `Token`, and `timestamp`. **No existing Actions will be changed.**
+
+```csharp
+[HttpGet]
+[AllowAnonymous]
+public ActionResult DirectLogin(string UserName, string Token, string timestamp)
+{
+    // 1. Validate the Timestamp and Token to prevent unauthorized access
+    if (!IsValidPayload(UserName, Token, timestamp))
+    {
+        return RedirectToAction("Home", "Login", new { Error = PortalEncryption.EncryptPassword("Invalid login payload.") });
+    }
+
+    // 2. Mock a LoginRepository Modal
+    LoginRepository Modal = new LoginRepository();
+    Modal.UserName = UserName;
+    Modal.UserType = "S"; // <--- Needs Clarification
+
+    // 3. Authenticate User
+    Modal = Modal.isValidUser(Modal);
+
+    if (!string.IsNullOrEmpty(Modal.Roles) && Modal.UserStatus != "Login Failed")
+    {
+        // 4. Session and Auth Cookie Generation (copied from POST Home action)
+        var roles = Modal.Roles.ToString();
+        CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
+        serializeModel.UserId = Modal.UserId;
+        serializeModel.UserName = Modal.UserName;
+        serializeModel.FirstName = Modal.Firstname;
+        serializeModel.roles = Modal.Roles;
+        serializeModel.G2GMobileNo = Modal.MobileNo;
+        // ... (remaining cookie/session allocations copy-pasted from existing method)
+
+        return Redirect(Modal.UserTypeUrl);
+    }
+    else
+    {
+        return RedirectToAction("Home", "Login", new { Error = PortalEncryption.EncryptPassword("Direct login failed.") });
+    }
+}
+```
+
+**2. Add NEW Token Validation Method**
+Implement a NEW `IsValidPayload(string UserName, string Token, string timestamp)` method to verify the request hasn't been tampered with or expired. **No existing methods will be modified.**
+
+## Verification Plan
+
+### Manual Verification
+1. Generate a valid URL with `UserName`, `Token`, and `timestamp`.
+2. Access the URL in a browser.
+3. Ensure the browser authenticates the user directly, sets the necessary cookies (`ADUserinfo`, `AuthToken`), and redirects them to their respective dashboard (`Modal.UserTypeUrl`).
+4. Wait for the timestamp to expire, access the URL again, and confirm it denies the login.
+5. Alter the `Token` in the URL and confirm the login fails, redirecting to the Home page with an error.

@@ -1,0 +1,104 @@
+# Curriculum Management Enhancement - Completed
+
+I have successfully enhanced the course and lesson management features, providing instructors with granular control over content visibility and safety through soft deletes.
+
+## Completed Tasks
+- [x] **Backend Improvements**
+  - [x] Implemented Soft Deletes for `courses`, `course_sections`, and `course_lessons`.
+  - [x] Added `is_active` status to all curriculum tables.
+  - [x] Created API endpoints for status toggling and functional deletion.
+  - [x] Updated feature tests to verify all new logic.
+- [x] **Frontend UI/UX**
+  - [x] Created `MediaPreview` component for real-time video/PDF feedback.
+  - [x] Created premium `Switch` toggle component.
+  - **Status Indicators**: Non-active sections/lessons are visually dimmed with a line-through effect for easy identification.
+  - **Global Visibility**: A new "Course Active" switch allows instructors to hide an entire course from the student catalog, regardless of its publication status.
+  - **Publishing Control**: A new **Draft/Published** toggle in the course editor allows instructors to finalize content before making it available for purchase/enrollment.
+  - **Request Stability**: Added `processing` states to all toggles and delete buttons to prevent "double-click" race conditions and redundant API calls.
+  - [x] Enhanced [LessonFormModal](file:///d:/learning/SkillPilot/skillpilot-frontend/src/components/instructor/courses/LessonFormModal.tsx#53-318) with a preview sidebar and visibility toggle.
+  - [x] Refined [EditCoursePage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/instructor/courses/%5Bid%5D/edit/page.tsx#67-721) with global visibility controls, functional delete buttons, and **Publishing Status (Draft/Published) toggle**.
+  - [x] Updated `InstructorCoursesPage` with:
+    - [x] Functional course deletion with confirmation.
+    - [x] `is_active` visibility toggle for each course.
+    - [x] Improved navigation and status indicators.
+  - [x] Enhanced curriculum management with:
+    - [x] **Edit Section**: Renaming sections inline.
+    - [x] **Edit Lesson**: Modifying existing lessons with pre-filled forms.
+    - [x] **View Lesson**: Integrated interactive preview for all content types.
+  - [x] Updated [CourseCatalogPage](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/courses/page.tsx#24-195) to automatically hide inactive courses for students.
+- [x] **Performance & Stability**
+  - [x] Implemented request debouncing (processing states) on all curriculum management buttons.
+  - [x] Added loading indicators to prevent concurrent API requests.
+- [x] **Verification**
+  - [x] Ran backend PHP tests (Passing: 27 tests).
+  - [x] Performed manual browser verification of instructor dashboard and curriculum editor.
+  - [x] Confirmed "Eye" button visibility and pre-filled edit forms.
+
+## Key Changes
+### 1. Advanced Visibility Controls
+Instructors can now toggle individual lessons, entire sections, or the whole course to "Inactive". This hides content from students while allowing instructors to continue editing in the background.
+
+### 2. Safeguarded Deletion
+All deletions are now "Soft Deletes," meaning data is preserved in the database with a `deleted_at` timestamp, preventing accidental data loss while keeping the UI clean.
+
+### 3. Real-Time Media Previews
+The new interactive sidebar in the lesson editor allows instructors to instantly see how their videos (YouTube/Vimeo/Direct) or PDFs will appear to students.
+
+---
+# Student Learning Experience - In Progress
+
+This phase focuses on the core student journey, from course enrollment to active learning in the course player.
+
+## Tasks
+- [x] **Backend: Enrollment & Permissions**
+  - [x] Implement [Enrollment](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Enrollments/app/Models/Enrollment.php#9-37) model and table.
+  - [x] Create [CheckEnrollment](file:///d:/learning/SkillPilot/skillpilot-backend/app/Http/Middleware/CheckEnrollment.php#9-52) middleware to protect lesson access.
+  - [x] Implement [EnrollmentController](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Enrollments/app/Http/Controllers/EnrollmentController.php#12-84) for joining free/paid courses.
+- [x] **Frontend: Learning Dashboard & Player**
+  - [x] Connect [CourseCatalog](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/courses/page.tsx#24-195) to real API data.
+  - [x] Implement `My Learning` dashboard showing enrolled courses.
+  - [x] Build the high-end **Course Player** UI with:
+    - [x] Collapsible curriculum sidebar.
+    - [x] Dynamic content area (Video/PDF/Text).
+    - [x] "Mark as Completed" functionality.
+- [x] **Verification**
+  - [x] Test enrollment flow from catalog to player.
+  - [x] Verify progress tracking persistence.
+  - [x] Verify course catalog lesson counts.
+  - [x] Confirm registration flow and redirection.
+
+---
+# Future Phases
+
+## 1. Payment Integration
+- [ ] Implement Stripe/PayPal integration in `Payments` module.
+- [ ] Create `Orders` flow for course purchases.
+- [ ] Connect checkout to [Enrollment](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Enrollments/app/Models/Enrollment.php#9-37) creation.
+
+## 2. Certificate Generation
+- [ ] Implement PDF generation in `Certificates` module.
+- [ ] Trigger certificate creation on 100% course completion.
+- [ ] Add certificate download to student dashboard.
+
+## 3. Advanced Instructor Analytics
+- [ ] Create analytics dashboard for instructors.
+- [ ] Track lesson completion rates and student engagement.
+
+---
+# Admin Suite & Assessments - In Progress
+
+This phase adds testing capabilities for students and a global management dashboard for administrators.
+
+## Tasks
+- [x] **Backend: Assessments & Admin Modules**
+  - [x] Create `Assessments` module (Quizzes, Questions, Attempts).
+  - [x] Create [Admin](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/admin/users/page.tsx#28-126) module for global oversight (Tenants, Users, Courses).
+  - [x] Implement global scopes and overrides for Admin role.
+- [x] **Frontend: UI Implementation**
+  - [x] Build **Quiz Creator** (Instructor) and **Quiz Player** (Student).
+  - [x] Build **Admin Dashboards** for Tenants, Users, and Courses.
+- [x] **Integration**
+  - [x] Gate certificates behind passing the final quiz score.
+
+---
+*Verified by Antigravity on 2026-03-23*

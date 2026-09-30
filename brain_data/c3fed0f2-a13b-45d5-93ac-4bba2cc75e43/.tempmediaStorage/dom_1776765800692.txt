@@ -1,0 +1,68 @@
+Skill
+Pilot
+Menu
+[0] (112,254)<a href='/admin/dashboard' />
+	[1] (112,254)<div  />
+		[2] (68,254)<div  />
+			[3] (81,254)<span >Analytics />
+[4] (112,326)<a href='/courses' />
+	[5] (112,326)<div  />
+		[6] (76,326)<div  />
+			[7] (88,326)<span >My Learning />
+[8] (112,398)<a href='/certificates' />
+	[9] (112,398)<div  />
+		[10] (74,398)<div  />
+			[11] (86,398)<span >Certificates />
+[12] (112,471)<a href='/membership' />
+	[13] (112,471)<div  />
+		[14] (76,471)<div  />
+			[15] (88,471)<span >Membership />
+[16] (112,543)<a href='/instructor/courses' />
+	[17] (112,543)<div  />
+		[18] (88,543)<div  />
+			[19] (100,543)<span >Manage Courses />
+[20] (112,615)<a href='/instructor/earnings' />
+	[21] (112,615)<div  />
+		[22] (67,615)<div  />
+			[23] (80,615)<span >Earnings />
+[24] (112,687)<a href='/admin/tenants' />
+	[25] (112,687)<div  />
+		[26] (73,687)<div  />
+			[27] (85,687)<span >All Tenants />
+[28] (112,759)<a href='/admin/users' />
+	[29] (112,759)<div  />
+		[30] (67,759)<div  />
+			[31] (80,759)<span >All Users />
+[32] (112,832)<a href='/admin/courses' />
+	[33] (112,832)<div  />
+		[34] (74,832)<div  />
+			[35] (87,832)<span >All Courses />
+[36] (112,904)<a href='/admin/bundles' />
+	[37] (112,904)<div  />
+		[38] (65,904)<div  />
+			[39] (78,904)<span >Bundles />
+[40] (112,976)<a href='/admin/settings/branding' />
+	[41] (112,976)<div  />
+		[42] (68,976)<div  />
+			[43] (80,976)<span >Branding />
+		[44] (187,976)<div  />
+[45] (400,60)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[46] (805,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+SkillPilot Admin
+Administrator
+Certificate
+Branding
+Customize the appearance of certificates issued by your workspace. Changes are reflected in all new and existing downloads.
+[47] (900,123)<button class='inline-flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary text-primary-foreground hover:shadow-primary/20 py-2.5 rounded-full px-8 gap-2 shadow-lg shadow-primary/20'>Save Branding />
+Appearance
+[48] (307,334)<label class='text-xs font-bold uppercase tracking-wider text-slate-500'>Brand Color />
+[49] (282,381)<input class='h-10 w-10 border-0 rounded-lg cursor-pointer' />
+[50] (380,381)<input class='flex w-full rounded-xl border border-input bg-card px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 flex-1 uppercase font-mono' placeholder='#000000' />
+Identity
+[51] (317,603)<label class='text-xs font-bold uppercase tracking-wider text-slate-500'>Corporate Logo />
+[52] (363,719)<input class='absolute inset-0 opacity-0 cursor-pointer' />
+[53] (333,877)<label class='text-xs font-bold uppercase tracking-wider text-slate-500'>Authorized Signature />
+SCAN OF SIGNATURE
+[54] (363,965)<input class='absolute inset-0 opacity-0 cursor-pointer' />
+Real-time PDF Preview
+This is a high-fidelity PDF rendering. Your students will download exactly what you see here.

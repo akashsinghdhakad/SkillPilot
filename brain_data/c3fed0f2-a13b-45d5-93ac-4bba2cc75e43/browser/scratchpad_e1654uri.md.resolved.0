@@ -1,0 +1,18 @@
+# SkillPilot Verification Task
+
+## Checklist
+- [ ] Navigate to http://localhost:3000/courses (Course Catalog)
+- [ ] Verify courses are loaded
+- [ ] Enroll in a course
+- [ ] Verify success toast and status change
+- [ ] In the Course Player (/courses/[id]/learn):
+    - [ ] Check curriculum sidebar
+    - [ ] Click 'Mark As Complete'
+    - [ ] Verify visually it changes to 'Completed'
+- [ ] Refresh the page and verify persistence
+- [ ] Navigate to http://localhost:3000/dashboard
+- [ ] Verify course appears in 'My Learning'
+- [ ] Capture screenshots:
+    - [ ] Course Catalog
+    - [ ] Course Player (Completed lesson)
+    - [ ] Student Dashboard

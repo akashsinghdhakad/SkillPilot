@@ -1,0 +1,13 @@
+# Functional Testing Checklist
+
+- [ ] Login as Admin (admin@skillpilot.com / password)
+    - [ ] Verify Sidebar: Tenants, Users, Courses
+    - [ ] Verify Tenants page loads data
+    - [ ] Verify Users page loads data
+    - [ ] Verify Courses page loads data
+- [ ] Login as Instructor (instructor@skillpilot.com / password)
+    - [ ] Verify Course Studio
+    - [ ] Verify Manage Quizzes / Add Quiz visibility
+- [ ] Login as Student (student@skillpilot.com / password)
+    - [ ] Verify Quiz Player
+- [ ] Summarize status of components

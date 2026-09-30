@@ -1,0 +1,59 @@
+<current_dom_explanation>
+This is a temporary snapshot of the current page's DOM structure. The DOM will change if you navigate to or interact with another page. Use a tool like browser_get_dom to capture and preserve the DOM in your trajectory if needed for later reference.
+</current_dom_explanation>
+<current_dom>
+Skill
+Pilot
+Menu
+[0] (112,254)<a href='/dashboard' />
+	[1] (112,254)<div  />
+		[2] (68,254)<div  />
+			[3] (81,254)<span >Overview />
+[4] (112,326)<a href='/courses' />
+	[5] (112,326)<div  />
+		[6] (76,326)<div  />
+			[7] (88,326)<span >My Learning />
+[8] (112,398)<a href='/certificates' />
+	[9] (112,398)<div  />
+		[10] (74,398)<div  />
+			[11] (86,398)<span >Certificates />
+[12] (112,471)<a href='/instructor/courses' />
+	[13] (112,471)<div  />
+		[14] (88,471)<div  />
+			[15] (100,471)<span >Manage Courses />
+		[16] (187,472)<div  />
+[17] (112,543)<a href='/instructor/earnings' />
+	[18] (112,543)<div  />
+		[19] (67,543)<div  />
+			[20] (80,543)<span >Earnings />
+[21] (112,615)<a href='/admin/tenants' />
+	[22] (112,615)<div  />
+		[23] (73,615)<div  />
+			[24] (85,615)<span >All Tenants />
+[25] (112,687)<a href='/admin/users' />
+	[26] (112,687)<div  />
+		[27] (67,687)<div  />
+			[28] (80,687)<span >All Users />
+[29] (112,759)<a href='/admin/courses' />
+	[30] (112,759)<div  />
+		[31] (74,759)<div  />
+			[32] (87,759)<span >All Courses />
+[33] (112,832)<a href='/admin/settings/branding' />
+	[34] (112,832)<div  />
+		[35] (68,832)<div  />
+			[36] (80,832)<span >Branding />
+Sign Out
+[37] (400,60)<input class='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-slate-950 transition-all text-sm outline-none' placeholder='Search courses, lessons...' />
+[38] (805,60)<button class='p-2 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition-colors relative' />
+SkillPilot Admin
+Administrator
+Manage Courses
+Create, edit, and monitor the performance of your educational content.
+[39] (875,232)<a href='/instructor/courses/new' />
+	[40] (875,232)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary shadow-lg hover:shadow-primary/20 px-8 py-3 text-lg font-semibold gap-2 shadow-primary/30 text-white'>Create New Course />
+[41] (526,386)<input class='flex w-full rounded-xl border border-input px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-primary/50 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 pl-10 bg-slate-50 border-none focus:ring-1' placeholder='Search your courses...' />
+[42] (818,386)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm text-slate-500 font-semibold'>All />
+[43] (874,386)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm text-slate-400'>Published />
+[44] (938,386)<button class='inline-flex items-center justify-center rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-sm text-slate-400'>Drafts />
+
+</current_dom>

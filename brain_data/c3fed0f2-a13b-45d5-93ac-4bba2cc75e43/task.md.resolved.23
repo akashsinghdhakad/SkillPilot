@@ -1,0 +1,10 @@
+- [x] Implement Roles Master Table
+    - [x] Create [roles](file:///d:/learning/SkillPilot/skillpilot-backend/app/Models/User.php#32-39) table migration
+    - [x] Create `role_user` pivot table
+    - [x] Create [Role](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Roles/app/Models/Role.php#9-27) model in Roles module
+    - [x] Implement relationships in [User](file:///d:/learning/SkillPilot/skillpilot-frontend/src/types/auth.ts#1-9) model
+    - [x] Update [UserRoleSeeder](file:///d:/learning/SkillPilot/skillpilot-backend/database/seeders/UserRoleSeeder.php#8-66) to use master records
+- [x] Create Course Creation feature
+- [x] Fix Auth Persistence on Refresh
+- [x] Fix Course List (Real Data)
+- [x] Implement View/Edit Course

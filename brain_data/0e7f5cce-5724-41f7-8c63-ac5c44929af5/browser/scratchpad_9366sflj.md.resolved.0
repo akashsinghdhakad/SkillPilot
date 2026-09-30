@@ -1,0 +1,6 @@
+# Tasks
+- [ ] Visit http://172.16.11.21:3000/
+- [ ] Verify that adding tasks works correctly
+- [ ] Mark some tasks as finished
+- [ ] Confirm no more "crypto.randomUUID" errors in the console
+- [ ] Report on the successful walkthrough

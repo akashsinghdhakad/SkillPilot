@@ -1,0 +1,12 @@
+# Verification Plan - Lesson Modal Responsiveness
+
+- [x] Login as instructor (instructor@example.com / password)
+- [x] Navigate to /instructor/courses
+- [x] Edit a course
+- [x] Add section "UX Verified Section"
+- [x] Click "Add Lesson"
+- [x] Verify scrollability in small viewport (400px height) (Verified: Scrollable container works)
+- [x] Fill out lesson form (Note: Duration field was not found in the current UI version)
+- [x] Click "Create Lesson"
+- [x] Verify UI looks premium and responsive
+- [x] Final Report

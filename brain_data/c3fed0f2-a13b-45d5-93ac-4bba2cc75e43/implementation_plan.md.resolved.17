@@ -1,0 +1,34 @@
+# Implementation Plan - Finalize Certificate Branding & Issuance
+
+The manual and automated verification revealed two blockers:
+1.  **Missing Dependency**: The `barryvdh/laravel-dompdf` library is needed for PDF generation but is not installed.
+2.  **Data Mismatch**: There was a discrepancy between the frontend completion state and the backend issuance logic (fixed in code but needs verification).
+
+## User Review Required
+
+> [!IMPORTANT]
+> This plan will install `barryvdh/laravel-dompdf`. This is a stable, standard library for Laravel PDF generation.
+
+## Proposed Changes
+
+### System Configuration
+#### [MODIFY] [composer.json](file:///d:/learning/SkillPilot/skillpilot-backend/composer.json)
+- Add `barryvdh/laravel-dompdf` to the requirements.
+
+### Backend Refinement
+#### [VERIFY] [CertificateController.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/app/Http/Controllers/CertificateController.php)
+- Ensure it uses `LessonProgress` from `Modules\Enrollments\Models`.
+- Ensure it correctly base64-encodes branding assets for PDF rendering.
+
+#### [VERIFY] [CertificateTest.php](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Certificates/tests/Feature/CertificateTest.php)
+- Ensure it seeds `lesson_progress` table correctly.
+
+## Verification Plan
+
+### Automated Tests
+- `composer install` to fetch new dependencies.
+- `php artisan test Modules/Certificates/tests/Feature/CertificateTest.php` to verify issuance and PDF download logic.
+
+### Manual Verification
+- **Admin Branding**: Navigate to `/admin/settings/branding`, update color/logo, and verify persistence.
+- **Student Flow**: Finalize the "Mastering Laravel" course as `student@skillpilot.com` and download the branded certificate.

@@ -1,0 +1,9 @@
+# Seamless Login Implementation
+
+- [x] Revert [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#70-283) GET back to its original state (done manually by user).
+- [ ] Create a new `DirectLogin` GET Action in [LoginController](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#19-683) to catch the URL payload (`UserName`, `Token`, `timestamp`).
+- [ ] Create a new helper method `CreateUserSession` to encapsulate the session and cookie generation logic.
+- [ ] Update [Home](file:///d:/dev/Ayurved/Ayurved_bkp12032026/AyurvedaPortal/Controllers/LoginController.cs#70-283) POST method to use `CreateUserSession`.
+- [ ] Call `CreateUserSession` from the new `DirectLogin` method.
+- [ ] Implement Token validation logic mimicking the PHP `sha256` hashing logic: `if ("Bearer " + hash('sha256', substring(client_token, 7)) != "Bearer " + $client_config_auth_token)`.
+- [ ] Assign `UserType = "S"` directly inside the seamless login flow.

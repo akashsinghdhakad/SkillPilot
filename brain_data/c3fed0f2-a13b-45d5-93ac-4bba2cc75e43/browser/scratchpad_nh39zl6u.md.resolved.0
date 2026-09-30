@@ -1,0 +1,15 @@
+# Testing Plan - Lesson Management
+
+## Checklist
+- [ ] Login at http://localhost:3000/login (instructor@example.com / password)
+- [ ] Navigate to /instructor/courses
+- [ ] Edit a course (or create if none)
+- [ ] Find "Course Curriculum" section
+- [ ] Add a new section "New Section"
+- [ ] Add a lesson to "New Section"
+- [ ] Verify lesson appears in the list
+- [ ] Click "Save Changes" on the course
+- [ ] Return summary
+
+## Findings
+- 

@@ -1,0 +1,9 @@
+# UI Verification Checklist
+
+- [ ] Verify background mesh gradient and glows
+- [ ] Verify glass-card container with blur
+- [ ] Verify animated progress bar in header
+- [ ] Add tasks and verify entrance animations/hover-lift effects
+- [ ] Verify magnetic filter segmented controls
+- [ ] Confirm "Wow" factor and aesthetic consistency
+- [ ] Take final screenshot

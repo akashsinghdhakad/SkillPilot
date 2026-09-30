@@ -1,0 +1,6 @@
+- [x] Investigate [User](file:///d:/learning/SkillPilot/skillpilot-frontend/src/types/auth.ts#1-9) model and table schema
+- [ ] Create migration for `role` column [/]
+- [ ] Update [User](file:///d:/learning/SkillPilot/skillpilot-frontend/src/types/auth.ts#1-9) model [ ]
+- [ ] Create seeder for test users [ ]
+- [ ] Run migration and seeder [ ]
+- [ ] Provide test credentials to user [ ]

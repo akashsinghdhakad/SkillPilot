@@ -1,0 +1,36 @@
+# SWHP Frontend Implementation Tasks
+
+This task list serves as the actionable checklist for building the SWHP React frontend, derived from the technical design plan.
+
+## 1. Environment & Routing Setup
+- [ ] Initialize the React application (e.g., using Vite `npm create vite@latest swhp-frontend`).
+- [ ] Install required core dependencies (`react-router-dom`, `axios`, `bootstrap`, `fortawesome`).
+- [ ] Setup global routing configuration (`/login`, `/register`, `/profile`, `/apply`, `/payment`, `/dashboard`).
+- [ ] Configure `axios` interceptors to handle JWT injection and centralized error handling (e.g., redirect on 401).
+
+## 2. Authentication & Identity
+- [ ] Create Context API (`AuthContext`) for global session management.
+- [ ] Build the `Login` and `Register` UI components.
+- [ ] Implement legacy account mapping UI (`AccountMapping`) to capture credentials for mapping to SWHP.
+- [ ] Implement Password Recovery components (`ForgotPassword` and `ResetPassword`).
+
+## 3. Profile & Service Selection
+- [ ] Develop the `UserProfile` component for collecting common cross-system fields.
+- [ ] Build the `ServiceSelection` dashboard, rendering available legacy services (NHS, FDA, etc.).
+- [ ] Implement logic to submit selected services to `/api/v1/swan/create` and store the generated SWAN.
+
+## 4. iFrame Orchestration
+- [ ] Create the `ServiceIframe` wrapper component for loading individual legacy forms.
+- [ ] Implement state management for the service queue (advancing forms sequentially).
+- [ ] Add the `window.addEventListener('message')` listener on the parent.
+- [ ] Implement strict `event.origin` validation and verify the `eventType === 'FormCompleted'` and `payload.swan` match.
+
+## 5. Consolidated Payment & Tracking
+- [ ] Build the `PaymentSummary` component to fetch and display the aggregated fee breakdown from `/api/v1/swan/{swan}/fees`.
+- [ ] Integrate the "Initiate Payment" redirect logic.
+- [ ] Develop the `ApplicationTracking` dashboard to fetch and list real-time status of submitted applications.
+
+## 6. Security & Finalization
+- [ ] Integrate CAPTCHA into public auth views.
+- [ ] Ensure all forms use strict validation and handle API errors gracefully.
+- [ ] Verify CSRF defenses and ensure no sensitive data is placed in localStorage.

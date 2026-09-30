@@ -1,0 +1,49 @@
+# Student Learning Experience: Enrollment & Course Player
+
+This plan focuses on implementing the student's journey from course discovery to active learning.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - **Enrollment Logic**: Users will be allowed to "Quick Enroll" in free courses. Paid courses will require a completed Order.
+> - **Access Security**: All lesson endpoints will be protected by a new `CheckEnrollment` middleware.
+
+## Proposed Changes
+
+### [Backend] [Enrollments Module]
+
+#### [NEW] [Enrollment Migration](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Enrollments/database/migrations/2026_03_23_000000_create_enrollments_table.php)
+- Create `enrollments` table: `user_id`, `course_id`, [status](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Lessons/tests/Feature/LessonTest.php#67-83) (active, completed), `enrolled_at`.
+
+#### [NEW] [Enrollment Model](file:///d:/learning/SkillPilot/skillpilot-backend/Modules/Enrollments/app/Models/Enrollment.php)
+- Standard Eloquent model with relationships to [User](file:///d:/learning/SkillPilot/skillpilot-backend/app/Models/User.php#14-71) and [Course](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/%28dashboard%29/instructor/courses/%5Bid%5D/page.tsx#40-52).
+
+#### [NEW] [CheckEnrollment Middleware](file:///d:/learning/SkillPilot/skillpilot-backend/app/Http/Middleware/CheckEnrollment.php)
+- Verify if the authenticated user has an active enrollment for the requested course/lesson.
+
+---
+
+### [Frontend] [Course Catalog & Discovery]
+
+#### [MODIFY] [Course Catalog](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/courses/page.tsx)
+- Fetch real course data from the backend.
+- Implement "Enroll Now" functionality with success/error feedback.
+
+---
+
+### [Frontend] [Course Player]
+
+#### [NEW] [Course Player Page](file:///d:/learning/SkillPilot/skillpilot-frontend/src/app/(dashboard)/courses/[id]/learn/page.tsx)
+- **Layout**: Sidebar with curriculum (nested accordion), Main area for content (Video/PDF/Text).
+- **Functionality**: Track lesson completion, auto-advance to next lesson.
+
+## Verification Plan
+
+### Automated Tests
+- Run `php artisan test` after implementing backend modules.
+- Create feature tests for `EnrollmentController`.
+
+### Manual Verification
+- Enroll in a course (free).
+- Verify access to lessons in the Course Player.
+- Attempt to access a lesson for a non-enrolled course and verify 403 Forbidden.

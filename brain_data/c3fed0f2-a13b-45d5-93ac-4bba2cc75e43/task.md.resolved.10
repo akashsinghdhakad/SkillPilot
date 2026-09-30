@@ -1,0 +1,4 @@
+- [ ] Investigate [User](file:///d:/learning/SkillPilot/skillpilot-backend/app/Models/User.php#14-55) model and table schema [/]
+- [ ] Create seeder for test users [ ]
+- [ ] Run seeder and verify in DB [ ]
+- [ ] Provide test credentials to user [ ]

@@ -1,0 +1,19 @@
+# Task: Manual Verification of Branding and Certificates
+
+## Progress Table
+| Step | Action | Status | Notes |
+| :--- | :--- | :--- | :--- |
+| 1 | Navigate to http://localhost:3000/login | Pending | |
+| 2 | Login as admin@skillpilot.com | Pending | |
+| 3 | Navigate to Branding settings | Pending | |
+| 4 | Change Brand Color to '#8e24aa' | Pending | |
+| 5 | Save Changes and Verify | Pending | |
+| 6 | Logout as admin | Pending | |
+| 7 | Login as student@skillpilot.com | Pending | |
+| 8 | Navigate to 'Mastering Laravel' course | Pending | |
+| 9 | Ensure all lessons are complete | Pending | |
+| 10 | Claim Certificate | Pending | |
+| 11 | Download and Verify Certificate | Pending | |
+
+## Findings
+- 

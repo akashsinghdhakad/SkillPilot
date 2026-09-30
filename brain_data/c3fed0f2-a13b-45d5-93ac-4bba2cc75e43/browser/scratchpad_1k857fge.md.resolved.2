@@ -1,0 +1,18 @@
+# Functional Testing Checklist
+
+- [ ] Login as Admin (admin@skillpilot.com / password) - **FAILED (422: The provided credentials are incorrect)**
+    - [ ] Verify Sidebar: Tenants, Users, Courses
+    - [ ] Verify Tenants page loads data
+    - [ ] Verify Users page loads data
+    - [ ] Verify Courses page loads data
+- [ ] Login as Instructor (instructor@skillpilot.com / password) - **FAILED (422: The provided credentials are incorrect)**
+    - [ ] Verify Course Studio
+    - [ ] Verify Manage Quizzes / Add Quiz visibility
+- [ ] Login as Student (student@skillpilot.com / password) - **PENDING (Login failed, registration also has issues)**
+    - [ ] Verify Quiz Player
+- [ ] Summarize status of components
+
+**Findings:**
+- Login with provided credentials fails with 422 (Unprocessable Content), suggesting accounts are missing.
+- Registration with same email was possible (reached Step 2), but Step 2 reported "check Step 1 for errors" upon completion attempt.
+- This suggests the database might not be seeded or the application state is inconsistent.

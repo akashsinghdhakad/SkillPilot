@@ -1,0 +1,7 @@
+Skill
+Pilot
+Welcome back
+Enter your credentials to access your account
+Sign In
+Don't have an account?
+Create an account
